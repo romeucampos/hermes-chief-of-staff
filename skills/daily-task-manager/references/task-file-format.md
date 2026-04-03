@@ -2,16 +2,34 @@
 
 This document defines the structure and formatting rules for the canonical task file at `workspace/tasks/current.md`.
 
+## Required vs Optional Sections
+
+**Required** (must always be present):
+- Today
+- Next up
+- Rules
+- Done
+
+**Optional** (add as needed):
+- Recurring (weekdays)
+- Backlog (with due date)
+- Recurring reminders
+- Backlog
+
 ## Sections
 
 ### ## Today
 
 Open and completed tasks for today. This is the active working set.
 
-- `- [ ]` marks a pending task.
-- `- [x]` marks a completed task (before it gets moved to Done).
+Syntax:
 
-Items higher in the list are higher priority.
+```
+- [ ] Task description
+- [x] Task description
+```
+
+`- [ ]` marks a pending task. `- [x]` marks a completed task (before it gets moved to Done). Items higher in the list are higher priority.
 
 ### ## Next up
 
@@ -29,15 +47,23 @@ Baseline items that repeat every Monday through Friday. The daily-task-prep skil
 
 Future tasks with specific deadlines. Each entry includes a due date.
 
-Format: `- [ ] Task description — due YYYY-MM-DD`
+Syntax:
 
-The daily-task-prep skill promotes items to Today on their due date.
+```
+- [ ] Task description — due YYYY-MM-DD
+```
+
+The daily-task-prep skill promotes items to Today on their due date (see Promotion Rules).
 
 ### ## Recurring reminders
 
 Parked reminders with recurrence metadata. Unlike recurring weekday tasks, these fire on specific intervals — weekly, monthly, quarterly, etc. The source entry stays in this section even after firing. Only a copy moves to Today when the reminder triggers.
 
-Format: `- [ ] Task description — every [interval], next YYYY-MM-DD`
+Syntax:
+
+```
+- [ ] Task description — every [interval], next YYYY-MM-DD
+```
 
 ### ## Backlog
 
@@ -47,7 +73,11 @@ Undated someday items. No urgency, no deadline. Review periodically to decide if
 
 Completed items with timestamps. This is the audit trail.
 
-Format: `- [x] Task description — completed YYYY-MM-DD HH:MM TZ`
+Syntax:
+
+```
+- [x] Task description — completed YYYY-MM-DD HH:MM TZ
+```
 
 Never delete items from Done. Never move items out of Done.
 
@@ -60,9 +90,15 @@ Never delete items from Done. Never move items out of Done.
 
 ### Ownership
 
-Delegated tasks use an assistant name prefix followed by a colon:
+Delegated tasks use an assistant name prefix followed by a colon.
 
-`- [ ] Hermes: Draft the quarterly report — due 2026-04-15`
+Syntax:
+
+```
+- [ ] AssistantName: Task description — due YYYY-MM-DD
+```
+
+Example: `- [ ] Hermes: Draft the quarterly report — due 2026-04-15`
 
 ### Priority
 
@@ -71,3 +107,11 @@ Within any section, items higher in the list are higher priority. Reorder items 
 ### Deduplication
 
 Before adding a task, check for duplicates using normalized text comparison (case-insensitive, ignore leading/trailing whitespace). If a substantially similar task already exists, update it rather than creating a duplicate.
+
+## Promotion Rules
+
+**Backlog (with due date) to Today**: On the due date, the daily-task-prep skill moves the item from Backlog (with due date) to Today. The item is removed from Backlog.
+
+**Recurring (weekdays) to Today**: Each weekday morning, the daily-task-prep skill copies items from Recurring (weekdays) to Today. The source entry stays in Recurring permanently — it is never removed.
+
+**Recurring reminders to Today**: When a recurring reminder triggers, the daily-task-prep skill copies it to Today. The source entry stays in Recurring reminders, and its "next" date is advanced to the next occurrence.

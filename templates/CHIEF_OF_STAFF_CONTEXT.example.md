@@ -1,7 +1,7 @@
 # Chief of Staff Context
 
 This file gives all Chief of Staff skills the context they need to operate.
-Fill it out once. Every CoS skill reads it automatically.
+Fill it out once. Each skill is written to read this file at the start of relevant runs.
 
 **Setup:** Copy this file to your project root as `CHIEF_OF_STAFF_CONTEXT.md` and fill in your details.
 

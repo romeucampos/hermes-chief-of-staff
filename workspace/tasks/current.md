@@ -1,5 +1,8 @@
 # Tasks
 
+<!-- Required sections: Today, Next up, Rules, Done -->
+<!-- Optional sections: Recurring (weekdays), Backlog (with due date), Recurring reminders, Backlog -->
+
 ## Today
 
 - [ ] Example: Review pull requests — delete this and add your real tasks

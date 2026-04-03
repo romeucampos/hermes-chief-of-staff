@@ -2,6 +2,8 @@
 
 The Chief of Staff OS supports three levels of adoption. Start where you are and add layers as you need them.
 
+> **v1** delivers Levels 1-3 below, covering operational CoS foundations. Future phases add strategic layers (weekly digests, meeting prep, business development, decision logs).
+
 ---
 
 ## Level 1 — Personal EA

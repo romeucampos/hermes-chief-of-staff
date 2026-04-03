@@ -25,8 +25,8 @@ license: MIT
 1. Identify the target date (tomorrow, based on configured timezone).
 2. Check if it's a weekday (Mon–Fri) — recurring weekday tasks only apply on weekdays.
 3. Copy recurring weekday items into the **Today** section (skip weekends).
-4. Scan **Backlog (with due date)** — promote any items due tomorrow to **Today**, remove them from backlog.
-5. Scan **Recurring reminders** — check if any are triggered for tomorrow. Copy to **Today** but leave the source entry in Recurring reminders intact.
+4. Scan **Backlog (with due date)** — promote any items due tomorrow to **Today**. Remove the item from Backlog (with due date) after adding it to Today.
+5. Scan **Recurring reminders** — check if any are triggered for tomorrow. Copy the task to **Today**. In the source entry, advance the "next" date to the next occurrence. Do not remove the source entry.
 6. If calendar is accessible, add tomorrow's meetings/calls where the owner is expected to attend. Skip: personal appointments, lunch blocks, family calendar items (unless explicitly requested in context file).
 7. Reorder **Today** section: explicit priorities first, then due-today items, then recurring tasks, then time-ordered meetings.
 

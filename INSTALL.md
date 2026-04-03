@@ -25,14 +25,7 @@ Copy the skills to your Hermes skills directory:
 cp -r skills/* ~/.hermes/skills/
 ```
 
-Verify they're detected:
-
-```bash
-hermes chat
-# Then type: /skills
-# You should see: executive-assistant, daily-task-manager, daily-task-prep,
-#                  relationship-manager, chief-of-staff
-```
+Verify they're detected by starting a Hermes session and checking the skill list. The exact command may vary by version — try listing your available skills to confirm the five CoS skills appear.
 
 ## Step 3: Set Up the Context File
 
@@ -96,22 +89,17 @@ mcp_servers:
     args: ["-y", "@anthropic/mcp-server-google-calendar"]
 ```
 
-Reload after changes:
-
-```bash
-hermes chat
-# Then type: /reload-mcp
-```
+Reload MCP servers after changes. In a Hermes chat session, use the reload command (e.g., `/reload-mcp`) to pick up the new configuration.
 
 ## Step 7: Set Up Cron Schedules
 
-Start the Hermes cron scheduler:
+Start the Hermes cron scheduler (exact command may vary — consult Hermes docs for your version):
 
 ```bash
 hermes cron start
 ```
 
-Add the recommended schedules (adjust times to your timezone):
+Add the recommended schedules (adjust times to your timezone). Example workflow:
 
 ```bash
 # EA inbox sweep — every 15 min, business hours, weekdays
@@ -127,35 +115,52 @@ hermes cron add "47 9,14 * * 1-5" "Run the relationship-manager skill. Check for
 hermes cron add "57 7 * * 1-5" "Run the chief-of-staff skill in morning briefing mode. Summarize today's tasks, inbox highlights, calendar, and due follow-ups."
 ```
 
+> **Note**: The cron command syntax above follows the Hermes CLI pattern at time of writing. If the exact syntax has changed, consult `hermes cron --help` or the [Hermes cron docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
+
 See [cron/README.md](cron/README.md) for details and customization options.
 
 ## Validation Checklist
 
 Run through this after setup to confirm everything works:
 
-- [ ] Skills show up in `/skills` list
-- [ ] `CHIEF_OF_STAFF_CONTEXT.md` is filled out and readable from your project root
-- [ ] `workspace/tasks/current.md` exists and has proper section headers
-- [ ] `workspace/relationships/current.md` exists and has proper section headers
-- [ ] MCP integrations are connected (test: "check my inbox" or "what's on my calendar")
-- [ ] Cron jobs are listed in `hermes cron list`
-- [ ] Test a heartbeat: "Run executive-assistant in heartbeat mode" — should return HEARTBEAT_OK or a summary
-- [ ] Test a briefing: "Morning briefing" — should return a structured daily overview
+**Installation**:
+- [ ] Skills are installed in `~/.hermes/skills/` (one directory per skill, each containing SKILL.md)
+- [ ] `CHIEF_OF_STAFF_CONTEXT.md` is filled out and present in your project root
+- [ ] `workspace/tasks/current.md` exists with required sections (Today, Next up, Rules, Done)
+- [ ] `workspace/relationships/current.md` exists with sections (Active Follow-ups, Nurture, Archived)
+- [ ] `workspace/HEARTBEAT.md` is present
+
+**Integrations**:
+- [ ] MCP servers are configured in `~/.hermes/config.yaml`
+- [ ] Test email access: ask "check my inbox" — should list recent messages or confirm access
+- [ ] Test calendar access: ask "what's on my calendar today" — should list events or confirm access
+- [ ] Cron jobs are set up (check with `hermes cron list` or equivalent)
+
+**Functional tests** (run these in a Hermes chat session):
+- [ ] "Add a task: test the CoS setup" — should update workspace/tasks/current.md
+- [ ] "Run executive-assistant in heartbeat mode" — should return HEARTBEAT_OK or a triage summary
+- [ ] "Morning briefing" — should return a structured daily overview
+- [ ] "Who do I need to follow up with?" — should check workspace/relationships/current.md
+- [ ] "Mark done: test the CoS setup" — should move the task to Done with a timestamp
 
 ## Choosing What to Install
 
-You don't need everything. See [docs/maturity-levels.md](docs/maturity-levels.md) for which skills and cron jobs to set up at each level:
+You don't need everything. For the fastest high-value setup, see [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md).
+
+For all options, see [docs/maturity-levels.md](docs/maturity-levels.md):
 
 - **Level 1 (Personal EA)**: Steps 2-4 with just `executive-assistant` and `daily-task-manager`
 - **Level 2 (Founder)**: Full Steps 2-6, all cron jobs except morning briefing
 - **Level 3 (Full CoS)**: Everything above
 
+A filled-out demo context file is available at [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) to see what a completed setup looks like.
+
 ## Troubleshooting
 
 **Skills not showing up**: Make sure the SKILL.md files are in `~/.hermes/skills/<skill-name>/SKILL.md`. Each skill needs its own directory.
 
-**MCP not connecting**: Run `/reload-mcp` in a Hermes chat session. Check `~/.hermes/logs/` for errors.
+**MCP not connecting**: Reload MCP servers in a Hermes chat session (e.g., `/reload-mcp`). Check `~/.hermes/logs/` for errors.
 
-**Cron not running**: Make sure `hermes cron start` is running. Check status with `hermes cron list`.
+**Cron not running**: Make sure the cron scheduler is started (e.g., `hermes cron start`). Check status with your cron list command.
 
 **Context file not found**: Skills look for `CHIEF_OF_STAFF_CONTEXT.md` in your project root (the directory where you start Hermes). Make sure it's there.

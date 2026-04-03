@@ -2,6 +2,8 @@
 
 The operating principles behind the Chief of Staff OS.
 
+> **v1 scope**: This release focuses on operational CoS foundations — tasks, communications, and follow-ups. It is strongest as an executive assistant and founder ops system. Strategic planning, decision logs, delegation tracking, and meeting prep are future layers.
+
 ---
 
 ## Authority Framework
@@ -24,7 +26,7 @@ Every domain has exactly one canonical file:
 - **Relationships**: `workspace/relationships/current.md`
 - **Configuration**: `CHIEF_OF_STAFF_CONTEXT.md`
 
-No duplication. If the file says something is done, it's done. If it's not in the file, it doesn't exist. Every skill that touches a domain reads and writes the same file.
+No duplication. If the file says something is done, it's done. If it's not in the file, it doesn't exist. Each skill that touches a domain is written to read and write the same canonical file.
 
 ## Heartbeat Model
 

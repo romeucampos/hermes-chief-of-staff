@@ -46,7 +46,7 @@ The task file is organized into ordered sections, each with a specific purpose:
 - **Backlog** — Undated someday items with no urgency or deadline.
 - **Done** — Completed items with timestamps. The audit trail.
 
-See `references/task-file-format.md` for full formatting details and rules.
+Today, Next up, Rules, and Done are required — they must always be present. The remaining sections are optional and can be added as needed. See `references/task-file-format.md` for the full specification.
 
 ## Completing Tasks
 

@@ -4,7 +4,9 @@ Automated jobs that keep the Chief of Staff OS running in the background.
 
 ## How to Set Up
 
-Use Hermes's built-in cron scheduler. Start the scheduler with `hermes cron start`, then add jobs.
+Use Hermes's built-in cron scheduler. The example commands below follow the Hermes CLI pattern at time of writing — consult `hermes cron --help` or the [Hermes cron docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/) if the exact syntax has changed.
+
+Start the scheduler (e.g., `hermes cron start`), then add jobs.
 
 ## Recommended Schedules
 
@@ -56,13 +58,13 @@ Once daily, weekdays.
 
 ## Managing Jobs
 
-| Action         | Command                        |
-|----------------|--------------------------------|
-| List all jobs  | `hermes cron list`             |
-| Pause a job    | `hermes cron pause <id>`       |
-| Resume a job   | `hermes cron resume <id>`      |
-| Delete a job   | `hermes cron delete <id>`      |
-| Manual trigger | `hermes cron trigger <id>`     |
+Common cron management commands (exact syntax may vary by version):
+
+- **List all jobs**: `hermes cron list`
+- **Pause a job**: `hermes cron pause <id>`
+- **Resume a job**: `hermes cron resume <id>`
+- **Delete a job**: `hermes cron delete <id>`
+- **Manual trigger**: `hermes cron trigger <id>`
 
 ## Customization
 

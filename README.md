@@ -72,19 +72,26 @@ You don't have to use everything. Pick the level that fits:
 
 See [docs/maturity-levels.md](docs/maturity-levels.md) for details.
 
+## v1 Scope
+
+v1 focuses on operational CoS foundations: tasks, communications, and follow-ups. It is strongest as an executive assistant and founder ops system. Strategic planning, decision logs, delegation tracking, and meeting prep are future layers (see [docs/maturity-levels.md](docs/maturity-levels.md)).
+
 ## Configuration
 
-All owner-specific settings live in one file: `CHIEF_OF_STAFF_CONTEXT.md`. Every skill reads it. No scattered config, no environment variables to manage.
+All owner-specific settings live in one file: `CHIEF_OF_STAFF_CONTEXT.md`. Each skill is written to read this file at the start of relevant runs — it's the canonical owner config. No scattered config, no environment variables to manage.
 
 The context file covers: your name, email accounts, calendar accounts, authority levels (what the assistant can do without asking), work hours, follow-up preferences, and available tools.
 
-See [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) for the template.
+- [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) — Template to fill out
+- [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) — Filled-out example with fake data
 
 ## Docs
 
 - [INSTALL.md](INSTALL.md) — Step-by-step setup guide
+- [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md) — Fastest path to a working setup
 - [PHILOSOPHY.md](PHILOSOPHY.md) — Operating principles
 - [docs/operating-model.md](docs/operating-model.md) — How the system works end-to-end
+- [docs/example-outputs.md](docs/example-outputs.md) — What good output looks like
 - [docs/adaptation-guide.md](docs/adaptation-guide.md) — How to customize for your workflow
 - [docs/maturity-levels.md](docs/maturity-levels.md) — Personal EA to Full CoS progression
 - [cron/README.md](cron/README.md) — Recommended cron schedules

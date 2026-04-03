@@ -77,6 +77,8 @@ For unanswered emails the assistant sent:
 - **Day 7**: Final follow-up
 - After 3 touches with no reply: flag for owner, stop following up.
 
+**Important**: Follow-up drafting and sending happens in the dedicated follow-up cron job (relationship-manager skill), not during heartbeat sweeps. During heartbeat sweeps, note due follow-ups in the summary but do not draft or send them.
+
 ## Output Format
 
 After each sweep, provide a brief summary: items handled, items drafted for review, items escalated, follow-ups sent. Don't dump raw email content.

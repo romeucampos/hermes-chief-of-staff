@@ -15,7 +15,7 @@ The `daily-task-prep` skill runs via cron. It reads the canonical task file, add
 The `chief-of-staff` skill produces a daily briefing: today's tasks, calendar, inbox highlights, due follow-ups, and anything that needs attention. Delivered to the owner's escalation channel.
 
 **8:00 AM - 9:00 PM — Heartbeat Sweeps** (automated, every 15 min)
-The `executive-assistant` skill runs in heartbeat mode. Each sweep: checks for overdue tasks, triages new inbox messages, flags calendar conflicts in the next 2 hours, and checks for due follow-ups. Returns `HEARTBEAT_OK` when nothing needs attention.
+The `executive-assistant` skill runs in heartbeat mode. Each sweep: checks for overdue tasks, triages new inbox messages (acting on Tier 1, drafting Tier 2, escalating Tier 3), flags calendar conflicts in the next 2 hours, and notes due follow-ups. Follow-up drafting happens in the dedicated follow-up cron, not during heartbeat sweeps. Returns `HEARTBEAT_OK` when nothing needs attention.
 
 **9:47 AM and 2:47 PM — Follow-up Checks** (automated)
 The `relationship-manager` skill checks for overdue follow-ups and drafts the next touch in the cadence.
