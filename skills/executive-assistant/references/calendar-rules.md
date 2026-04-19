@@ -1,35 +1,35 @@
-# Calendar Rules Reference
+# Referência de Regras de Calendário
 
-## Multi-account Checking
+## Verificação de Multi-contas
 
-Before booking anything, check ALL calendar accounts listed in CHIEF_OF_STAFF_CONTEXT.md. A free slot on one calendar means nothing if another calendar has a conflict.
+Antes de agendar qualquer coisa, verifique TODAS as contas de calendário listadas no CHIEF_OF_STAFF_CONTEXT.md. Um slot livre em um calendário não significa nada se outro calendário tiver um conflito.
 
-## Conflict Resolution
+## Resolução de Conflitos
 
-- **Hard conflicts (unmovable)**: Out-of-office blocks, travel holds, family calendar events marked as busy.
-- **Soft conflicts (can be moved)**: Tentative meetings, focus time blocks, internal syncs.
-- When a conflict exists, don't just report it — propose a resolution.
+- **Conflitos rígidos (imóveis)**: Blocos de fora do escritório, reservas de viagem, eventos de calendário familiar marcados como ocupados.
+- **Conflitos suaves (podem ser movidos)**: Reuniões provisórias, blocos de tempo focado, syncs internos.
+- Quando um conflito existe, não apenas relate — proponha uma resolução.
 
-## Booking Defaults
+## Padrões de Agendamento
 
-- **Duration**: 30 minutes unless specified.
-- **Platform**: Use the default from CHIEF_OF_STAFF_CONTEXT.md.
-- **Buffer**: Respect the buffer-between-meetings setting.
-- **Calendar**: Create events on the calendar that matches the sending email address.
-- **Updates**: Send to all attendees.
+- **Duração**: 30 minutos a menos que especificado.
+- **Plataforma**: Use o padrão do CHIEF_OF_STAFF_CONTEXT.md.
+- **Intervalo**: Respeite a configuração de intervalo-entre-reuniões.
+- **Calendário**: Crie eventos no calendário que corresponde ao endereço de e-mail remetente.
+- **Atualizações**: Envie para todos os participantes.
 
-## Availability Windows
+## Janelas de Disponibilidade
 
-- Only propose times within the owner's configured work hours.
-- Account for timezone differences with external attendees.
-- Prefer mid-morning and mid-afternoon slots (avoid first/last hour of day when possible).
+- Apenas proponha horários dentro das horas de trabalho configuradas do proprietário.
+- Considere diferenças de fuso horário com participantes externos.
+- Prefira slots de meio da manhã e meio da tarde (evite primeira/última hora do dia quando possível).
 
-## Booking Links
+## Links de Agendamento
 
-- Always prefer booking links (Calendly, HubSpot, Acuity, etc.) over manual scheduling.
-- If the owner has a booking link, send it instead of proposing times manually.
-- If the contact provides a booking link, use it directly.
+- Sempre prefira links de agendamento (Calendly, HubSpot, Acuity, etc.) em vez de agendamento manual.
+- Se o proprietário tiver um link de agendamento, envie-o em vez de propor horários manualmente.
+- Se o contato fornecer um link de agendamento, use-o diretamente.
 
-## Authorization
+## Autorização
 
-Only the owner and email addresses listed in CHIEF_OF_STAFF_CONTEXT.md are authorized to schedule on the owner's behalf.
+Apenas o proprietário e endereços de e-mail listados no CHIEF_OF_STAFF_CONTEXT.md estão autorizados a agendar em nome do proprietário.

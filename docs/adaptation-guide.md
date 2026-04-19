@@ -1,99 +1,99 @@
-# Adaptation Guide
+# Guia de Adaptação
 
-How to customize the Chief of Staff OS for your workflow.
+Como personalizar o Chief of Staff OS para seu fluxo de trabalho.
 
 ---
 
-## Start with the Context File
+## Comece com o Arquivo de Contexto
 
-Everything flows from `CHIEF_OF_STAFF_CONTEXT.md`. Before tweaking skills, make sure your context file accurately reflects:
-- Your email accounts and calendar setup
-- Your authority preferences (what the assistant can do without asking)
-- Your work hours and quiet hours
-- Your follow-up style and VIP contacts
+Tudo flui do `CHIEF_OF_STAFF_CONTEXT.md`. Antes de ajustar as habilidades, certifique-se de que seu arquivo de contexto reflita com precisão:
+- Suas contas de e-mail e configuração de calendário
+- Suas preferências de autoridade (o que o assistente pode fazer sem perguntar)
+- Suas horas de trabalho e horas de silêncio
+- Seu estilo de follow-up e contatos VIP
 
-Most customization happens here, not in the skill files.
+A maioria das personalizações acontece aqui, não nos arquivos de habilidades.
 
-## Adjusting Authority Levels
+## Ajustando Níveis de Autoridade
 
-The default authority framework is conservative — the assistant drafts most replies for your review. To expand what it handles autonomously:
+O framework de autoridade padrão é conservador — o assistente elabora a maioria das respostas para sua revisão. Para expandir o que ele lida autonomamente:
 
-1. Open your `CHIEF_OF_STAFF_CONTEXT.md`
-2. Move items from "Draft for review" to "Act autonomously"
-3. Be specific: "Reply to scheduling confirmations" is better than "handle routine emails"
+1. Abra seu `CHIEF_OF_STAFF_CONTEXT.md`
+2. Mova itens de "Elaborar para revisão" para "Agir autonomamente"
+3. Seja específico: "Responder a confirmações de agendamento" é melhor do que "lidar com e-mails rotineiros"
 
-Start conservative. Expand as you build trust.
+Comece conservador. Expanda à medida que constrói confiança.
 
-## Changing the Follow-up Cadence
+## Alterando a Cadência de Acompanhamento
 
-The default cadence is 2 → 5 → 7 days. To change it:
+A cadência padrão é 2 → 5 → 7 dias. Para alterar:
 
-1. Update the "Follow-up Preferences" section in `CHIEF_OF_STAFF_CONTEXT.md`
-2. The relationship-manager skill reads this on every run
+1. Atualize a seção "Preferências de Acompanhamento" em `CHIEF_OF_STAFF_CONTEXT.md`
+2. A habilidade relationship-manager lê isso em cada execução
 
-For different cadences per contact type, add notes in the Business Context section.
+Para cadências diferentes por tipo de contato, adicione notas na seção de Contexto de Negócios.
 
-## Modifying the Daily Rhythm
+## Modificando o Ritmo Diário
 
-### Change sweep frequency
-Edit the cron schedule. For less frequent sweeps:
+### Alterar frequência de varredura
+Edite o agendamento cron. Para varreduras menos frequentes:
 ```bash
-hermes cron add "0 9,12,15,18 * * 1-5" "Run executive-assistant in heartbeat mode..."
+hermes cron add "0 9,12,15,18 * * 1-5" "Execute executive-assistant no modo heartbeat..."
 ```
 
-### Change task prep time
-If you're a night owl and 2 AM prep is too early:
+### Alterar horário de preparo de tarefas
+Se você é uma pessoa noturna e o preparo das 2h é cedo demais:
 ```bash
-hermes cron add "0 5 * * *" "Run daily-task-prep..."
+hermes cron add "0 5 * * *" "Execute daily-task-prep..."
 ```
 
-### Skip the morning briefing
-Simply don't set up the morning briefing cron job. The other skills work independently.
+### Pular o briefing matutino
+Simplesmente não configure o trabalho cron de briefing matutino. As outras habilidades funcionam independentemente.
 
-## Adding Task Sections
+## Adicionando Seções de Tarefas
 
-The task file format is flexible. To add custom sections:
+O formato do arquivo de tarefas é flexível. Para adicionar seções personalizadas:
 
-1. Open `workspace/tasks/current.md`
-2. Add a new `##` section wherever it makes sense
-3. Update the "Rules" section to explain the new section
-4. If the section should be checked by daily-task-prep, note that in the skill's procedure
+1. Abra `workspace/tasks/current.md`
+2. Adicione uma nova seção `##` onde fizer sentido
+3. Atualize a seção "Regras" para explicar a nova seção
+4. Se a seção deve ser verificada pelo daily-task-prep, anote isso no procedimento da habilidade
 
-## Adding New Email Accounts
+## Adicionando Novas Contas de E-mail
 
-1. Add the account to CHIEF_OF_STAFF_CONTEXT.md under "Additional email accounts"
-2. Add the corresponding calendar under "Calendar accounts"
-3. Configure the MCP server for the new account in `~/.hermes/config.yaml`
+1. Adicione a conta ao CHIEF_OF_STAFF_CONTEXT.md em "Contas de e-mail adicionais"
+2. Adicione o calendário correspondente em "Contas de calendário"
+3. Configure o servidor MCP para a nova conta em `~/.hermes/config.yaml`
 
-## Integrating External Tools
+## Integrando Ferramentas Externas
 
-The CoS skills are tool-agnostic — they describe what to do, not which specific tool to use. To add integrations:
+As habilidades do CoS são agnósticas de ferramentas — descrevem o que fazer, não qual ferramenta específica usar. Para adicionar integrações:
 
-1. Set up the MCP server in `~/.hermes/config.yaml`
-2. Check the box in CHIEF_OF_STAFF_CONTEXT.md under "Tools Available"
-3. Add notes in `workspace/TOOLS.md` about any quirks
+1. Configure o servidor MCP em `~/.hermes/config.yaml`
+2. Marque a caixa no CHIEF_OF_STAFF_CONTEXT.md em "Ferramentas Disponíveis"
+3. Adicione notas em `workspace/TOOLS.md` sobre quaisquer peculiaridades
 
-## Building Custom Skills
+## Construindo Habilidades Personalizadas
 
-The five included skills cover the core operating model. To add your own:
+As cinco habilidades incluídas cobrem o modelo operacional principal. Para adicionar as suas próprias:
 
-1. Create a new directory under `skills/` with a `SKILL.md`
-2. Use the same YAML frontmatter pattern (name, description, version, author, license)
-3. Reference `CHIEF_OF_STAFF_CONTEXT.md` if it needs owner configuration
-4. Add a cron schedule if it should run automatically
+1. Crie um novo diretório em `skills/` com um `SKILL.md`
+2. Use o mesmo padrão de frontmatter YAML (nome, descrição, versão, autor, licença)
+3. Referencie `CHIEF_OF_STAFF_CONTEXT.md` se precisar de configuração do proprietário
+4. Adicione um agendamento cron se deve executar automaticamente
 
-Examples of skills you might add:
-- **meeting-prep**: Generate briefing docs before important meetings
-- **weekly-digest**: Produce a weekly summary of activity
-- **content-calendar**: Track publishing schedules
-- **business-development**: Pipeline tracking with Google Sheets
+Exemplos de habilidades que você pode adicionar:
+- **preparo-reuniao**: Gere documentos de briefing antes de reuniões importantes
+- **resumo-semanal**: Produza um resumo semanal de atividade
+- **calendario-conteudo**: Acompanhe cronogramas de publicação
+- **desenvolvimento-negocios**: Acompanhamento de pipeline com Google Sheets
 
-## Removing Skills You Don't Need
+## Removendo Habilidades que Não Precisa
 
-Each skill is independent. To run a lighter setup:
+Cada habilidade é independente. Para executar uma configuração mais leve:
 
-- **Minimal (EA only)**: Keep just `executive-assistant` and `daily-task-manager`
-- **Standard (3 pillars)**: Add `relationship-manager` and `daily-task-prep`
-- **Full CoS**: Add `chief-of-staff` orchestrator
+- **Mínimo (apenas EA)**: Mantenha apenas `executive-assistant` e `daily-task-manager`
+- **Padrão (3 pilares)**: Adicione `relationship-manager` e `daily-task-prep`
+- **CoS Completo**: Adicione o orquestrador `chief-of-staff`
 
-Remove the cron jobs for skills you're not using.
+Remova os trabalhos cron para habilidades que você não está usando.

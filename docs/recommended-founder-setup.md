@@ -1,10 +1,10 @@
-# Recommended Founder Setup
+# Configuração Recomendada para Fundadores
 
-The fastest path to a working Chief of Staff. This gets you inbox triage, task management, follow-up tracking, and daily task prep — without the full orchestrator layer.
+O caminho mais rápido para um Chief of Staff funcional. Isso te dá triagem de caixa de entrada, gerenciamento de tarefas, acompanhamento de follow-ups e preparo diário de tarefas — sem a camada completa do orquestrador.
 
 ---
 
-## Install These 4 Skills
+## Instale Estas 4 Habilidades
 
 ```bash
 cp -r skills/executive-assistant ~/.hermes/skills/
@@ -13,67 +13,67 @@ cp -r skills/daily-task-prep ~/.hermes/skills/
 cp -r skills/relationship-manager ~/.hermes/skills/
 ```
 
-Skip `chief-of-staff` for now — it adds morning briefings and EOD reviews, which you can add later if you want them.
+Pule `chief-of-staff` por enquanto — ele adiciona briefings matutinos e revisões EOD, que você pode adicionar depois se quiser.
 
-## Fill Out These Context Fields First
+## Preencha Estes Campos de Contexto Primeiro
 
-Copy the template:
+Copie o modelo:
 
 ```bash
 cp templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
 ```
 
-The fields that matter most for getting started:
+Os campos que mais importam para começar:
 
-- **Name** and **timezone**
-- **Primary email** (the inbox the assistant will triage)
-- **Calendar accounts** (all calendars to check before booking)
-- **Authority rules** (what the assistant can handle vs. what needs your approval)
-- **Escalation channel** (where urgent items go — Telegram DM, Slack, etc.)
+- **Nome** e **fuso horário**
+- **E-mail principal** (a caixa de entrada que o assistente irá triar)
+- **Contas de calendário** (todos os calendários a verificar antes de agendar)
+- **Regras de autoridade** (o que o assistente pode lidar vs. o que precisa da sua aprovação)
+- **Canal de escalada** (onde itens urgentes vão — DM do Telegram, Slack, etc.)
 
-Everything else can be filled in later. See [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](../templates/CHIEF_OF_STAFF_CONTEXT.demo.md) for a filled-out example.
+Todo o resto pode ser preenchido depois. Veja [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](../templates/CHIEF_OF_STAFF_CONTEXT.demo.md) para um exemplo preenchido.
 
-## Copy Workspace Files
+## Copie os Arquivos do Workspace
 
 ```bash
 cp -r workspace/ ~/your-project/workspace/
 ```
 
-Edit the example entries in:
-- `workspace/tasks/current.md` — replace with your real tasks
-- `workspace/relationships/current.md` — replace with your real follow-ups
+Edite as entradas de exemplo em:
+- `workspace/tasks/current.md` — substitua por suas tarefas reais
+- `workspace/relationships/current.md` — substitua por seus acompanhamentos reais
 
-## Create These 3 Cron Jobs
+## Crie Estes 3 Trabalhos Cron
 
 ```bash
-# EA inbox sweep — every 15 min, business hours, weekdays
-hermes cron add "*/15 8-21 * * 1-5" "Run the executive-assistant skill in heartbeat mode. Follow workspace/HEARTBEAT.md. Return HEARTBEAT_OK if nothing actionable."
+# Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
+hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade executive-assistant no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
-# Daily task prep — 2 AM nightly
-hermes cron add "3 2 * * *" "Run the daily-task-prep skill. Enrich tomorrow's task list with recurring items, due dates, and calendar events."
+# Preparo diário de tarefas — 2h da manhã todas as noites
+hermes cron add "3 2 * * *" "Execute a habilidade daily-task-prep. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
 
-# Follow-up check — twice daily, weekdays
-hermes cron add "47 9,14 * * 1-5" "Run the relationship-manager skill. Check for follow-ups due today. Draft messages for any that are overdue."
+# Verificação de acompanhamentos — duas vezes ao dia, dias úteis
+hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
 ```
 
-## What You Get
+## O Que Você Recebe
 
-- Inbox triaged every 15 minutes with authority-based decisions
-- Task list automatically prepped each morning
-- Follow-ups tracked with a 2/5/7-day cadence
-- No conversation falls through the cracks
-- `HEARTBEAT_OK` silence when nothing needs attention
+- Caixa de entrada triada a cada 15 minutos com decisões baseadas em autoridade
+- Lista de tarefas automaticamente preparada cada manhã
+- Acompanhamentos rastreados com uma cadência de 2/5/7 dias
+- Nenhuma conversa passa despercebida
+- Silêncio `HEARTBEAT_OK` quando nada precisa de atenção
 
-## When to Add the Orchestrator
+## Quando Adicionar o Orquestrador
 
-Add the `chief-of-staff` skill when you want:
-- A morning briefing that summarizes tasks, calendar, inbox, and follow-ups in one view
-- An end-of-day review that captures what got done and what carries forward
-- Ad-hoc "what should I focus on right now?" triage
+Adicione a habilidade `chief-of-staff` quando quiser:
+- Um briefing matutino que resume tarefas, calendário, caixa de entrada e acompanhamentos em uma visão
+- Uma revisão de fim de dia que captura o que foi feito e o que segue em frente
+- Triagem ad-hoc "no que devo focar agora?"
 
 ```bash
 cp -r skills/chief-of-staff ~/.hermes/skills/
 
-# Morning briefing cron — once daily, weekdays
-hermes cron add "57 7 * * 1-5" "Run the chief-of-staff skill in morning briefing mode."
+# Cron de briefing matutino — uma vez ao dia, dias úteis
+hermes cron add "57 7 * * 1-5" "Execute a habilidade chief-of-staff no modo briefing matutino."
 ```

@@ -1,80 +1,80 @@
-# Chief of Staff Context
+# Contexto do Chief of Staff
 
-This file gives all Chief of Staff skills the context they need to operate.
-Fill it out once. Each skill is written to read this file at the start of relevant runs.
+Este arquivo dá a todas as habilidades do Chief of Staff o contexto de que precisam para operar.
+Preencha uma vez. Cada habilidade foi escrita para ler este arquivo no início das execuções relevantes.
 
-**Setup:** Copy this file to your project root as `CHIEF_OF_STAFF_CONTEXT.md` and fill in your details.
+**Configuração:** Copie este arquivo para a raiz do seu projeto como `CHIEF_OF_STAFF_CONTEXT.md` e preencha seus detalhes.
 
 ---
 
-## About You
+## Sobre Você
 
-- **Name:**
-- **Preferred name:** (what the assistant should call you)
-- **Timezone:**
-- **Role / title:**
-- **Company / business:**
+- **Nome:**
+- **Nome preferido:** (como o assistente deve te chamar)
+- **Fuso horário:**
+- **Cargo / título:**
+- **Empresa / negócio:**
 
-## Communication
+## Comunicação
 
-- **Primary email:**
-- **Additional email accounts:** (comma-separated, if any)
-- **Assistant email:** (dedicated email for the assistant, if any)
-- **Calendar accounts:** (Google, Outlook — list all that should be checked)
-- **Email tone:** (direct / warm / formal)
-- **Signature style:** (first name only / full name / custom)
-- **Escalation channel:** (where urgent items go — Telegram DM, email, Slack, etc.)
+- **E-mail principal:**
+- **Contas de e-mail adicionais:** (separadas por vírgula, se houver)
+- **E-mail do assistente:** (e-mail dedicado para o assistente, se houver)
+- **Contas de calendário:** (Google, Outlook — liste todos que devem ser verificados)
+- **Tom de e-mail:** (direto / caloroso / formal)
+- **Estilo de assinatura:** (apenas primeiro nome / nome completo / personalizado)
+- **Canal de escalada:** (onde itens urgentes vão — DM do Telegram, e-mail, Slack, etc.)
 
-## Authority
+## Autoridade
 
-What can the assistant do without asking?
+O que o assistente pode fazer sem perguntar?
 
-### Act autonomously
-Things the assistant handles without checking in:
-- (e.g., archive newsletters, decline obvious spam, acknowledge receipt of routine messages)
-- (e.g., accept recurring meetings already on the calendar)
+### Agir autonomamente
+Coisas que o assistente lida sem verificar:
+- (ex: arquivar newsletters, recusar spam óbvio, confirmar recebimento de mensagens rotineiras)
+- (ex: aceitar reuniões recorrentes já no calendário)
 
-### Draft for review
-Things the assistant prepares but waits for your approval:
-- (e.g., replies to clients, scheduling with new contacts, follow-up emails)
+### Elaborar para revisão
+Coisas que o assistente prepara mas espera sua aprovação:
+- (ex: respostas a clientes, agendamento com novos contatos, e-mails de acompanhamento)
 
-### Always escalate
-Things the assistant never handles alone:
-- (e.g., financial commitments, legal matters, anything from specific people)
-- (e.g., press inquiries, partnership proposals with unclear value)
+### Sempre escalar
+Coisas que o assistente nunca lida sozinho:
+- (ex: compromissos financeiros, questões legais, qualquer coisa de pessoas específicas)
+- (ex: consultas de imprensa, propostas de parceria com valor incerto)
 
-## Work Hours
+## Horas de Trabalho
 
-- **Start:** (e.g., 8:00 AM)
-- **End:** (e.g., 6:00 PM)
-- **Days:** (e.g., Monday-Friday)
-- **Quiet hours:** (e.g., 11 PM - 7 AM — assistant stays silent unless urgent)
-- **Buffer between meetings:** (e.g., 15 minutes)
-- **Default meeting duration:** (e.g., 30 minutes)
-- **Default conferencing:** (e.g., Google Meet, Zoom)
+- **Início:** (ex: 8:00)
+- **Término:** (ex: 18:00)
+- **Dias:** (ex: Segunda-Sexta)
+- **Horas de silêncio:** (ex: 23h - 7h — assistente fica em silêncio a menos que urgente)
+- **Intervalo entre reuniões:** (ex: 15 minutos)
+- **Duração padrão de reunião:** (ex: 30 minutos)
+- **Conferência padrão:** (ex: Google Meet, Zoom)
 
-## Tools Available
+## Ferramentas Disponíveis
 
-Which integrations are connected? Check all that apply.
+Quais integrações estão conectadas? Marque todas que se aplicam.
 
-- [ ] Gmail (MCP or API)
-- [ ] Google Calendar (MCP or API)
-- [ ] Google Sheets (MCP or API)
+- [ ] Gmail (MCP ou API)
+- [ ] Google Calendar (MCP ou API)
+- [ ] Google Sheets (MCP ou API)
 - [ ] Slack
 - [ ] Telegram
-- [ ] Linear / project tracker
-- [ ] CRM (specify: ___)
-- [ ] Other: ___
+- [ ] Linear / rastreador de projetos
+- [ ] CRM (especifique: ___)
+- [ ] Outro: ___
 
-## Follow-up Preferences
+## Preferências de Acompanhamento
 
-- **Default follow-up cadence:** (e.g., 2 days, 5 days, 7 days — then escalate)
-- **VIP contacts:** (people who always get priority handling)
-- **Follow-up style:** (gentle / direct / persistent)
+- **Cadência padrão de acompanhamento:** (ex: 2 dias, 5 dias, 7 dias — depois escalar)
+- **Contatos VIP:** (pessoas que sempre recebem tratamento prioritário)
+- **Estilo de acompanhamento:** (gentil / direto / persistente)
 
-## Business Context
+## Contexto de Negócios
 
-Brief notes that help the assistant make better decisions:
-- (e.g., "We're a SaaS company focused on podcasting tools")
-- (e.g., "Currently fundraising — investor emails are high priority")
-- (e.g., "Q2 focus is reducing churn")
+Notas breves que ajudam o assistente a tomar melhores decisões:
+- (ex: "Somos uma empresa SaaS focada em ferramentas de podcast")
+- (ex: "Atualmente em captação de recursos — e-mails de investidores são alta prioridade")
+- (ex: "Foco do Q2 é reduzir churn")

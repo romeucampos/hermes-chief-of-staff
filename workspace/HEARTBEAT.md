@@ -1,45 +1,45 @@
 # Heartbeat
 
-**What this file is**: Instructions for the recurring EA sweep (runs every 15 minutes during business hours). The cron job invokes the executive-assistant skill with these standing orders.
+**O que é este arquivo**: Instruções para a varredura recorrente do EA (executa a cada 15 minutos durante o horário comercial). O trabalho cron invoca a habilidade executive-assistant com estas ordens permanentes.
 
-## What the Heartbeat Does and Does Not Do
+## O Que o Heartbeat Faz e Não Faz
 
-**Does**:
-- Triages inbox messages per the authority framework (Act / Draft / Escalate)
-- Acts on Tier 1 items (archive, acknowledge, confirm meetings)
-- Drafts Tier 2 items for owner review
-- Escalates Tier 3 items immediately
-- Summarizes actions taken at the end of each sweep
+**Faz**:
+- Triage mensagens da caixa de entrada conforme o framework de autoridade (Agir / Elaborar / Escalar)
+- Age em itens de Nível 1 (arquivar, confirmar, confirmar reuniões)
+- Elabora itens de Nível 2 para revisão do proprietário
+- Escalona itens de Nível 3 imediatamente
+- Resume ações tomadas ao final de cada varredura
 
-**Does not**:
-- Send follow-up emails during heartbeat sweeps — follow-up drafting happens only in dedicated follow-up cron runs (relationship-manager skill)
-- Message the owner when nothing is actionable — silence means everything is handled
+**Não faz**:
+- Enviar e-mails de acompanhamento durante varreduras heartbeat — elaboração de follow-ups acontece apenas em execuções cron dedicadas (habilidade relationship-manager)
+- Enviar mensagem ao proprietário quando nada é acionável — silêncio significa que tudo está resolvido
 
-## Sweep Procedure
+## Procedimento de Varredura
 
-1. Check `workspace/tasks/current.md` for tasks due now or overdue.
-2. Check inbox for new messages (use message-level search, not thread-only).
-3. For each new message: classify per authority framework.
-   - **Tier 1 (Act)**: Handle it. Archive, acknowledge, confirm, etc.
-   - **Tier 2 (Draft)**: Prepare a draft and present to the owner for approval.
-   - **Tier 3 (Escalate)**: Summarize and send to the owner immediately via escalation channel.
-4. Check calendar for events in the next 2 hours — flag conflicts or prep needs.
-5. Check `workspace/relationships/current.md` for follow-ups due today. Note them in the sweep summary, but do not draft or send follow-up messages — that is handled by the dedicated follow-up cron job.
+1. Verifique `workspace/tasks/current.md` para tarefas devidas agora ou atrasadas.
+2. Verifique a caixa de entrada para novas mensagens (use busca em nível de mensagem, não apenas threads).
+3. Para cada nova mensagem: classifique conforme o framework de autoridade.
+4. **Nível 1 (Agir)**: Resolva. Arquive, confirme, etc.
+5. **Nível 2 (Elaborar)**: Prepare um rascunho e apresente ao proprietário para aprovação.
+6. **Nível 3 (Escalar)**: Resuma para o proprietário via canal de escalada.
+7. Verifique o calendário para eventos nas próximas 2 horas — sinalize conflitos ou necessidades de preparo.
+8. Verifique `workspace/relationships/current.md` para acompanhamentos devidos hoje. Anote-os no resumo da varredura, mas não elabore ou envie mensagens de follow-up — isso é tratado pelo trabalho cron dedicado de follow-ups.
 
-## Escalation
+## Escalada
 
-Surface urgent items to the owner via the configured escalation channel (from `CHIEF_OF_STAFF_CONTEXT.md`). Urgent = time-sensitive within 2 hours, or flagged by the owner.
+Apresente itens urgentes ao proprietário via canal de escalada configurado (de `CHIEF_OF_STAFF_CONTEXT.md`). Urgente = sensível ao tempo dentro de 2 horas, ou sinalizado pelo proprietário.
 
-## Quiet Hours
+## Horas de Silêncio
 
-During configured quiet hours, only escalate genuinely urgent items. Everything else waits for morning.
+Durante as horas de silêncio configuradas, escale apenas itens genuinamente urgentes. Todo o resto espera até a manhã.
 
-## When Nothing Is Actionable
+## Quando Nada É Acionável
 
-Return `HEARTBEAT_OK` — no message to the owner, no noise.
+Retorne `HEARTBEAT_OK` — nenhuma mensagem para o proprietário, nenhum ruído.
 
-## Operating Principles
+## Princípios Operacionais
 
-- Be proactive but don't create noise.
-- Handle what you can, escalate what you should, ignore what doesn't matter.
-- Prioritize: urgent tasks > new high-value emails > calendar prep > follow-ups > routine inbox.
+- Seja proativo mas não crie ruído.
+- Resolva o que puder, escale o que deve, ignore o que não importa.
+- Priorize: tarefas urgentes > e-mails novos de alto valor > preparo de calendário > acompanhamentos > caixa de entrada rotina.

@@ -1,80 +1,80 @@
-# Operating Model
+# Modelo Operacional
 
-How the Chief of Staff OS works end-to-end.
+Como o Chief of Staff OS funciona de ponta a ponta.
 
 ---
 
-## The Daily Rhythm
+## O Ritmo Diário
 
-The system runs on a predictable daily cycle:
+O sistema executa em um ciclo diário previsível:
 
-**2:00 AM — Task Prep** (automated)
-The `daily-task-prep` skill runs via cron. It reads the canonical task file, adds recurring weekday items, promotes due-date backlog items, and pulls tomorrow's calendar events. The owner wakes up to a ready-made task list.
+**2:00 da manhã — Preparo de Tarefas** (automatizado)
+A habilidade `daily-task-prep` executa via cron. Ela lê o arquivo de tarefas canônico, adiciona itens recorrentes de dias úteis, promove itens de backlog com data de vencimento e puxa eventos de calendário de amanhã. O proprietário acorda com uma lista de tarefas pronta.
 
-**7:57 AM — Morning Briefing** (automated)
-The `chief-of-staff` skill produces a daily briefing: today's tasks, calendar, inbox highlights, due follow-ups, and anything that needs attention. Delivered to the owner's escalation channel.
+**7:57 da manhã — Briefing Matutino** (automatizado)
+A habilidade `chief-of-staff` produz um briefing diário: tarefas de hoje, calendário, destaques da caixa de entrada, acompanhamentos devidos e qualquer coisa que precise de atenção. Entregue no canal de escalada do proprietário.
 
-**8:00 AM - 9:00 PM — Heartbeat Sweeps** (automated, every 15 min)
-The `executive-assistant` skill runs in heartbeat mode. Each sweep: checks for overdue tasks, triages new inbox messages (acting on Tier 1, drafting Tier 2, escalating Tier 3), flags calendar conflicts in the next 2 hours, and notes due follow-ups. Follow-up drafting happens in the dedicated follow-up cron, not during heartbeat sweeps. Returns `HEARTBEAT_OK` when nothing needs attention.
+**8:00 da manhã - 21:00 — Varreduras Heartbeat** (automatizado, a cada 15 min)
+A habilidade `executive-assistant` executa no modo heartbeat. Cada varredura: verifica tarefas atrasadas, tria novas mensagens da caixa de entrada (agindo no Nível 1, elaborando Nível 2, escalando Nível 3), sinaliza conflitos de calendário nas próximas 2 horas e anota acompanhamentos devidos. A elaboração de follow-ups acontece no cron dedicado de follow-ups, não durante as varreduras heartbeat. Retorna `HEARTBEAT_OK` quando nada precisa de atenção.
 
-**9:47 AM and 2:47 PM — Follow-up Checks** (automated)
-The `relationship-manager` skill checks for overdue follow-ups and drafts the next touch in the cadence.
+**9:47 e 14:47 — Verificações de Acompanhamento** (automatizado)
+A habilidade `relationship-manager` verifica acompanhamentos atrasados e elabora o próximo toque na cadência.
 
-**End of Day — EOD Review** (manual, triggered by owner)
-The `chief-of-staff` skill reviews what got done, what's still open, and captures anything new. Updates the task file for tomorrow.
+**Fim do Dia — Revisão EOD** (manual, acionado pelo proprietário)
+A habilidade `chief-of-staff` revisa o que foi feito, o que ainda está aberto e captura qualquer coisa nova. Atualiza o arquivo de tarefas para amanhã.
 
-## How Skills Interact
+## Como as Habilidades Interagem
 
 ```
-chief-of-staff (orchestrator)
-  ├── reads → workspace/tasks/current.md
-  ├── reads → workspace/relationships/current.md
-  ├── reads → inbox (via MCP)
-  ├── routes to → executive-assistant (for email actions)
-  ├── routes to → daily-task-manager (for task changes)
-  └── routes to → relationship-manager (for follow-ups)
+chief-of-staff (orquestrador)
+├── lê → workspace/tasks/current.md
+├── lê → workspace/relationships/current.md
+├── lê → caixa de entrada (via MCP)
+├── direciona para → executive-assistant (para ações de e-mail)
+├── direciona para → daily-task-manager (para alterações de tarefas)
+└── direciona para → relationship-manager (para acompanhamentos)
 
 executive-assistant
-  ├── reads → CHIEF_OF_STAFF_CONTEXT.md (authority, accounts)
-  ├── reads/writes → workspace/tasks/current.md (creates tasks from emails)
-  ├── writes → workspace/relationships/current.md (creates follow-ups)
-  └── reads → workspace/HEARTBEAT.md (sweep instructions)
+├── lê → CHIEF_OF_STAFF_CONTEXT.md (autoridade, contas)
+├── lê/escreve → workspace/tasks/current.md (cria tarefas de e-mails)
+├── escreve → workspace/relationships/current.md (cria acompanhamentos)
+└── lê → workspace/HEARTBEAT.md (instruções de varredura)
 
 daily-task-prep
-  ├── reads → CHIEF_OF_STAFF_CONTEXT.md (timezone, calendars)
-  ├── reads/writes → workspace/tasks/current.md
-  └── reads → calendar (via MCP)
+├── lê → CHIEF_OF_STAFF_CONTEXT.md (fuso horário, calendários)
+├── lê/escreve → workspace/tasks/current.md
+└── lê → calendário (via MCP)
 
 daily-task-manager
-  └── reads/writes → workspace/tasks/current.md
+└── lê/escreve → workspace/tasks/current.md
 
 relationship-manager
-  ├── reads → CHIEF_OF_STAFF_CONTEXT.md (cadence, VIPs)
-  ├── reads/writes → workspace/relationships/current.md
-  └── reads → workspace/tasks/current.md (adds follow-ups as tasks)
+├── lê → CHIEF_OF_STAFF_CONTEXT.md (cadência, VIPs)
+├── lê/escreve → workspace/relationships/current.md
+└── lê → workspace/tasks/current.md (adiciona acompanhamentos como tarefas)
 ```
 
-## Data Flow
+## Fluxo de Dados
 
-**Inbound email → Task**: The executive-assistant triages an email that requires action. It creates a task in workspace/tasks/current.md and optionally a follow-up entry in workspace/relationships/current.md.
+**E-mail recebido → Tarefa**: O executive-assistant tria um e-mail que requer ação. Ele cria uma tarefa em workspace/tasks/current.md e opcionalmente uma entrada de acompanhamento em workspace/relationships/current.md.
 
-**Follow-up due → Draft**: The relationship-manager detects an overdue follow-up. It drafts the next touch per the cadence and presents it for review (or sends it, if authorized).
+**Acompanhamento devido → Rascunho**: O relationship-manager detecta um acompanhamento atrasado. Ele elabora o próximo toque conforme a cadência e o apresenta para revisão (ou envia, se autorizado).
 
-**Calendar event → Task**: The daily-task-prep skill pulls tomorrow's meetings and adds them as time-blocked items in the task file.
+**Evento de calendário → Tarefa**: A habilidade daily-task-prep puxa as reuniões de amanhã e as adiciona como itens com tempo bloqueado no arquivo de tarefas.
 
-**Task completed → Done**: The daily-task-manager moves completed items to the Done section with a timestamp. The chief-of-staff EOD review captures anything missed.
+**Tarefa concluída → Concluído**: O daily-task-manager move itens concluídos para a seção Concluídos com um carimbo de data/hora. A revisão EOD do chief-of-staff captura qualquer coisa perdida.
 
-## The Authority Framework in Practice
+## O Framework de Autoridade na Prática
 
-Every incoming message goes through three questions:
-1. Is this something I can handle without risk? → **Act**
-2. Is this something I should prepare but not send? → **Draft for review**
-3. Is this something the owner needs to see immediately? → **Escalate**
+Cada mensagem recebida passa por três perguntas:
+1. Isso é algo que posso lidar sem risco? → **Agir**
+2. Isso é algo que devo preparar mas não enviar? → **Elaborar para revisão**
+3. Isso é algo que o proprietário precisa ver imediatamente? → **Escalar**
 
-The owner's CHIEF_OF_STAFF_CONTEXT.md file defines the boundaries. Over time, as the assistant proves reliable, the Act tier expands and the Draft tier shrinks.
+O arquivo CHIEF_OF_STAFF_CONTEXT.md do proprietário define os limites. Com o tempo, à medida que o assistente prova ser confiável, o nível Agir expande e o nível Elaborar encolhe.
 
 ## HEARTBEAT_OK
 
-The heartbeat sweep is designed to be silent by default. If a sweep finds nothing actionable — no new urgent emails, no overdue tasks, no calendar conflicts, no due follow-ups — it returns `HEARTBEAT_OK` and the owner hears nothing.
+A varredura heartbeat foi projetada para ser silenciosa por padrão. Se uma varredura não encontrar nada acionável — nenhum e-mail urgente novo, nenhuma tarefa atrasada, nenhum conflito de calendário, nenhum acompanhamento devido — ela retorna `HEARTBEAT_OK` e o proprietário não ouve nada.
 
-This is intentional. The absence of a message means everything is handled. A message from the assistant always means something needs attention. This prevents notification fatigue and builds trust that every ping matters.
+Isso é intencional. A ausência de mensagem significa que tudo está resolvido. Uma mensagem do assistente sempre significa que algo precisa de atenção. Isso previne fadiga de notificação e constrói confiança de que cada sinal importa.

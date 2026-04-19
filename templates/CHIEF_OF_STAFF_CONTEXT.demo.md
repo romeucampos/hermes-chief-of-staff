@@ -1,92 +1,92 @@
-> **This is a demo file** showing what a completed `CHIEF_OF_STAFF_CONTEXT.md` looks like.
-> Copy `CHIEF_OF_STAFF_CONTEXT.example.md` instead and fill in your own details.
+> **Este é um arquivo de demonstração** mostrando como um `CHIEF_OF_STAFF_CONTEXT.md` preenchido se parece.
+> Copie `CHIEF_OF_STAFF_CONTEXT.example.md` em vez disso e preencha com seus próprios detalhes.
 
-# Chief of Staff Context
+# Contexto do Chief of Staff
 
-This file gives all Chief of Staff skills the context they need to operate.
-Each skill is written to read this file at the start of relevant runs.
+Este arquivo dá a todas as habilidades do Chief of Staff o contexto de que precisam para operar.
+Cada habilidade foi escrita para ler este arquivo no início das execuções relevantes.
 
-**Setup:** Copy this file to your project root as `CHIEF_OF_STAFF_CONTEXT.md` and fill in your details.
+**Configuração:** Copie este arquivo para a raiz do seu projeto como `CHIEF_OF_STAFF_CONTEXT.md` e preencha seus detalhes.
 
 ---
 
-## About You
+## Sobre Você
 
-- **Name:** Alex Rivera
-- **Preferred name:** Alex
-- **Timezone:** US/Pacific (PT)
-- **Role / title:** Founder & CEO
-- **Company / business:** Wavelength Media (podcast production and hosting)
+- **Nome:** Alex Rivera
+- **Nome preferido:** Alex
+- **Fuso horário:** US/Pacific (PT)
+- **Cargo / título:** Fundador e CEO
+- **Empresa / negócio:** Wavelength Media (produção e hospedagem de podcast)
 
-## Communication
+## Comunicação
 
-- **Primary email:** alex@wavelength.media
-- **Additional email accounts:** alex.rivera@gmail.com
-- **Assistant email:** hermes@wavelength.media
-- **Calendar accounts:** alex@wavelength.media (work), alex.rivera@gmail.com (personal)
-- **Email tone:** direct
-- **Signature style:** first name only
-- **Escalation channel:** Telegram DM
+- **E-mail principal:** alex@wavelength.media
+- **Contas de e-mail adicionais:** alex.rivera@gmail.com
+- **E-mail do assistente:** hermes@wavelength.media
+- **Contas de calendário:** alex@wavelength.media (trabalho), alex.rivera@gmail.com (pessoal)
+- **Tom de e-mail:** direto
+- **Estilo de assinatura:** apenas primeiro nome
+- **Canal de escalada:** DM do Telegram
 
-## Authority
+## Autoridade
 
-What can the assistant do without asking?
+O que o assistente pode fazer sem perguntar?
 
-### Act autonomously
-Things the assistant handles without checking in:
-- Archive newsletters and marketing emails
-- Decline obvious spam and unsolicited sales pitches
-- Acknowledge receipt of routine vendor invoices
-- Accept recurring meetings already on the calendar
+### Agir autonomamente
+Coisas que o assistente lida sem verificar:
+- Arquivar newsletters e e-mails de marketing
+- Recusar spam óbvio e propostas de vendas não solicitadas
+- Confirmar recebimento de faturas rotineiras de fornecedores
+- Aceitar reuniões recorrentes já no calendário
 
-### Draft for review
-Things the assistant prepares but waits for your approval:
-- Replies to clients and prospects
-- Scheduling calls with new contacts
-- Follow-up emails after meetings
-- Outreach to potential enterprise accounts
+### Elaborar para revisão
+Coisas que o assistente prepara mas espera sua aprovação:
+- Respostas a clientes e prospects
+- Agendamento de ligações com novos contatos
+- E-mails de acompanhamento após reuniões
+- Alcance a contas enterprise potenciais
 
-### Always escalate
-Things the assistant never handles alone:
-- Financial commitments over $500
-- Legal matters (contracts, NDAs, terms changes)
-- Anything from Jordan Park or Sam Okafor
-- Press inquiries and podcast interview requests
-- Partnership proposals with unclear value
+### Sempre escalar
+Coisas que o assistente nunca lida sozinho:
+- Compromissos financeiros acima de $500
+- Questões legais (contratos, NDAs, mudanças de termos)
+- Qualquer coisa de Jordan Park ou Sam Okafor
+- Consultas de imprensa e pedidos de entrevista de podcast
+- Propostas de parceria com valor incerto
 
-## Work Hours
+## Horas de Trabalho
 
-- **Start:** 9:00 AM
-- **End:** 6:00 PM
-- **Days:** Monday-Friday
-- **Quiet hours:** 10:00 PM - 8:00 AM (assistant stays silent unless urgent)
-- **Buffer between meetings:** 15 minutes
-- **Default meeting duration:** 30 minutes
-- **Default conferencing:** Google Meet
+- **Início:** 9:00
+- **Término:** 18:00
+- **Dias:** Segunda-Sexta
+- **Horas de silêncio:** 22:00 - 8:00 (assistente fica em silêncio a menos que urgente)
+- **Intervalo entre reuniões:** 15 minutos
+- **Duração padrão de reunião:** 30 minutos
+- **Conferência padrão:** Google Meet
 
-## Tools Available
+## Ferramentas Disponíveis
 
-Which integrations are connected? Check all that apply.
+Quais integrações estão conectadas? Marque todas que se aplicam.
 
-- [x] Gmail (MCP or API)
-- [x] Google Calendar (MCP or API)
-- [x] Google Sheets (MCP or API)
+- [x] Gmail (MCP ou API)
+- [x] Google Calendar (MCP ou API)
+- [x] Google Sheets (MCP ou API)
 - [ ] Slack
 - [x] Telegram
-- [ ] Linear / project tracker
-- [ ] CRM (specify: ___)
-- [ ] Other: ___
+- [ ] Linear / rastreador de projetos
+- [ ] CRM (especifique: ___)
+- [ ] Outro: ___
 
-## Follow-up Preferences
+## Preferências de Acompanhamento
 
-- **Default follow-up cadence:** 2 days, 5 days, 7 days — then escalate
-- **VIP contacts:** Jordan Park (lead investor), Sam Okafor (biggest client)
-- **Follow-up style:** direct
+- **Cadência padrão de acompanhamento:** 2 dias, 5 dias, 7 dias — depois escalar
+- **Contatos VIP:** Jordan Park (investidor líder), Sam Okafor (maior cliente)
+- **Estilo de acompanhamento:** direto
 
-## Business Context
+## Contexto de Negócios
 
-Brief notes that help the assistant make better decisions:
-- B2B podcast production — we produce and host branded podcasts for companies
-- Currently expanding into enterprise sales; Q2 focus is landing 3 new enterprise accounts
-- Investor emails are high priority (Series A closed last year, maintaining relationships)
-- Client retention is critical — flag any signals of unhappiness immediately
+Notas breves que ajudam o assistente a tomar melhores decisões:
+- Produção de podcasts B2B — produzimos e hospedamos podcasts corporativos para empresas
+- Atualmente expandindo para vendas enterprise; foco do Q2 é conquistar 3 novas contas enterprise
+- E-mails de investidores são alta prioridade (Série A fechada no ano passado, mantendo relacionamentos)
+- Retenção de clientes é crítica — sinalize imediatamente quaisquer sinais de insatisfação

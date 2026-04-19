@@ -1,51 +1,51 @@
-# Email Templates Reference
+# Referência de Modelos de E-mail
 
-These are starting points. Adapt tone and length to match the owner's style from CHIEF_OF_STAFF_CONTEXT.md.
+Estes são pontos de partida. Adapte o tom e comprimento para combinar com o estilo do proprietário do CHIEF_OF_STAFF_CONTEXT.md.
 
-## 1. Proposing Meeting Times
+## 1. Propondo Horários de Reunião
 
-> Hi [name], I'm reaching out on behalf of [owner] to find a time to connect. Here are a few options that work:
+> Oi [nome], estou entrando em contato em nome de [proprietário] para encontrar um horário para se conectar. Aqui estão algumas opções que funcionam:
 >
-> - [Option 1 — day, date, time, timezone]
-> - [Option 2 — day, date, time, timezone]
-> - [Option 3 — day, date, time, timezone]
+> - [Opção 1 — dia, data, hora, fuso horário]
+> - [Opção 2 — dia, data, hora, fuso horário]
+> - [Opção 3 — dia, data, hora, fuso horário]
 >
-> Let me know what works best, or feel free to suggest an alternative.
+> Me avise o que funciona melhor, ou sinta-se à vontade para sugerir uma alternativa.
 
-## 2. Sharing a Booking Link
+## 2. Compartilhando um Link de Agendamento
 
-> Hi [name], [owner] asked me to set up a time for you two to connect. Here's the scheduling link: [link]. Pick whatever works best for you.
+> Oi [nome], [proprietário] pediu para eu marcar um horário para vocês dois conversarem. Aqui está o link de agendamento: [link]. Escolha o que funcionar melhor para você.
 
-## 3. Confirming a Meeting
+## 3. Confirmando uma Reunião
 
-> Confirmed — [owner] will see you [date] at [time] [timezone]. [Platform/location details]. Looking forward to it.
+> Confirmado — [proprietário] te verá em [data] às [hora] [fuso horário]. [Detalhes da plataforma/local]. Aguardo.
 
-## 4. Rescheduling
+## 4. Reagendando
 
-> Hi [name], something came up on [owner]'s end for [original time]. Could we shift to one of these instead?
+> Oi [nome], algo surgiu do lado do [proprietário] para [horário original]. Poderíamos mudar para uma destas opções?
 >
-> - [Option 1]
-> - [Option 2]
-> - [Option 3]
+> - [Opção 1]
+> - [Opção 2]
+> - [Opção 3]
 >
-> Apologies for the change.
+> Desculpas pela mudança.
 
-## 5. Declining a Meeting
+## 5. Recusando uma Reunião
 
-> Hi [name], thanks for the invite. Unfortunately [owner] isn't able to make [date/time] work. [Optional: suggest alternative / explain briefly].
+> Oi [nome], obrigado pelo convite. Infelizmente [proprietário] não consegue fazer [data/hora] funcionar. [Opcional: sugira alternativa / explique brevemente].
 
-## 6. Holding Reply (buying time)
+## 6. Resposta de Espera (ganhando tempo)
 
-> Thanks — got it. I'm looking into this and will follow up shortly.
+> Obrigado — recebi. Estou verificando isso e retornarei em breve.
 
-## 7. Follow-up — Gentle (Day 2)
+## 7. Acompanhamento — Gentil (Dia 2)
 
-> Hi [name], just circling back on the below. Let me know if you have any questions or if there's a better time to connect.
+> Oi [nome], só retornando sobre o e-mail abaixo. Me avise se tiver alguma dúvida ou se houver um horário melhor para conectar.
 
-## 8. Follow-up — Direct (Day 5)
+## 8. Acompanhamento — Direto (Dia 5)
 
-> Hi [name], wanted to make sure this didn't slip through. Are you still interested in [topic]? Happy to work around your schedule.
+> Oi [nome], queria garantir que isso não passou despercebido. Ainda tem interesse em [tópico]? Fico feliz em trabalhar com sua agenda.
 
-## 9. Follow-up — Final (Day 7)
+## 9. Acompanhamento — Final (Dia 7)
 
-> Hi [name], I'll leave this with you — no pressure. If the timing isn't right now, feel free to reach out whenever it makes sense.
+> Oi [nome], vou deixar isso com você — sem pressão. Se o momento não for o certo agora, sinta-se à vontade para entrar em contato quando fizer sentido.

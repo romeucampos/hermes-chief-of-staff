@@ -1,38 +1,38 @@
-# Tasks
+# Tarefas
 
-<!-- Required sections: Today, Next up, Rules, Done -->
-<!-- Optional sections: Recurring (weekdays), Backlog (with due date), Recurring reminders, Backlog -->
+<!-- Seções obrigatórias: Hoje, Próximos, Regras, Concluídos -->
+<!-- Seções opcionais: Recorrentes (dias úteis), Backlog (com data), Lembretes recorrentes, Backlog -->
 
-## Today
+## Hoje
 
-- [ ] Example: Review pull requests — delete this and add your real tasks
+- [ ] Exemplo: Revisar pull requests — apague isso e adicione suas tarefas reais
 
-## Next up
+## Próximos
 
-- [ ] Example: Research CI pipeline options — delete this and add your real tasks
+- [ ] Exemplo: Pesquisar opções de pipeline de CI — apague isso e adicione suas tarefas reais
 
-## Rules
+## Regras
 
-- Read the task file at the start of every session before making recommendations.
-- When a task is blocked, note the blocker inline and create a follow-up task.
+- Leia o arquivo de tarefas no início de cada sessão antes de fazer recomendações.
+- Quando uma tarefa estiver bloqueada, anote o bloqueio inline e crie uma tarefa de acompanhamento.
 
-## Recurring (weekdays)
+## Recorrentes (dias úteis)
 
-- [ ] Check calendar and flag conflicts
-- [ ] Review inbox and triage action items
+- [ ] Verificar calendário e sinalizar conflitos
+- [ ] Revisar caixa de entrada e triar itens de ação
 
-## Backlog (with due date)
+## Backlog (com data de vencimento)
 
-- [ ] Example: Submit quarterly report — due 2026-06-30 — delete this and add your real tasks
+- [ ] Exemplo: Enviar relatório trimestral — vencimento 2026-06-30 — apague isso e adicione suas tarefas reais
 
-## Recurring reminders
+## Lembretes Recorrentes
 
-- [ ] Example: Review backlog and prune stale items — every 2 weeks, next 2026-04-14 — delete this and add your real reminders
+- [ ] Exemplo: Revisar backlog e podar itens antigos — a cada 2 semanas, próximo 2026-04-14 — apague isso e adicione seus lembretes reais
 
 ## Backlog
 
-- [ ] Example: Explore automation for weekly status updates — delete this and add your real tasks
+- [ ] Exemplo: Explorar automação para atualizações semanais de status — apague isso e adicione suas tarefas reais
 
-## Done
+## Concluídos
 
-- [x] Set up canonical task file — completed 2026-04-02 10:00 CT
+- [x] Configurar arquivo de tarefas canônico — concluído 2026-04-02 10:00 CT

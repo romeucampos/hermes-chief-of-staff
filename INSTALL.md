@@ -1,83 +1,83 @@
-# Installation Guide
+# Guia de Instalação
 
-Step-by-step setup for the Chief of Staff OS on Hermes Agent.
+Configuração passo a passo do Chief of Staff OS no Hermes Agent.
 
 ---
 
-## Prerequisites
+## Pré-requisitos
 
-- [Hermes Agent](https://hermes-agent.nousresearch.com/) installed and configured
-- At least one email account accessible via MCP (Gmail recommended)
-- Calendar access via MCP (Google Calendar recommended)
+- [Hermes Agent](https://hermes-agent.nousresearch.com/) instalado e configurado
+- Pelo menos uma conta de e-mail acessível via MCP (Gmail recomendado)
+- Acesso ao calendário via MCP (Google Calendar recomendado)
 
-## Step 1: Clone the Repo
+## Passo 1: Clonar o Repositório
 
 ```bash
 git clone https://github.com/TheCraigHewitt/hermes-chief-of-staff.git
 cd hermes-chief-of-staff
 ```
 
-## Step 2: Install Skills
+## Passo 2: Instalar as Habilidades
 
-Copy the skills to your Hermes skills directory:
+Copie as habilidades para o diretório de habilidades do Hermes:
 
 ```bash
 cp -r skills/* ~/.hermes/skills/
 ```
 
-Verify they're detected by starting a Hermes session and checking the skill list. The exact command may vary by version — try listing your available skills to confirm the five CoS skills appear.
+Verifique se foram detectadas iniciando uma sessão do Hermes e verificando a lista de habilidades. O comando exato pode variar por versão — tente listar suas habilidades disponíveis para confirmar que as cinco habilidades do CoS aparecem.
 
-## Step 3: Set Up the Context File
+## Passo 3: Configurar o Arquivo de Contexto
 
-Copy the template to your project root:
+Copie o modelo para a raiz do seu projeto:
 
 ```bash
 cp templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
 ```
 
-Open it and fill in every section:
+Abra-o e preencha cada seção:
 
-- **About You**: Name, timezone, role
-- **Communication**: Email accounts, calendar accounts, tone preference
-- **Authority**: What the assistant can handle vs. what needs your approval
-- **Work Hours**: When sweeps should run, quiet hours
-- **Tools Available**: Which MCP integrations are connected
-- **Follow-up Preferences**: Default cadence, VIP contacts
-- **Business Context**: Brief notes to help the assistant make better decisions
+- **Sobre Você**: Nome, fuso horário, cargo
+- **Comunicação**: Contas de e-mail, contas de calendário, preferência de tom
+- **Autoridade**: O que o assistente pode lidar vs. o que precisa da sua aprovação
+- **Horas de Trabalho**: Quando as varreduras devem executar, horas de silêncio
+- **Ferramentas Disponíveis**: Quais integrações MCP estão conectadas
+- **Preferências de Acompanhamento**: Cadência padrão, contatos VIP
+- **Contexto de Negócios**: Notas breves para ajudar o assistente a tomar melhores decisões
 
-## Step 4: Set Up Workspace Files
+## Passo 4: Configurar os Arquivos do Workspace
 
-Copy the workspace directory to your project:
+Copie o diretório workspace para seu projeto:
 
 ```bash
 cp -r workspace/ ~/your-project/workspace/
 ```
 
-This creates:
-- `workspace/tasks/current.md` — Your canonical task file (edit the example entries)
-- `workspace/relationships/current.md` — Your follow-up tracking file (edit the examples)
-- `workspace/HEARTBEAT.md` — Instructions for automated sweeps
-- `workspace/TOOLS.md` — Local tool environment notes (fill in as needed)
+Isso cria:
+- `workspace/tasks/current.md` — Seu arquivo de tarefas canônico (edite as entradas de exemplo)
+- `workspace/relationships/current.md` — Seu arquivo de acompanhamento de follow-ups (edite os exemplos)
+- `workspace/HEARTBEAT.md` — Instruções para varreduras automatizadas
+- `workspace/TOOLS.md` — Notas do ambiente de ferramentas locais (preencha conforme necessário)
 
-## Step 5: Set Up Personality (Optional)
+## Passo 5: Configurar a Personalidade (Opcional)
 
-Copy the SOUL template for the CoS personality:
+Copie o modelo SOUL para a personalidade do CoS:
 
 ```bash
 cp templates/SOUL.example.md ~/.hermes/SOUL.md
 ```
 
-Copy the USER template for your profile:
+Copie o modelo USER para seu perfil:
 
 ```bash
 cp templates/USER.example.md ~/.hermes/memories/USER.md
 ```
 
-Edit both to match your preferences.
+Edite ambos para corresponder às suas preferências.
 
-## Step 6: Configure MCP Integrations
+## Passo 6: Configurar as Integrações MCP
 
-In `~/.hermes/config.yaml`, set up MCP servers for your email and calendar. Example for Gmail:
+Em `~/.hermes/config.yaml`, configure os servidores MCP para seu e-mail e calendário. Exemplo para Gmail:
 
 ```yaml
 mcp_servers:
@@ -89,78 +89,78 @@ mcp_servers:
     args: ["-y", "@anthropic/mcp-server-google-calendar"]
 ```
 
-Reload MCP servers after changes. In a Hermes chat session, use the reload command (e.g., `/reload-mcp`) to pick up the new configuration.
+Recarregue os servidores MCP após as alterações. Em uma sessão de chat do Hermes, use o comando de recarregar (ex: `/reload-mcp`) para pegar a nova configuração.
 
-## Step 7: Set Up Cron Schedules
+## Passo 7: Configurar os Agendamentos Cron
 
-Start the Hermes cron scheduler (exact command may vary — consult Hermes docs for your version):
+Inicie o agendador cron do Hermes (o comando exato pode variar — consulte a documentação do Hermes para sua versão):
 
 ```bash
 hermes cron start
 ```
 
-Add the recommended schedules (adjust times to your timezone). Example workflow:
+Adicione os agendamentos recomendados (ajuste os horários para seu fuso horário). Exemplo de fluxo de trabalho:
 
 ```bash
-# EA inbox sweep — every 15 min, business hours, weekdays
-hermes cron add "*/15 8-21 * * 1-5" "Run the executive-assistant skill in heartbeat mode. Follow workspace/HEARTBEAT.md. Return HEARTBEAT_OK if nothing actionable."
+# Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
+hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade executive-assistant no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
-# Daily task prep — 2 AM nightly
-hermes cron add "3 2 * * *" "Run the daily-task-prep skill. Enrich tomorrow's task list with recurring items, due dates, and calendar events."
+# Preparo diário de tarefas — 2h da manhã todas as noites
+hermes cron add "3 2 * * *" "Execute a habilidade daily-task-prep. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
 
-# Follow-up check — twice daily, weekdays
-hermes cron add "47 9,14 * * 1-5" "Run the relationship-manager skill. Check for follow-ups due today. Draft messages for any that are overdue."
+# Verificação de acompanhamentos — duas vezes ao dia, dias úteis
+hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
 
-# Morning briefing — once daily, weekdays
-hermes cron add "57 7 * * 1-5" "Run the chief-of-staff skill in morning briefing mode. Summarize today's tasks, inbox highlights, calendar, and due follow-ups."
+# Briefing matutino — uma vez ao dia, dias úteis
+hermes cron add "57 7 * * 1-5" "Execute a habilidade chief-of-staff no modo briefing matutino. Resuma as tarefas de hoje, destaques da caixa de entrada, calendário e acompanhamentos devidos."
 ```
 
-> **Note**: The cron command syntax above follows the Hermes CLI pattern at time of writing. If the exact syntax has changed, consult `hermes cron --help` or the [Hermes cron docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
+> **Nota**: A sintaxe de comando cron acima segue o padrão da CLI do Hermes no momento da escrita. Se a sintaxe exata mudou, consulte `hermes cron --help` ou a [documentação do cron do Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
 
-See [cron/README.md](cron/README.md) for details and customization options.
+Veja [cron/README.md](cron/README.md) para detalhes e opções de personalização.
 
-## Validation Checklist
+## Lista de Verificação de Validação
 
-Run through this after setup to confirm everything works:
+Execute isto após a configuração para confirmar que tudo funciona:
 
-**Installation**:
-- [ ] Skills are installed in `~/.hermes/skills/` (one directory per skill, each containing SKILL.md)
-- [ ] `CHIEF_OF_STAFF_CONTEXT.md` is filled out and present in your project root
-- [ ] `workspace/tasks/current.md` exists with required sections (Today, Next up, Rules, Done)
-- [ ] `workspace/relationships/current.md` exists with sections (Active Follow-ups, Nurture, Archived)
-- [ ] `workspace/HEARTBEAT.md` is present
+**Instalação**:
+- [ ] As habilidades estão instaladas em `~/.hermes/skills/` (um diretório por habilidade, cada um contendo SKILL.md)
+- [ ] `CHIEF_OF_STAFF_CONTEXT.md` está preenchido e presente na raiz do seu projeto
+- [ ] `workspace/tasks/current.md` existe com as seções necessárias (Hoje, Próximos, Regras, Concluídos)
+- [ ] `workspace/relationships/current.md` existe com as seções (Acompanhamentos Ativos, Nutrição, Arquivados)
+- [ ] `workspace/HEARTBEAT.md` está presente
 
-**Integrations**:
-- [ ] MCP servers are configured in `~/.hermes/config.yaml`
-- [ ] Test email access: ask "check my inbox" — should list recent messages or confirm access
-- [ ] Test calendar access: ask "what's on my calendar today" — should list events or confirm access
-- [ ] Cron jobs are set up (check with `hermes cron list` or equivalent)
+**Integrações**:
+- [ ] Os servidores MCP estão configurados em `~/.hermes/config.yaml`
+- [ ] Teste o acesso ao e-mail: pergunte "verifique minha caixa de entrada" — deve listar mensagens recentes ou confirmar acesso
+- [ ] Teste o acesso ao calendário: pergunte "o que tem no meu calendário hoje" — deve listar eventos ou confirmar acesso
+-- [ ] Os trabalhos cron estão configurados (verifique com `hermes cron list` ou equivalente)
 
-**Functional tests** (run these in a Hermes chat session):
-- [ ] "Add a task: test the CoS setup" — should update workspace/tasks/current.md
-- [ ] "Run executive-assistant in heartbeat mode" — should return HEARTBEAT_OK or a triage summary
-- [ ] "Morning briefing" — should return a structured daily overview
-- [ ] "Who do I need to follow up with?" — should check workspace/relationships/current.md
-- [ ] "Mark done: test the CoS setup" — should move the task to Done with a timestamp
+**Testes funcionais** (execute estes em uma sessão de chat do Hermes):
+- [ ] "Adicione uma tarefa: testar a configuração do CoS" — deve atualizar workspace/tasks/current.md
+- [ ] "Execute executive-assistant no modo heartbeat" — deve retornar HEARTBEAT_OK ou um resumo de triagem
+- [ ] "Briefing matutino" — deve retornar uma visão geral diária estruturada
+- [ ] "Com quem preciso fazer acompanhamento?" — deve verificar workspace/relationships/current.md
+- [ ] "Marcar como concluído: testar a configuração do CoS" — deve mover a tarefa para Concluídos com um carimbo de data/hora
 
-## Choosing What to Install
+## Escolhendo o Que Instalar
 
-You don't need everything. For the fastest high-value setup, see [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md).
+Você não precisa de tudo. Para a configuração de maior valor mais rápida, veja [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md).
 
-For all options, see [docs/maturity-levels.md](docs/maturity-levels.md):
+Para todas as opções, veja [docs/maturity-levels.md](docs/maturity-levels.md):
 
-- **Level 1 (Personal EA)**: Steps 2-4 with just `executive-assistant` and `daily-task-manager`
-- **Level 2 (Founder)**: Full Steps 2-6, all cron jobs except morning briefing
-- **Level 3 (Full CoS)**: Everything above
+- **Nível 1 (EA Pessoal)**: Passos 2-4 com apenas `executive-assistant` e `daily-task-manager`
+- **Nível 2 (Fundador)**: Passos 2-6 completos, todos os trabalhos cron exceto o briefing matutino
+- **Nível 3 (CoS Completo)**: Tudo acima
 
-A filled-out demo context file is available at [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) to see what a completed setup looks like.
+Um arquivo de contexto de demonstração preenchido está disponível em [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) para ver como uma configuração completa se parece.
 
-## Troubleshooting
+## Solução de Problemas
 
-**Skills not showing up**: Make sure the SKILL.md files are in `~/.hermes/skills/<skill-name>/SKILL.md`. Each skill needs its own directory.
+**Habilidades não aparecendo**: Certifique-se de que os arquivos SKILL.md estejam em `~/.hermes/skills/<nome-da-habilidade>/SKILL.md`. Cada habilidade precisa de seu próprio diretório.
 
-**MCP not connecting**: Reload MCP servers in a Hermes chat session (e.g., `/reload-mcp`). Check `~/.hermes/logs/` for errors.
+**MCP não conectando**: Recarregue os servidores MCP em uma sessão de chat do Hermes (ex: `/reload-mcp`). Verifique `~/.hermes/logs/` para erros.
 
-**Cron not running**: Make sure the cron scheduler is started (e.g., `hermes cron start`). Check status with your cron list command.
+**Cron não executando**: Certifique-se de que o agendador cron esteja iniciado (ex: `hermes cron start`). Verifique o status com seu comando de listagem de cron.
 
-**Context file not found**: Skills look for `CHIEF_OF_STAFF_CONTEXT.md` in your project root (the directory where you start Hermes). Make sure it's there.
+**Arquivo de contexto não encontrado**: As habilidades procuram por `CHIEF_OF_STAFF_CONTEXT.md` na raiz do seu projeto (o diretório onde você inicia o Hermes). Certifique-se de que esteja lá.

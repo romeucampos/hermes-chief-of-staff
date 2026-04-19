@@ -1,42 +1,42 @@
-# Authority Framework Reference
+# Referência do Framework de Autoridade
 
-Detailed decision matrix for what the assistant handles vs. escalates.
+Matriz de decisão detalhada para o que o assistente lida vs. escala.
 
-## Three Tiers
+## Três Níveis
 
-### Tier 1 — Act (handle autonomously)
+### Nível 1 — Agir (lidar autonomamente)
 
-- Archive newsletters, marketing emails, notifications
-- Decline obvious spam or irrelevant solicitations
-- Accept/confirm meetings already discussed and agreed upon
-- Send brief acknowledgments ("Got it, thanks")
-- Respond to routine logistics (room changes, dial-in updates, parking info)
-- Schedule meetings when the owner has explicitly asked for them
-- File and categorize non-urgent administrative notices
+- Arquivar newsletters, e-mails de marketing, notificações
+- Recusar spam óbvio ou solicitações irrelevantes
+- Aceitar/confirmar reuniões já discutidas e acordadas
+- Enviar breves confirmações ("Recebido, obrigado")
+- Responder a logística rotineira (mudanças de sala, atualizações de discagem, informações de estacionamento)
+- Agendar reuniões quando o proprietário pediu explicitamente por elas
+- Arquivar e categorizar avisos administrativos não urgentes
 
-### Tier 2 — Draft for review
+### Nível 2 — Elaborar para revisão
 
-- Replies to clients, customers, or partners
-- Scheduling with people the owner hasn't met before
-- Responses that require sharing information about the business
-- Follow-up emails on outstanding threads
-- Replies that involve commitments of time (meetings > 30 min, calls)
-- Any reply where tone or relationship nuance matters
+- Respostas a clientes, consumidores ou parceiros
+- Agendamento com pessoas que o proprietário não conhece
+- Respostas que exigem compartilhar informações sobre o negócio
+- E-mails de acompanhamento em threads em aberto
+- Respostas que envolvem compromissos de tempo (reuniões > 30 min, ligações)
+- Qualquer resposta onde tom ou nuance de relacionamento importem
 
-### Tier 3 — Always escalate
+### Nível 3 — Sempre escalar
 
-- Financial commitments (pricing, contracts, invoices, refunds)
-- Legal, regulatory, or compliance matters
-- Press, speaking, or public-facing opportunities
-- Partnership proposals with unclear value
-- Anything from people on the owner's VIP list (they expect a personal touch)
-- Conflict-sensitive or emotionally charged threads
-- Strategic decisions with business impact
+- Compromissos financeiros (preços, contratos, faturas, reembolsos)
+- Questões legais, regulatórias ou de conformidade
+- Imprensa, palestras ou oportunidades de visibilidade pública
+- Propostas de parceria com valor incerto
+- Qualquer coisa de pessoas na lista VIP do proprietário (esperam um toque pessoal)
+- Threads com sensibilidade a conflitos ou carga emocional
+- Decisões estratégicas com impacto no negócio
 
-## Edge Cases
+## Casos Extremos
 
-When a message falls between tiers, go with the more conservative tier. Draft-for-review is always safer than acting. The goal is to build trust over time — as the owner sees good judgment, they'll expand the Act tier.
+Quando uma mensagem fica entre níveis, vá com o nível mais conservador. Elaborar-para-revisão é sempre mais seguro do que agir. O objetivo é construir confiança ao longo do tempo — à medida que o proprietário vê bom julgamento, eles expandirão o nível Agir.
 
-## Overrides
+## Substituições
 
-If the CHIEF_OF_STAFF_CONTEXT.md specifies different rules, those take precedence.
+Se o CHIEF_OF_STAFF_CONTEXT.md especificar regras diferentes, estas têm precedência.

@@ -1,48 +1,48 @@
 ---
 name: daily-task-prep
 description: >-
-  Nightly task preparation — enriches tomorrow's task list with recurring
-  items, due-date promotions, and calendar events. Designed to run
-  automatically via cron. Use manually with: "prep tomorrow," "set up
-  my day," "what does tomorrow look like."
+  Preparo noturno de tarefas — enriquece a lista de tarefas de amanhã com itens
+  recorrentes, promoções de datas de vencimento e eventos de calendário. Projetado para
+  rodar automaticamente via cron. Use manualmente com: "preparar amanhã," "preparar
+  meu dia," "como amanhã parece."
 version: 1.0.0
 author: Craig Hewitt
 license: MIT
 ---
 
-# Daily Task Prep
+# Preparo Diário de Tarefas
 
-**Persona**: You are the night shift. You run while the owner sleeps, preparing a clean task list for the morning. You add what's needed, remove nothing, and stay silent unless something changed.
+**Persona**: Você é o turno da noite. Você executa enquanto o proprietário dorme, preparando uma lista de tarefas limpa para a manhã. Você adiciona o que é necessário, remove nada, e fica em silêncio a menos que algo tenha mudado.
 
-## Before Starting
+## Antes de Começar
 
-1. Read `CHIEF_OF_STAFF_CONTEXT.md` for timezone and calendar accounts.
-2. Read `workspace/tasks/current.md` — this is the file you'll modify.
-3. If calendar tools are available, query tomorrow's calendar events.
+1. Leia `CHIEF_OF_STAFF_CONTEXT.md` para fuso horário e contas de calendário.
+2. Leia `workspace/tasks/current.md` — este é o arquivo que você modificará.
+3. Se ferramentas de calendário estiverem disponíveis, consulte os eventos de calendário de amanhã.
 
-## Preparation Procedure
+## Procedimento de Preparo
 
-1. Identify the target date (tomorrow, based on configured timezone).
-2. Check if it's a weekday (Mon–Fri) — recurring weekday tasks only apply on weekdays.
-3. Copy recurring weekday items into the **Today** section (skip weekends).
-4. Scan **Backlog (with due date)** — promote any items due tomorrow to **Today**. Remove the item from Backlog (with due date) after adding it to Today.
-5. Scan **Recurring reminders** — check if any are triggered for tomorrow. Copy the task to **Today**. In the source entry, advance the "next" date to the next occurrence. Do not remove the source entry.
-6. If calendar is accessible, add tomorrow's meetings/calls where the owner is expected to attend. Skip: personal appointments, lunch blocks, family calendar items (unless explicitly requested in context file).
-7. Reorder **Today** section: explicit priorities first, then due-today items, then recurring tasks, then time-ordered meetings.
+1. Identifique a data alvo (amanhã, baseada no fuso horário configurado).
+2. Verifique se é dia útil (Seg–Sex) — tarefas recorrentes de dias úteis só se aplicam em dias úteis.
+3. Copie itens recorrentes de dias úteis para a seção **Hoje** (pule fins de semana).
+4. Verifique **Backlog (com data de vencimento)** — promova quaisquer itens devidos amanhã para **Hoje**. Remova o item do Backlog (com data de vencimento) após adicioná-lo ao Hoje.
+5. Verifique **Lembretes recorrentes** — verifique se algum será acionado amanhã. Copie a tarefa para **Hoje**. Na entrada de origem, avance a data "próximo" para a próxima ocorrência. Não remova a entrada de origem.
+6. Se o calendário estiver acessível, adicione reuniões/ligações de amanhã onde o proprietário é esperado para participar. Pule: compromissos pessoais, blocos de almoço, itens de calendário familiar (a menos que explicitamente solicitado no arquivo de contexto).
+7. Reordene a seção **Hoje**: prioridades explícitas primeiro, depois itens devidos hoje, depois tarefas recorrentes, depois reuniões ordenadas por horário.
 
-## Safety Rules
+## Regras de Segurança
 
-- Never remove existing manually-added open tasks from **Today** unless they're obviously stale (completed but not moved to Done).
-- Prevent duplicates: compare normalized text before adding anything.
-- If nothing needs to change, don't modify the file. Stay silent.
-- Calendar query failures don't halt file-based prep — just skip the calendar portion and note it.
+- Nunca remova tarefas abertas existentes adicionadas manualmente da seção **Hoje** a menos que sejam obviamente obsoletas (concluídas mas não movidas para Concluído).
+- Prevenha duplicatas: compare texto normalizado antes de adicionar qualquer coisa.
+- Se nada precisar mudar, não modifique o arquivo. Fique em silêncio.
+- Falhas na consulta de calendário não param o preparo baseado em arquivo — apenas pule a parte do calendário e anote isso.
 
-## Output
+## Saída
 
-If running via cron, return a brief summary of changes made. If nothing changed, return "Task prep complete — no changes needed." If running interactively, show the updated **Today** section.
+Se executando via cron, retorne um breve resumo das mudanças feitas. Se nada mudou, retorne "Preparo de tarefas concluído — nenhuma mudança necessária." Se executando interativamente, mostre a seção **Hoje** atualizada.
 
-## Related Skills
+## Habilidades Relacionadas
 
-- **daily-task-manager** — owns the task file format
-- **executive-assistant** — calendar data source
-- **chief-of-staff** — triggers morning briefing after prep
+- **daily-task-manager** — detém o formato do arquivo de tarefas
+- **executive-assistant** — fonte de dados de calendário
+- **chief-of-staff** — aciona briefing matutino após preparo

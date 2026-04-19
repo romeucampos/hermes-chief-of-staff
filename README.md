@@ -1,105 +1,105 @@
 # Chief of Staff OS
 
-AI skills that run your day — inbox, tasks, follow-ups, and the operating rhythm that holds it together.
+Habilidades de IA que gerenciam seu dia — caixa de entrada, tarefas, acompanhamentos e o ritmo operacional que mantém tudo junto.
 
-Built for [Hermes Agent](https://hermes-agent.nousresearch.com/). Inspired by [clawchief](https://github.com/snarktank/clawchief).
+Criado para [Hermes Agent](https://hermes-agent.nousresearch.com/). Inspirado por [clawchief](https://github.com/snarktank/clawchief).
 
 ---
 
-## What This Is
+## O Que É Isso
 
-A set of Hermes skills that turn your AI agent into a Chief of Staff. It manages your inbox, tracks your tasks, follows up on conversations, and gives you a daily briefing — so nothing falls through the cracks.
+Um conjunto de habilidades do Hermes que transformam seu agente de IA em um Chief of Staff. Ele gerencia sua caixa de entrada, acompanha suas tarefas, faz follow-up em conversas e fornece um briefing diário — para que nada passe despercebido.
 
-Three pillars:
-- **Tasks** — A canonical task file that stays current across sessions
-- **Communications** — Inbox triage with authority-based decisions
-- **Follow-ups** — Time-based follow-up cadence so no thread dies silently
+Três pilares:
+- **Tarefas** — Um arquivo de tarefas canônico que permanece atualizado entre as sessões
+- **Comunicações** — Triagem de caixa de entrada com decisões baseadas em autoridade
+- **Acompanhamentos** — Cadência de follow-up baseada no tempo para que nenhuma conversa morra silenciosamente
 
-## Skills
+## Habilidades
 
-| Skill | What it does |
-|-------|-------------|
-| `executive-assistant` | Inbox triage, email drafting, calendar management, scheduling |
-| `daily-task-manager` | Canonical task file — add, complete, prioritize, review |
-| `daily-task-prep` | Nightly automation — enrich tomorrow's tasks with recurring items, due dates, calendar |
-| `relationship-manager` | Follow-up tracking, outreach cadence, relationship health |
-| `chief-of-staff` | Orchestrator — morning briefings, EOD reviews, ad-hoc triage |
+| Habilidade | O Que Faz |
+|------------|-----------|
+| `executive-assistant` | Triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário, agendamento |
+| `daily-task-manager` | Arquivo de tarefas canônico — adicionar, concluir, priorizar, revisar |
+| `daily-task-prep` | Automação noturna — enriquece as tarefas de amanhã com itens recorrentes, prazos e calendário |
+| `relationship-manager` | Acompanhamento de follow-ups, cadência de contato, saúde de relacionamentos |
+| `chief-of-staff` | Orquestrador — briefings matutinos, revisões de fim de dia, triagem ad-hoc |
 
-## Quick Start
+## Início Rápido
 
 ```bash
-# Clone the repo
+# Clone o repositório
 git clone https://github.com/TheCraigHewitt/hermes-chief-of-staff.git
 
-# Copy skills to your Hermes installation
+# Copie as habilidades para sua instalação do Hermes
 cp -r hermes-chief-of-staff/skills/* ~/.hermes/skills/
 
-# Copy workspace files to your project
+# Copie os arquivos do workspace para seu projeto
 cp -r hermes-chief-of-staff/workspace/ ~/your-project/workspace/
 
-# Copy and fill out the context file
+# Copie e preencha o arquivo de contexto
 cp hermes-chief-of-staff/templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
 
-# (Optional) Set up the CoS personality
+# (Opcional) Configure a personalidade do CoS
 cp hermes-chief-of-staff/templates/SOUL.example.md ~/.hermes/SOUL.md
 ```
 
-Then fill in `CHIEF_OF_STAFF_CONTEXT.md` with your details. See [INSTALL.md](INSTALL.md) for the full setup guide.
+Depois preencha o `CHIEF_OF_STAFF_CONTEXT.md` com seus detalhes. Veja [INSTALL.md](INSTALL.md) para o guia completo de configuração.
 
-## How It Works
+## Como Funciona
 
-The system runs on a daily rhythm:
+O sistema opera em um ritmo diário:
 
-1. **2 AM** — `daily-task-prep` prepares tomorrow's task list
-2. **8 AM** — `chief-of-staff` delivers a morning briefing
-3. **All day** — `executive-assistant` sweeps inbox every 15 minutes
-4. **Twice daily** — `relationship-manager` checks for due follow-ups
-5. **End of day** — `chief-of-staff` reviews what got done and captures what's next
+1. **2h da manhã** — `daily-task-prep` prepara a lista de tarefas de amanhã
+2. **8h da manhã** — `chief-of-staff` entrega um briefing matutino
+3. **O dia todo** — `executive-assistant` varre a caixa de entrada a cada 15 minutos
+4. **Duas vezes ao dia** — `relationship-manager` verifica follow-ups pendentes
+5. **Fim do dia** — `chief-of-staff` revisa o que foi feito e captura o que vem a seguir
 
-When nothing needs attention, the system stays silent (`HEARTBEAT_OK`). Every message means something needs your attention.
+Quando nada precisa de atenção, o sistema fica em silêncio (`HEARTBEAT_OK`). Cada mensagem significa que algo precisa da sua atenção.
 
-See [docs/operating-model.md](docs/operating-model.md) for the full picture.
+Veja [docs/operating-model.md](docs/operating-model.md) para a visão completa.
 
-## Choose Your Level
+## Escolha Seu Nível
 
-You don't have to use everything. Pick the level that fits:
+Você não precisa usar tudo. Escolha o nível que se encaixa:
 
-| Level | Skills | What you get |
-|-------|--------|-------------|
-| **Personal EA** | executive-assistant, daily-task-manager | Inbox triage + task management |
-| **Founder** | + relationship-manager, daily-task-prep | + follow-up tracking + daily prep |
-| **Full CoS** | + chief-of-staff | + morning briefings + EOD reviews |
+| Nível | Habilidades | O Que Você Recebe |
+|-------|-------------|-------------------|
+| **EA Pessoal** | executive-assistant, daily-task-manager | Triagem de caixa de entrada + gerenciamento de tarefas |
+| **Fundador** | + relationship-manager, daily-task-prep | + acompanhamento de follow-ups + preparo diário |
+| **CoS Completo** | + chief-of-staff | + briefings matutinos + revisões de fim de dia |
 
-See [docs/maturity-levels.md](docs/maturity-levels.md) for details.
+Veja [docs/maturity-levels.md](docs/maturity-levels.md) para detalhes.
 
-## v1 Scope
+## Escopo da v1
 
-v1 focuses on operational CoS foundations: tasks, communications, and follow-ups. It is strongest as an executive assistant and founder ops system. Strategic planning, decision logs, delegation tracking, and meeting prep are future layers (see [docs/maturity-levels.md](docs/maturity-levels.md)).
+A v1 foca nos fundamentos operacionais do CoS: tarefas, comunicações e acompanhamentos. É mais forte como assistente executivo e sistema de operações de fundador. Planejamento estratégico, registros de decisão, acompanhamento de delegação e preparação de reuniões são camadas futuras (veja [docs/maturity-levels.md](docs/maturity-levels.md)).
 
-## Configuration
+## Configuração
 
-All owner-specific settings live in one file: `CHIEF_OF_STAFF_CONTEXT.md`. Each skill is written to read this file at the start of relevant runs — it's the canonical owner config. No scattered config, no environment variables to manage.
+Todas as configurações específicas do proprietário residem em um único arquivo: `CHIEF_OF_STAFF_CONTEXT.md`. Cada habilidade foi escrita para ler este arquivo no início das execuções relevantes — é a configuração canônica do proprietário. Sem configuração dispersa, sem variáveis de ambiente para gerenciar.
 
-The context file covers: your name, email accounts, calendar accounts, authority levels (what the assistant can do without asking), work hours, follow-up preferences, and available tools.
+O arquivo de contexto cobre: seu nome, contas de e-mail, contas de calendário, níveis de autoridade (o que o assistente pode fazer sem perguntar), horas de trabalho, preferências de follow-up e ferramentas disponíveis.
 
-- [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) — Template to fill out
-- [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) — Filled-out example with fake data
+- [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) — Modelo para preencher
+- [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) — Exemplo preenchido com dados fictícios
 
-## Docs
+## Documentação
 
-- [INSTALL.md](INSTALL.md) — Step-by-step setup guide
-- [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md) — Fastest path to a working setup
-- [PHILOSOPHY.md](PHILOSOPHY.md) — Operating principles
-- [docs/operating-model.md](docs/operating-model.md) — How the system works end-to-end
-- [docs/example-outputs.md](docs/example-outputs.md) — What good output looks like
-- [docs/adaptation-guide.md](docs/adaptation-guide.md) — How to customize for your workflow
-- [docs/maturity-levels.md](docs/maturity-levels.md) — Personal EA to Full CoS progression
-- [cron/README.md](cron/README.md) — Recommended cron schedules
+- [INSTALL.md](INSTALL.md) — Guia de configuração passo a passo
+- [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md) — Caminho mais rápido para uma configuração funcional
+- [PHILOSOPHY.md](PHILOSOPHY.md) — Princípios operacionais
+- [docs/operating-model.md](docs/operating-model.md) — Como o sistema funciona de ponta a ponta
+- [docs/example-outputs.md](docs/example-outputs.md) — Como deve ser uma boa saída
+- [docs/adaptation-guide.md](docs/adaptation-guide.md) — Como personalizar para seu fluxo de trabalho
+- [docs/maturity-levels.md](docs/maturity-levels.md) — Progressão de EA Pessoal a CoS Completo
+- [cron/README.md](cron/README.md) — Cronogramas recomendados
 
-## About
+## Sobre
 
-Built by [Craig Hewitt](https://twitter.com/croighewitt). Ported from the [clawchief](https://github.com/snarktank/clawchief) operating model, rebuilt for [Hermes Agent](https://hermes-agent.nousresearch.com/).
+Criado por [Craig Hewitt](https://twitter.com/croighewitt). Portado do modelo operacional [clawchief](https://github.com/snarktank/clawchief), reconstruído para [Hermes Agent](https://hermes-agent.nousresearch.com/).
 
-## License
+## Licença
 
 MIT

@@ -1,82 +1,82 @@
-# Example Outputs
+# Exemplos de Saídas
 
-These examples show what each skill produces in practice. Your outputs will vary based on your configuration and data.
-
----
-
-## Morning Briefing (chief-of-staff skill)
-
-### Tasks
-
-5 items on today's list:
-
-- Call with Riverside.fm team (10:00 AM) — prep notes in shared doc
-- Review Q2 sponsorship proposals — 3 waiting in draft folder
-- Reply to Matt about co-host scheduling (drafted, needs approval)
-- Send revised hosting agreement to Lemonpie Media
-- Follow up with Sarah Chen re: podcast audit proposal (overdue — day 5)
-
-### Calendar
-
-- **10:00 AM** — Riverside.fm product feedback call (30 min, Zoom)
-- **2:00 PM** — Interview recording with Dan Misener, S3E14 (60 min, Squadcast)
-
-No conflicts. 30-min gap before the afternoon recording.
-
-### Inbox
-
-- **Urgent**: Jordan at Spotify responded to the distribution deal thread. Needs your call on pricing tier — escalated.
-- **Routine**: Podcast Movement confirmed your speaker slot for June 12. No action needed, archived the confirmation.
-
-### Follow-ups
-
-- **Sarah Chen** (podcast audit proposal) — Day 5, no reply. Direct follow-up ready to send. See below for draft.
-
-### Heads up
-
-- Lemonpie Media contract expires Friday. The revised agreement hasn't been sent yet — this is on today's list.
+Estes exemplos mostram o que cada habilidade produz na prática. Suas saídas variarão com base em sua configuração e dados.
 
 ---
 
-## Inbox Sweep Summary (executive-assistant skill)
+## Briefing Matutino (habilidade chief-of-staff)
 
-Processed 7 messages.
+### Tarefas
 
-- **Handled (2)**: Archived Podnews newsletter. Confirmed Thursday recording with Dan Misener (was already agreed, sent calendar hold).
-- **Drafted for review (2)**: Reply to Jordan at Spotify re: distribution pricing (needs your pricing decision). Scheduling email to Arielle Nissenblatt for guest appearance (3 time slots proposed).
-- **Escalated (1)**: Partnership proposal from Edison Research — they want co-branded listener study. Revenue share terms need your decision. Details in escalation channel.
-- **Follow-up sent (1)**: Gentle nudge to Rob at Transistor about API integration timeline (day 2).
-- **Archived (1)**: SEO agency cold pitch — irrelevant.
+5 itens na lista de hoje:
+
+- Ligação com a equipe Riverside.fm (10:00) — notas de preparo no documento compartilhado
+- Revisar propostas de patrocínio do Q2 — 3 aguardando na pasta de rascunhos
+- Responder ao Matt sobre agendamento de co-host (elaborado, precisa de aprovação)
+- Enviar contrato de hospedagem revisado para Lemonpie Media
+- Acompanhar com Sarah Chen sobre proposta de auditoria de podcast (atrasado — dia 5)
+
+### Calendário
+
+- **10:00** — Ligação de feedback de produto Riverside.fm (30 min, Zoom)
+- **14:00** — Gravação de entrevista com Dan Misener, S3E14 (60 min, Squadcast)
+
+Sem conflitos. Intervalo de 30 min antes da gravação da tarde.
+
+### Caixa de Entrada
+
+- **Urgente**: Jordan do Spotify respondeu sobre o thread de acordo de distribuição. Precisa da sua decisão sobre nível de preço — escalado.
+- **Rotina**: Podcast Movement confirmou seu slot de palestrante para 12 de junho. Nenhuma ação necessária, arquivada a confirmação.
+
+### Acompanhamentos
+
+- **Sarah Chen** (proposta de auditoria de podcast) — Dia 5, sem resposta. Acompanhamento direto pronto para enviar. Veja abaixo o rascunho.
+
+### Avisos
+
+- Contrato da Lemonpie Media expira sexta-feira. O contrato revisado ainda não foi enviado — está na lista de hoje.
 
 ---
 
-## Follow-up Reminder (relationship-manager skill)
+## Resumo de Varredura de Caixa de Entrada (habilidade executive-assistant)
 
-### Overdue — Sarah Chen (Day 5, direct follow-up)
+Processadas 7 mensagens.
 
-**Context**: Sent podcast audit proposal on March 28. No response to initial email or day-2 nudge.
+- **Lidado (2)**: Arquivado newsletter Podnews. Confirmada gravação de quinta-feira com Dan Misener (já estava acordada, enviou reserva de calendário).
+- **Elaborado para revisão (2)**: Resposta para Jordan do Spotify sobre preço de distribuição (precisa da sua decisão de preço). E-mail de agendamento para Arielle Nissenblatt sobre aparição como convidada (3 opções de horário propostas).
+- **Escalado (1)**: Proposta de parceria da Edison Research — querem estudo de ouvintes co-marca. Termos de compartilhamento de receita precisam da sua decisão. Detalhes no canal de escalada.
+- **Acompanhamento enviado (1)**: Sutileza gentil para Rob da Transistor sobre cronograma de integração de API (dia 2).
+- **Arquivado (1)**: Proposta fria de agência de SEO — irrelevante.
 
-**Draft**:
+---
 
-> Hi Sarah,
+## Lembrete de Acompanhamento (habilidade relationship-manager)
+
+### Atrasado — Sarah Chen (Dia 5, acompanhamento direto)
+
+**Contexto**: Enviada proposta de auditoria de podcast em 28 de março. Sem resposta ao e-mail inicial ou sutileza do dia 2.
+
+**Rascunho**:
+
+> Oi Sarah,
 >
-> Wanted to make sure the podcast audit proposal didn't slip through. We put together a scope based on your current show metrics and think there's a clear path to a 30% listen-through improvement.
+> Queria garantir que a proposta de auditoria de podcast não passou despercebida. Preparamos um escopo baseado nas métricas atuais do seu programa e achamos que há um caminho claro para uma melhoria de 30% na taxa de escuta completa.
 >
-> Are you still interested in moving forward? Happy to jump on a quick call this week if that's easier.
+> Ainda tem interesse em prosseguir? Fico feliz em participar de uma ligação rápida esta semana se for mais fácil.
 
-Approve, edit, or discard?
+Aprovar, editar ou descartar?
 
-### Due today — Rob Walsh (Day 2, gentle follow-up)
+### Devido hoje — Rob Walsh (Dia 2, acompanhamento gentil)
 
-**Context**: Emailed March 31 about API integration timeline for the new analytics dashboard.
+**Contexto**: Enviado em 31 de março sobre cronograma de integração de API para o novo painel de análises.
 
-**Draft**:
+**Rascunho**:
 
-> Hi Rob,
+> Oi Rob,
 >
-> Just circling back on the API timeline question from Tuesday. No rush — just want to make sure we're aligned before scoping the next sprint.
+> Só retornando sobre a questão de cronograma de API de terça-feira. Sem pressa — só quero garantir que estamos alinhados antes de dimensionar o próximo sprint.
 
-Approve, edit, or discard?
+Aprovar, editar ou descartar?
 
 ---
 
@@ -86,48 +86,48 @@ Approve, edit, or discard?
 HEARTBEAT_OK
 ```
 
-This means the sweep found nothing actionable — no urgent emails, no overdue tasks, no calendar conflicts, no due follow-ups. No message is sent to the owner.
+Isso significa que a varredura não encontrou nada acionável — nenhum e-mail urgente, nenhuma tarefa atrasada, nenhum conflito de calendário, nenhum acompanhamento devido. Nenhuma mensagem é enviada ao proprietário.
 
 ---
 
-## End-of-Day Review (chief-of-staff skill)
+## Revisão de Fim de Dia (habilidade chief-of-staff)
 
-### Completed
+### Concluído
 
-- Riverside.fm product feedback call — done, no action items
-- Reviewed Q2 sponsorship proposals — approved 2, declined 1 (notes in draft folder)
-- Interview recording with Dan Misener — recorded, episode in editing queue
+- Ligação de feedback de produto Riverside.fm — concluída, sem itens de ação
+- Revisadas propostas de patrocínio do Q2 — aprovadas 2, recusada 1 (notas na pasta de rascunhos)
+- Gravação de entrevista com Dan Misener — gravada, episódio na fila de edição
 
-### Still open
+### Ainda aberto
 
-- **Send revised hosting agreement to Lemonpie Media** — didn't get to this. Carry forward to tomorrow, reschedule, or drop?
+- **Enviar contrato de hospedagem revisado para Lemonpie Media** — não chegou a isso. Levar para amanhã, reagendar ou descartar?
 
-### Follow-ups
+### Acompanhamentos
 
-- Sent direct follow-up to Sarah Chen (day 5). Response received — she wants to schedule a call next week. Follow-up closed, task created for scheduling.
+- Enviado acompanhamento direto para Sarah Chen (dia 5). Resposta recebida — ela quer agendar uma ligação na próxima semana. Acompanhamento fechado, tarefa criada para agendamento.
 
-### Tomorrow
+### Amanhã
 
-- Lemonpie Media agreement (carried forward, if approved)
-- Monthly analytics review — recurring, first Tuesday
-- No calendar events yet
+- Acordo Lemonpie Media (levado para frente, se aprovado)
+- Revisão mensal de análises — recorrente, primeira terça-feira
+- Nenhum evento de calendário ainda
 
-### Capture
+### Captura
 
-Anything else to add? New tasks, notes, follow-ups that came up today?
+Mais alguma coisa para adicionar? Novas tarefas, notas, acompanhamentos que surgiram hoje?
 
 ---
 
-## Draft-for-Review Escalation
+## Escalamento de Elaboração para Revisão
 
-**Jordan at Spotify** — replying to distribution pricing thread. He proposed the mid-tier plan at $1,200/mo. You need to confirm the pricing level.
+**Jordan do Spotify** — respondendo sobre o thread de preço de distribuição. Ele propôs o plano do meio-nível a $1.200/mês. Você precisa confirmar o nível de preço.
 
-**Draft**:
+**Rascunho**:
 
-> Hi Jordan,
+> Oi Jordan,
 >
-> Thanks for the detailed breakdown. The mid-tier plan works for our current volume. Let's go with that and revisit at the end of Q3 once we see how the numbers track.
+> Obrigado pelo detalhamento. O plano do meio-nível funciona para nosso volume atual. Vamos com isso e revisamos no final do Q3 quando vermos como os números acompanham.
 >
-> Can you send over the updated agreement?
+> Pode enviar o contrato atualizado?
 
-Approve, edit, or discard?
+Aprovar, editar ou descartar?

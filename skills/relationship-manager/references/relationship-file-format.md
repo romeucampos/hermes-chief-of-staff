@@ -1,66 +1,66 @@
-# Relationship File Format Reference
+# Referência de Formato de Arquivo de Relacionamentos
 
-The relationship tracking file (`workspace/relationships/current.md`) uses structured bullet entries grouped into three sections. Each person gets a `###` heading with fields as bullet items underneath.
+O arquivo de rastreamento de relacionamentos (`workspace/relationships/current.md`) usa entradas em bullet estruturadas agrupadas em três seções. Cada pessoa recebe um título `###` com campos como bullets abaixo.
 
-## Active Follow-ups
+## Acompanhamentos Ativos
 
-For contacts with an open thread awaiting response.
+Para contatos com uma thread aberta aguardando resposta.
 
-Format:
-
-```
-### Person Name
-- Context: Brief description of the relationship or thread
-- Last contact: YYYY-MM-DD
-- Next follow-up: YYYY-MM-DD
-- Touch #: 1, 2, or 3
-- Status: Awaiting reply / Meeting scheduled / Replied / Escalated to owner
-- Notes: Any additional context
-```
-
-Fields:
-- **Context**: What the outreach is about (e.g., "Partnership discussion," "Sales intro from Mike").
-- **Last contact**: Date of most recent outreach or response.
-- **Next follow-up**: When the next follow-up is due.
-- **Touch #**: Which follow-up attempt this is (1, 2, or 3).
-- **Status**: Current state of the thread.
-- **Notes**: Optional. Any relevant detail the assistant should know.
-
-## Nurture
-
-For contacts that don't need active follow-up but should be checked in on periodically.
-
-Format:
+Formato:
 
 ```
-### Person Name
-- Context: Relationship description
-- Last contact: YYYY-MM-DD
-- Frequency: Weekly / Monthly / Quarterly
-- Next check-in: YYYY-MM-DD
-- Notes: Any additional context
+### Nome da Pessoa
+- Contexto: Breve descrição do relacionamento ou thread
+- Último contato: AAAA-MM-DD
+- Próximo acompanhamento: AAAA-MM-DD
+- Toque #: 1, 2, ou 3
+- Status: Aguardando resposta / Reunião agendada / Respondeu / Escalado para proprietário
+- Notas: Qualquer contexto adicional
 ```
 
-Fields:
-- **Frequency**: How often to check in.
-- **Next check-in**: When the next check-in is due.
+Campos:
+- **Contexto**: Sobre o que é o alcance (ex: "Discussão de parceria," "Introdução de vendas do Mike").
+- **Último contato**: Data do alcance ou resposta mais recente.
+- **Próximo acompanhamento**: Quando o próximo acompanhamento é devido.
+- **Toque #**: Qual tentativa de acompanhamento é esta (1, 2 ou 3).
+- **Status**: Estado atual da thread.
+- **Notas**: Opcional. Qualquer detalhe relevante que o assistente deva saber.
 
-## Archived
+## Nutrição
 
-Completed or closed-out follow-ups. Keep for reference.
+Para contatos que não precisam de acompanhamento ativo mas devem ser verificados periodicamente.
 
-Format:
+Formato:
 
 ```
-### Person Name
-- Context: What the outreach was about
-- Resolved: YYYY-MM-DD
-- Outcome: What happened
+### Nome da Pessoa
+- Contexto: Descrição do relacionamento
+- Último contato: AAAA-MM-DD
+- Frequência: Semanal / Mensal / Trimestral
+- Próximo check-in: AAAA-MM-DD
+- Notas: Qualquer contexto adicional
 ```
 
-## Rules
+Campos:
+- **Frequência**: Com que frequência fazer check-in.
+- **Próximo check-in**: Quando o próximo check-in é devido.
 
-- One entry per person per active thread (a person can have multiple active follow-ups if they're about different topics).
-- Dates always in YYYY-MM-DD format.
-- When a follow-up resolves, move the entry to Archived with the outcome.
-- When all 3 touches are exhausted with no response, move to Archived with status "No response — escalated."
+## Arquivados
+
+Acompanhamentos concluídos ou fechados. Mantenha para referência.
+
+Formato:
+
+```
+### Nome da Pessoa
+- Contexto: Sobre o que foi o alcance
+- Resolvido: AAAA-MM-DD
+- Resultado: O que aconteceu
+```
+
+## Regras
+
+- Uma entrada por pessoa por thread ativa (uma pessoa pode ter múltiplos acompanhamentos ativos se forem sobre tópicos diferentes).
+- Datas sempre no formato AAAA-MM-DD.
+- Quando um acompanhamento for resolvido, mova a entrada para Arquivados com o resultado.
+- Quando todos os 3 toques forem esgotados sem resposta, mova para Arquivados com status "Sem resposta — escalado."

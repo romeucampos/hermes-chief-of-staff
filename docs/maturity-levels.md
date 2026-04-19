@@ -1,108 +1,108 @@
-# Maturity Levels
+# Níveis de Maturidade
 
-The Chief of Staff OS supports three levels of adoption. Start where you are and add layers as you need them.
+O Chief of Staff OS suporta três níveis de adoção. Comece onde você está e adicione camadas conforme precisar.
 
-> **v1** delivers Levels 1-3 below, covering operational CoS foundations. Future phases add strategic layers (weekly digests, meeting prep, business development, decision logs).
+> **v1** entrega os Níveis 1-3 abaixo, cobrindo os fundamentos operacionais do CoS. Fases futuras adicionam camadas estratégicas (resumos semanais, preparação de reuniões, desenvolvimento de negócios, registros de decisão).
 
 ---
 
-## Level 1 — Personal EA
+## Nível 1 — EA Pessoal
 
-**Who it's for**: Anyone who wants inbox triage and task management without the overhead of a full operating rhythm.
+**Para quem é**: Qualquer pessoa que queira triagem de caixa de entrada e gerenciamento de tarefas sem a sobrecarga de um ritmo operacional completo.
 
-**Skills to install**:
-- `executive-assistant` — inbox triage, email drafting, calendar management
-- `daily-task-manager` — canonical task file management
+**Habilidades para instalar**:
+- `executive-assistant` — triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário
+- `daily-task-manager` — gerenciamento de arquivo de tarefas canônico
 
-**Workspace files**:
+**Arquivos do workspace**:
 - `workspace/tasks/current.md`
-- `CHIEF_OF_STAFF_CONTEXT.md` (fill out: name, email, calendar, authority levels)
+- `CHIEF_OF_STAFF_CONTEXT.md` (preencha: nome, e-mail, calendário, níveis de autoridade)
 
-**Cron jobs** (optional):
-- EA inbox sweep every 15 minutes during work hours
+**Trabalhos cron** (opcional):
+- Varredura de caixa de entrada do EA a cada 15 minutos durante o horário de trabalho
 
-**What you get**:
-- Automated inbox triage with authority-based decisions
-- A single, persistent task list that survives across sessions
-- Calendar conflict detection and scheduling assistance
-- Email drafting that matches your tone
+**O que você recebe**:
+- Triagem automatizada de caixa de entrada com decisões baseadas em autoridade
+- Uma única lista de tarefas persistente que sobrevive entre as sessões
+- Detecção de conflitos de calendário e assistência de agendamento
+- Elaboração de e-mails que corresponde ao seu tom
 
-**Time to set up**: 15-20 minutes
+**Tempo de configuração**: 15-20 minutos
 
 ---
 
-## Level 2 — Founder + Relationships
+## Nível 2 — Fundador + Relacionamentos
 
-**Who it's for**: Founders, operators, or anyone managing ongoing relationships and outreach who needs follow-up tracking and a daily rhythm.
+**Para quem é**: Fundadores, operadores ou qualquer pessoa gerenciando relacionamentos e alcance contínuos que precisa de acompanhamento de follow-ups e um ritmo diário.
 
-**Skills to install** (everything from Level 1, plus):
-- `relationship-manager` — follow-up tracking and outreach cadence
-- `daily-task-prep` — nightly enrichment of the task list
+**Habilidades para instalar** (tudo do Nível 1, mais):
+- `relationship-manager` — acompanhamento de follow-ups e cadência de alcance
+- `daily-task-prep` — enriquecimento noturno da lista de tarefas
 
-**Additional workspace files**:
+**Arquivos adicionais do workspace**:
 - `workspace/relationships/current.md`
 - `workspace/HEARTBEAT.md`
 
-**Cron jobs**:
-- EA inbox sweep (every 15 min, business hours)
-- Daily task prep (2 AM nightly)
-- Follow-up check (twice daily)
+**Trabalhos cron**:
+- Varredura de caixa de entrada do EA (a cada 15 min, horário comercial)
+- Preparo diário de tarefas (2h da manhã todas as noites)
+- Verificação de acompanhamentos (duas vezes ao dia)
 
-**What you get** (on top of Level 1):
-- Automated follow-up cadence (2 → 5 → 7 days)
-- No conversation falls through the cracks
-- Task list automatically enriched each morning with recurring items and calendar events
-- VIP contact prioritization
+**O que você recebe** (além do Nível 1):
+- Cadência automatizada de acompanhamento (2 → 5 → 7 dias)
+- Nenhuma conversa passa despercebida
+- Lista de tarefas automaticamente enriquecida cada manhã com itens recorrentes e eventos de calendário
+- Priorização de contatos VIP
 
-**Time to set up**: 30-45 minutes (including relationship file population)
-
----
-
-## Level 3 — Full Chief of Staff
-
-**Who it's for**: People who want a complete daily operating rhythm — morning briefings, end-of-day reviews, and a single point of coordination across all work.
-
-**Skills to install** (everything from Level 2, plus):
-- `chief-of-staff` — orchestrator for briefings, reviews, and ad-hoc triage
-
-**Additional workspace files**:
-- `workspace/TOOLS.md` (optional, for tool environment notes)
-
-**Cron jobs** (everything from Level 2, plus):
-- Morning briefing (once daily, weekdays)
-
-**What you get** (on top of Level 2):
-- Morning briefing: tasks, calendar, inbox, follow-ups, and heads-up items in one view
-- End-of-day review: capture what got done, carry forward what didn't
-- Ad-hoc triage: "what should I focus on right now?"
-- Unified coordination across all skills
-
-**Time to set up**: 45-60 minutes (including cron configuration)
+**Tempo de configuração**: 30-45 minutos (incluindo preenchimento do arquivo de relacionamentos)
 
 ---
 
-## Future Levels
+## Nível 3 — Chief of Staff Completo
 
-**Phase 2** (planned):
-- Weekly digest skill — weekly summary of activity and trends
-- Meeting prep skill — generate briefing docs before important meetings
-- Business development pipeline — prospect tracking and outreach automation
+**Para quem é**: Pessoas que querem um ritmo operacional diário completo — briefings matutinos, revisões de fim de dia e um único ponto de coordenação em todo o trabalho.
 
-**Phase 3** (planned):
-- Decision log — track key decisions and their context
-- Delegation tracking — monitor work assigned to others
-- Content calendar — publishing schedule management
+**Habilidades para instalar** (tudo do Nível 2, mais):
+- `chief-of-staff` — orquestrador para briefings, revisões e triagem ad-hoc
+
+**Arquivos adicionais do workspace**:
+- `workspace/TOOLS.md` (opcional, para notas do ambiente de ferramentas)
+
+**Trabalhos cron** (tudo do Nível 2, mais):
+- Briefing matutino (uma vez ao dia, dias úteis)
+
+**O que você recebe** (além do Nível 2):
+- Briefing matutino: tarefas, calendário, caixa de entrada, acompanhamentos e itens de atenção em uma visão
+- Revisão de fim de dia: capture o que foi feito, leve adiante o que não foi
+- Triagem ad-hoc: "no que devo focar agora?"
+- Coordenação unificada em todas as habilidades
+
+**Tempo de configuração**: 45-60 minutos (incluindo configuração do cron)
 
 ---
 
-## Choosing Your Level
+## Níveis Futuros
 
-| Question | Level 1 | Level 2 | Level 3 |
+**Fase 2** (planejado):
+- Habilidade de resumo semanal — resumo semanal de atividade e tendências
+- Habilidade de preparação de reuniões — gere documentos de briefing antes de reuniões importantes
+- Pipeline de desenvolvimento de negócios — acompanhamento de prospects e automação de alcance
+
+**Fase 3** (planejado):
+- Registro de decisões — acompanhe decisões importantes e seu contexto
+- Acompanhamento de delegação — monitore o trabalho atribuído a outros
+- Calendário de conteúdo — gerenciamento de cronograma de publicação
+
+---
+
+## Escolhendo Seu Nível
+
+| Pergunta | Nível 1 | Nível 2 | Nível 3 |
 |----------|---------|---------|---------|
-| Do you need inbox triage? | Yes | Yes | Yes |
-| Do you track follow-ups with people? | No | Yes | Yes |
-| Do you want automated daily task prep? | No | Yes | Yes |
-| Do you want morning briefings? | No | No | Yes |
-| Do you want end-of-day reviews? | No | No | Yes |
+| Você precisa de triagem de caixa de entrada? | Sim | Sim | Sim |
+| Você acompanha follow-ups com pessoas? | Não | Sim | Sim |
+| Você quer preparo automatizado diário de tarefas? | Não | Sim | Sim |
+| Você quer briefings matutinos? | Não | Não | Sim |
+| Você quer revisões de fim de dia? | Não | Não | Sim |
 
-You can always upgrade later. Each level builds on the previous one — nothing needs to be reconfigured.
+Você pode sempre fazer upgrade depois. Cada nível se constrói sobre o anterior — nada precisa ser reconfigurado.

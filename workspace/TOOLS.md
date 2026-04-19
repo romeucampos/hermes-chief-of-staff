@@ -1,40 +1,40 @@
-# Tools and Environment
+# Ferramentas e Ambiente
 
-**What this file is**: Local notes about your tool environment. Skills don't read this directly — it's a reference for you and the assistant when tool-specific questions come up. Fill in the sections relevant to your setup.
+**O que é este arquivo**: Notas locais sobre seu ambiente de ferramentas. As habilidades não leem isso diretamente — é uma referência para você e o assistente quando surgem perguntas específicas de ferramentas. Preencha as seções relevantes para sua configuração.
 
-## Email
+## E-mail
 
-- **Provider**: (Gmail, Outlook, etc.)
-- **MCP server name**: (if configured)
-- **Sending preferences**: (plain text / HTML, signature, reply style)
-- **Search notes**: (any quirks — e.g., "use message-level search, not thread search")
+- **Provedor**: (Gmail, Outlook, etc.)
+- **Nome do servidor MCP**: (se configurado)
+- **Preferências de envio**: (texto simples / HTML, assinatura, estilo de resposta)
+- **Notas de busca**: (quaisquer peculiaridades — ex: "use busca em nível de mensagem, não busca em thread")
 
-## Calendar
+## Calendário
 
-- **Provider**: (Google Calendar, Outlook, etc.)
-- **MCP server name**: (if configured)
-- **Account mapping**: (which email → which calendar)
-- **Notes**: (e.g., "family calendar is read-only")
+- **Provedor**: (Google Calendar, Outlook, etc.)
+- **Nome do servidor MCP**: (se configurado)
+- **Mapeamento de contas**: (qual e-mail → qual calendário)
+- **Notas**: (ex: "calendário familiar é somente leitura")
 
-## Messaging
+## Mensagens
 
-- **Primary channel**: (Telegram, Slack, Discord, etc.)
-- **Bot name / handle**:
-- **Escalation destination**: (DM, channel, thread)
+- **Canal principal**: (Telegram, Slack, Discord, etc.)
+- **Nome do bot / identificador**:
+- **Destino de escalada**: (DM, canal, thread)
 
-## Task Tracking
+## Rastreamento de Tarefas
 
-- **Primary**: workspace/tasks/current.md (managed by daily-task-manager skill)
-- **External**: (Linear, Notion, Jira — if synced)
-- **Sync notes**: (how external tools relate to the canonical task file)
+- **Principal**: workspace/tasks/current.md (gerenciado pela habilidade daily-task-manager)
+- **Externo**: (Linear, Notion, Jira — se sincronizado)
+- **Notas de sincronização**: (como ferramentas externas se relacionam com o arquivo de tarefas canônico)
 
-## Devices and Access
+## Dispositivos e Acesso
 
-- **Machines**: (laptop name, server aliases, etc.)
-- **SSH**: (any relevant SSH aliases or jump hosts)
-- **Notes**: (anything the assistant should know about your environment)
+- **Máquinas**: (nome do laptop, aliases de servidor, etc.)
+- **SSH**: (quaisquer aliases SSH relevantes ou hosts de salto)
+- **Notas**: (qualquer coisa que o assistente deva saber sobre seu ambiente)
 
-## Other Integrations
+## Outras Integrações
 
-- (Google Sheets, CRM, project management tools, etc.)
-- (Note the MCP server name and what it's used for)
+- (Google Sheets, CRM, ferramentas de gerenciamento de projetos, etc.)
+- (Anote o nome do servidor MCP e para que é usado)

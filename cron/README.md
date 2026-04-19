@@ -1,71 +1,71 @@
-# Cron Schedules
+# Agendamentos Cron
 
-Automated jobs that keep the Chief of Staff OS running in the background.
+Trabalhos automatizados que mantêm o Chief of Staff OS rodando em segundo plano.
 
-## How to Set Up
+## Como Configurar
 
-Use Hermes's built-in cron scheduler. The example commands below follow the Hermes CLI pattern at time of writing — consult `hermes cron --help` or the [Hermes cron docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/) if the exact syntax has changed.
+Use o agendador cron integrado do Hermes. Os comandos de exemplo abaixo seguem o padrão da CLI do Hermes no momento da escrita — consulte `hermes cron --help` ou a [documentação do cron do Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/) se a sintaxe exata mudou.
 
-Start the scheduler (e.g., `hermes cron start`), then add jobs.
+Inicie o agendador (ex: `hermes cron start`), depois adicione os trabalhos.
 
-## Recommended Schedules
+## Agendamentos Recomendados
 
-### 1. EA Inbox Sweep
+### 1. Varredura de Caixa de Entrada do EA
 
-Every 15 minutes, business hours, weekdays.
+A cada 15 minutos, horário comercial, dias úteis.
 
 - **Cron**: `*/15 8-21 * * 1-5`
-- **Command**:
-  ```
-  hermes cron add "*/15 8-21 * * 1-5" "Run the executive-assistant skill in heartbeat mode. Follow the instructions in workspace/HEARTBEAT.md. Return HEARTBEAT_OK if nothing actionable."
-  ```
-- **Purpose**: Continuous inbox and calendar monitoring during work hours.
+- **Comando**:
+```
+hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade executive-assistant no modo heartbeat. Siga as instruções no workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
+```
+- **Propósito**: Monitoramento contínuo de caixa de entrada e calendário durante o horário de trabalho.
 
-### 2. Daily Task Prep
+### 2. Preparo Diário de Tarefas
 
-Nightly.
+Todas as noites.
 
 - **Cron**: `3 2 * * *`
-- **Command**:
-  ```
-  hermes cron add "3 2 * * *" "Run the daily-task-prep skill. Enrich tomorrow's task list with recurring items, due dates, and calendar events."
-  ```
-- **Purpose**: Prepare clean task list before morning.
+- **Comando**:
+```
+hermes cron add "3 2 * * *" "Execute a habilidade daily-task-prep. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
+```
+- **Propósito**: Preparar lista de tarefas limpa antes da manhã.
 
-### 3. Follow-up Check
+### 3. Verificação de Acompanhamentos
 
-Twice daily, weekdays.
+Duas vezes ao dia, dias úteis.
 
 - **Cron**: `47 9,14 * * 1-5`
-- **Command**:
-  ```
-  hermes cron add "47 9,14 * * 1-5" "Run the relationship-manager skill. Check for follow-ups due today. Draft messages for any that are overdue."
-  ```
-- **Purpose**: Ensure no follow-ups slip through.
+- **Comando**:
+```
+hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
+```
+- **Propósito**: Garantir que nenhum acompanhamento passe despercebido.
 
-### 4. Morning Briefing
+### 4. Briefing Matutino
 
-Once daily, weekdays.
+Uma vez ao dia, dias úteis.
 
 - **Cron**: `57 7 * * 1-5`
-- **Command**:
-  ```
-  hermes cron add "57 7 * * 1-5" "Run the chief-of-staff skill in morning briefing mode. Summarize today's tasks, inbox highlights, calendar, and due follow-ups."
-  ```
-- **Purpose**: Start the day with a clear picture.
+- **Comando**:
+```
+hermes cron add "57 7 * * 1-5" "Execute a habilidade chief-of-staff no modo briefing matutino. Resuma as tarefas de hoje, destaques da caixa de entrada, calendário e acompanhamentos devidos."
+```
+- **Propósito**: Começar o dia com uma visão clara.
 
-> **Note**: Minutes are intentionally offset from :00 and :30 to avoid clustering multiple jobs at the same time.
+> **Nota**: Os minutos são intencionalmente deslocados de :00 e :30 para evitar agrupar múltiplos trabalhos ao mesmo tempo.
 
-## Managing Jobs
+## Gerenciando Trabalhos
 
-Common cron management commands (exact syntax may vary by version):
+Comandos comuns de gerenciamento de cron (sintaxe exata pode variar por versão):
 
-- **List all jobs**: `hermes cron list`
-- **Pause a job**: `hermes cron pause <id>`
-- **Resume a job**: `hermes cron resume <id>`
-- **Delete a job**: `hermes cron delete <id>`
-- **Manual trigger**: `hermes cron trigger <id>`
+- **Listar todos os trabalhos**: `hermes cron list`
+- **Pausar um trabalho**: `hermes cron pause <id>`
+- **Retomar um trabalho**: `hermes cron resume <id>`
+- **Excluir um trabalho**: `hermes cron delete <id>`
+- **Acionamento manual**: `hermes cron trigger <id>`
 
-## Customization
+## Personalização
 
-Adjust schedules to match your timezone and work hours. The cron expressions above assume the system clock matches your timezone.
+Ajuste os agendamentos para corresponder ao seu fuso horário e horário de trabalho. As expressões cron acima assumem que o relógio do sistema corresponde ao seu fuso horário.

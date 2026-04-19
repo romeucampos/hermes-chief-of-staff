@@ -1,41 +1,41 @@
-# Relationship Tracking
+# Rastreamento de Relacionamentos
 
-## Active Follow-ups
+## Acompanhamentos Ativos
 
 ### Jane Smith
-- Context: Partnership discussion re: co-marketing
-- Last contact: 2026-03-30
-- Next follow-up: 2026-04-01
-- Touch #: 1
-- Status: Awaiting reply
-- Notes: Waiting on response to intro email
+- Contexto: Discussão de parceria sobre co-marketing
+- Último contato: 2026-03-30
+- Próximo acompanhamento: 2026-04-01
+- Toque #: 1
+- Status: Aguardando resposta
+- Notas: Aguardando resposta ao e-mail de introdução
 
 ### Tom Rivera
-- Context: Sales intro from Mike
-- Last contact: 2026-03-28
-- Next follow-up: 2026-04-02
-- Touch #: 2
-- Status: Awaiting reply
-- Notes: Sent second follow-up
+- Contexto: Introdução de vendas do Mike
+- Último contato: 2026-03-28
+- Próximo acompanhamento: 2026-04-02
+- Toque #: 2
+- Status: Aguardando resposta
+- Notas: Enviado segundo acompanhamento
 
-> *Remove the example entries above and replace with real follow-ups.*
+> *Remova as entradas de exemplo acima e substitua por acompanhamentos reais.*
 
-## Nurture
+## Nutrição
 
 ### Sarah Chen
-- Context: Former colleague, advisory relationship
-- Last contact: 2026-03-15
-- Frequency: Monthly
-- Next check-in: 2026-04-15
-- Notes: Good candidate for periodic update
+- Contexto: Ex-colega, relacionamento de assessoria
+- Último contato: 2026-03-15
+- Frequência: Mensal
+- Próximo check-in: 2026-04-15
+- Notas: Boa candidata para atualização periódica
 
-> *Remove the example entries above and replace with real contacts.*
+> *Remova as entradas de exemplo acima e substitua por contatos reais.*
 
-## Archived
+## Arquivados
 
 ### Alex Johnson
-- Context: Podcast guest pitch
-- Resolved: 2026-03-10
-- Outcome: Recording scheduled for April
+- Contexto: Proposta de convidado para podcast
+- Resolvido: 2026-03-10
+- Resultado: Gravação agendada para abril
 
-> *Remove the example entries above. Completed and closed-out follow-ups go here.*
+> *Remova as entradas de exemplo acima. Acompanhamentos concluídos e fechados vão aqui.*

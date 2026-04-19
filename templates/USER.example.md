@@ -1,33 +1,33 @@
-# About the Owner
+# Sobre o Proprietário
 
-Copy this file to `~/.hermes/memories/USER.md` and fill in your details.
+Copie este arquivo para `~/.hermes/memories/USER.md` e preencha seus detalhes.
 
 ---
 
-- **Name:**
-- **Pronouns:**
-- **Timezone:**
-- **Role:**
-- **Company / business:**
-- **Industry:**
+- **Nome:**
+- **Pronomes:**
+- **Fuso horário:**
+- **Cargo:**
+- **Empresa / negócio:**
+- **Indústria:**
 
-## Current Focus
+## Foco Atual
 
-- (What you're focused on this quarter or month)
-- (Key priorities or initiatives)
+- (No que você está focando este trimestre ou mês)
+- (Prioridades ou iniciivas principais)
 
-## Communication Preferences
+## Preferências de Comunicação
 
-- (e.g., "Direct. Short sentences. No corporate speak.")
-- (e.g., "Prefer async over meetings when possible")
-- (e.g., "Always Slack me before sending client emails on my behalf")
+- (ex: "Direto. Frases curtas. Sem linguagem corporativa.")
+- (ex: "Prefira assíncrono em vez de reuniões quando possível")
+- (ex: "Sempre me envie no Slack antes de enviar e-mails de clientes em meu nome")
 
-## Scheduling Preferences
+## Preferências de Agendamento
 
-- (e.g., "No meetings before 10 AM")
-- (e.g., "Prefer to batch meetings on Tue/Thu")
-- (e.g., "Keep Fridays clear for deep work")
+- (ex: "Sem reuniões antes das 10h")
+- (ex: "Prefira agrupar reuniões em Ter/Qui")
+- (ex: "Mantenha as sextas-feiras livres para trabalho profundo")
 
-## Notes
+## Notas
 
-- (Anything else the assistant should know to work effectively with you)
+- (Qualquer outra coisa que o assistente deva saber para trabalhar efetivamente com você)

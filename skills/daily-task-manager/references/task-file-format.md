@@ -1,117 +1,117 @@
-# Task File Format Reference
+# Referência de Formato de Arquivo de Tarefas
 
-This document defines the structure and formatting rules for the canonical task file at `workspace/tasks/current.md`.
+Este documento define a estrutura e regras de formatação para o arquivo de tarefas canônico em `workspace/tasks/current.md`.
 
-## Required vs Optional Sections
+## Seções Obrigatórias vs Opcionais
 
-**Required** (must always be present):
-- Today
-- Next up
-- Rules
-- Done
+**Obrigatórias** (devem estar sempre presentes):
+- Hoje
+- Próximos
+- Regras
+- Concluído
 
-**Optional** (add as needed):
-- Recurring (weekdays)
-- Backlog (with due date)
-- Recurring reminders
+**Opcionais** (adicione conforme necessário):
+- Recorrentes (dias úteis)
+- Backlog (com data de vencimento)
+- Lembretes recorrentes
 - Backlog
 
-## Sections
+## Seções
 
-### ## Today
+### ## Hoje
 
-Open and completed tasks for today. This is the active working set.
+Tarefas abertas e concluídas para hoje. Este é o conjunto de trabalho ativo.
 
-Syntax:
-
-```
-- [ ] Task description
-- [x] Task description
-```
-
-`- [ ]` marks a pending task. `- [x]` marks a completed task (before it gets moved to Done). Items higher in the list are higher priority.
-
-### ## Next up
-
-Work queued for after today's tasks are done. These are ready to go but not time-bound to today. When today's list clears out, pull from here.
-
-### ## Rules
-
-Standing instructions for task management. These are not tasks — they're policies that govern how the task file is maintained. Examples: "Always check calendar before planning the day," "Ping Craig if a task is blocked for more than 24 hours."
-
-### ## Recurring (weekdays)
-
-Baseline items that repeat every Monday through Friday. The daily-task-prep skill copies these into the Today section each weekday morning. Entries here are templates — they stay in this section permanently.
-
-### ## Backlog (with due date)
-
-Future tasks with specific deadlines. Each entry includes a due date.
-
-Syntax:
+Sintaxe:
 
 ```
-- [ ] Task description — due YYYY-MM-DD
+- [ ] Descrição da tarefa
+- [x] Descrição da tarefa
 ```
 
-The daily-task-prep skill promotes items to Today on their due date (see Promotion Rules).
+`- [ ]` marca uma tarefa pendente. `- [x]` marca uma tarefa concluída (antes de ser movida para Concluído). Itens mais altos na lista são de maior prioridade.
 
-### ## Recurring reminders
+### ## Próximos
 
-Parked reminders with recurrence metadata. Unlike recurring weekday tasks, these fire on specific intervals — weekly, monthly, quarterly, etc. The source entry stays in this section even after firing. Only a copy moves to Today when the reminder triggers.
+Trabalho na fila para depois que as tarefas de hoje forem feitas. Estes estão prontos para ir mas não são vinculados ao tempo de hoje. Quando a lista de hoje esvaziar, puxe daqui.
 
-Syntax:
+### ## Regras
+
+Instruções permanentes para gerenciamento de tarefas. Estas não são tarefas — são políticas que governam como o arquivo de tarefas é mantido. Exemplos: "Sempre verifique o calendário antes de planejar o dia," "Avise o Craig se uma tarefa estiver bloqueada por mais de 24 horas."
+
+### ## Recorrentes (dias úteis)
+
+Itens de base que se repetem toda segunda a sexta. A habilidade daily-task-prep copia estes para a seção Hoje a cada manhã de dia útil. As entradas aqui são modelos — elas permanecem nesta seção permanentemente.
+
+### ## Backlog (com data de vencimento)
+
+Tarefas futuras com prazos específicos. Cada entrada inclui uma data de vencimento.
+
+Sintaxe:
 
 ```
-- [ ] Task description — every [interval], next YYYY-MM-DD
+- [ ] Descrição da tarefa — vencimento AAAA-MM-DD
+```
+
+A habilidade daily-task-prep promove itens para Hoje em suas datas de vencimento (veja Regras de Promoção).
+
+### ## Lembretes recorrentes
+
+Lembretes estacionados com metadados de recorrência. Ao contrário das tarefas recorrentes de dias úteis, estes disparam em intervalos específicos — semanal, mensal, trimestral, etc. A entrada de origem permanece nesta seção mesmo depois de disparar. Apenas uma cópia move para Hoje quando o lembrete é acionado.
+
+Sintaxe:
+
+```
+- [ ] Descrição da tarefa — a cada [intervalo], próximo AAAA-MM-DD
 ```
 
 ### ## Backlog
 
-Undated someday items. No urgency, no deadline. Review periodically to decide if items should be promoted, given a due date, or removed.
+Itens sem data. Sem urgência, sem prazo. Revise periodicamente para decidir se os itens devem ser promovidos, receber uma data de vencimento ou ser removidos.
 
-### ## Done
+### ## Concluído
 
-Completed items with timestamps. This is the audit trail.
+Itens concluídos com carimbos de data/hora. Este é o trilho de auditoria.
 
-Syntax:
-
-```
-- [x] Task description — completed YYYY-MM-DD HH:MM TZ
-```
-
-Never delete items from Done. Never move items out of Done.
-
-## Formatting Rules
-
-### Dates
-
-- All-day dates: `YYYY-MM-DD`
-- Specific times: `YYYY-MM-DD HH:MM TZ` (e.g., `2026-04-02 09:00 CT`)
-
-### Ownership
-
-Delegated tasks use an assistant name prefix followed by a colon.
-
-Syntax:
+Sintaxe:
 
 ```
-- [ ] AssistantName: Task description — due YYYY-MM-DD
+- [x] Descrição da tarefa — concluído AAAA-MM-DD HH:MM TZ
 ```
 
-Example: `- [ ] Hermes: Draft the quarterly report — due 2026-04-15`
+Nunca exclua itens do Concluído. Nunca mova itens para fora do Concluído.
 
-### Priority
+## Regras de Formatação
 
-Within any section, items higher in the list are higher priority. Reorder items to change priority.
+### Datas
 
-### Deduplication
+- Datas de dia inteiro: `AAAA-MM-DD`
+- Horários específicos: `AAAA-MM-DD HH:MM TZ` (ex: `2026-04-02 09:00 CT`)
 
-Before adding a task, check for duplicates using normalized text comparison (case-insensitive, ignore leading/trailing whitespace). If a substantially similar task already exists, update it rather than creating a duplicate.
+### Propriedade
 
-## Promotion Rules
+Tarefas delegadas usam um prefixo de nome de assistente seguido por dois-pontos.
 
-**Backlog (with due date) to Today**: On the due date, the daily-task-prep skill moves the item from Backlog (with due date) to Today. The item is removed from Backlog.
+Sintaxe:
 
-**Recurring (weekdays) to Today**: Each weekday morning, the daily-task-prep skill copies items from Recurring (weekdays) to Today. The source entry stays in Recurring permanently — it is never removed.
+```
+- [ ] NomeDoAssistente: Descrição da tarefa — vencimento AAAA-MM-DD
+```
 
-**Recurring reminders to Today**: When a recurring reminder triggers, the daily-task-prep skill copies it to Today. The source entry stays in Recurring reminders, and its "next" date is advanced to the next occurrence.
+Exemplo: `- [ ] Hermes: Elaborar o relatório trimestral — vencimento 2026-04-15`
+
+### Prioridade
+
+Dentro de qualquer seção, itens mais altos na lista são de maior prioridade. Reordene os itens para mudar a prioridade.
+
+### Deduplicação
+
+Antes de adicionar uma tarefa, verifique duplicatas usando comparação de texto normalizada (insensível a maiúsculas, ignore espaços no início/fim). Se uma tarefa substancialmente similar já existir, atualize-a em vez de criar uma duplicata.
+
+## Regras de Promoção
+
+**Backlog (com data de vencimento) para Hoje**: Na data de vencimento, a habilidade daily-task-prep move o item de Backlog (com data de vencimento) para Hoje. O item é removido do Backlog.
+
+**Recorrentes (dias úteis) para Hoje**: A cada manhã de dia útil, a habilidade daily-task-prep copia itens de Recorrentes (dias úteis) para Hoje. A entrada de origem permanece em Recorrentes permanentemente — ela nunca é removida.
+
+**Lembretes recorrentes para Hoje**: Quando um lembrete recorrente é acionado, a habilidade daily-task-prep copia-o para Hoje. A entrada de origem permanece em Lembretes recorrentes, e sua data "próximo" é avançada para a próxima ocorrência.
