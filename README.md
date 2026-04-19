@@ -1,4 +1,4 @@
-# Chief of Staff OS
+# OS Chefe de Gabinete
 
 Habilidades de IA que gerenciam seu dia — caixa de entrada, tarefas, acompanhamentos e o ritmo operacional que mantém tudo junto.
 
@@ -19,11 +19,11 @@ Três pilares:
 
 | Habilidade | O Que Faz |
 |------------|-----------|
-| `executive-assistant` | Triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário, agendamento |
-| `daily-task-manager` | Arquivo de tarefas canônico — adicionar, concluir, priorizar, revisar |
-| `daily-task-prep` | Automação noturna — enriquece as tarefas de amanhã com itens recorrentes, prazos e calendário |
-| `relationship-manager` | Acompanhamento de follow-ups, cadência de contato, saúde de relacionamentos |
-| `chief-of-staff` | Orquestrador — briefings matutinos, revisões de fim de dia, triagem ad-hoc |
+| `assistente-executivo` | Triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário, agendamento |
+| `gerenciador-tarefas-diario` | Arquivo de tarefas canônico — adicionar, concluir, priorizar, revisar |
+| `preparo-tarefas-diario` | Automação noturna — enriquece as tarefas de amanhã com itens recorrentes, prazos e calendário |
+| `gerenciador-relacionamentos` | Acompanhamento de follow-ups, cadência de contato, saúde de relacionamentos |
+| `chefe-de-gabinete` | Orquestrador — briefings matutinos, revisões de fim de dia, triagem ad-hoc |
 
 ## Início Rápido
 
@@ -50,11 +50,11 @@ Depois preencha o `CHIEF_OF_STAFF_CONTEXT.md` com seus detalhes. Veja [INSTALL.m
 
 O sistema opera em um ritmo diário:
 
-1. **2h da manhã** — `daily-task-prep` prepara a lista de tarefas de amanhã
-2. **8h da manhã** — `chief-of-staff` entrega um briefing matutino
-3. **O dia todo** — `executive-assistant` varre a caixa de entrada a cada 15 minutos
-4. **Duas vezes ao dia** — `relationship-manager` verifica follow-ups pendentes
-5. **Fim do dia** — `chief-of-staff` revisa o que foi feito e captura o que vem a seguir
+1. **2h da manhã** — `preparo-tarefas-diario` prepara a lista de tarefas de amanhã
+2. **8h da manhã** — `chefe-de-gabinete` entrega um briefing matutino
+3. **O dia todo** — `assistente-executivo` varre a caixa de entrada a cada 15 minutos
+4. **Duas vezes ao dia** — `gerenciador-relacionamentos` verifica follow-ups pendentes
+5. **Fim do dia** — `chefe-de-gabinete` revisa o que foi feito e captura o que vem a seguir
 
 Quando nada precisa de atenção, o sistema fica em silêncio (`HEARTBEAT_OK`). Cada mensagem significa que algo precisa da sua atenção.
 
@@ -66,9 +66,9 @@ Você não precisa usar tudo. Escolha o nível que se encaixa:
 
 | Nível | Habilidades | O Que Você Recebe |
 |-------|-------------|-------------------|
-| **EA Pessoal** | executive-assistant, daily-task-manager | Triagem de caixa de entrada + gerenciamento de tarefas |
-| **Fundador** | + relationship-manager, daily-task-prep | + acompanhamento de follow-ups + preparo diário |
-| **CoS Completo** | + chief-of-staff | + briefings matutinos + revisões de fim de dia |
+| **EA Pessoal** | assistente-executivo, gerenciador-tarefas-diario | Triagem de caixa de entrada + gerenciamento de tarefas |
+| **Fundador** | + gerenciador-relacionamentos, preparo-tarefas-diario | + acompanhamento de follow-ups + preparo diário |
+| **CoS Completo** | + chefe-de-gabinete | + briefings matutinos + revisões de fim de dia |
 
 Veja [docs/maturity-levels.md](docs/maturity-levels.md) para detalhes.
 

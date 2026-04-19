@@ -1,16 +1,16 @@
 ---
-name: chief-of-staff
+name: chefe-de-gabinete
 description: >-
   O orquestrador — executa seu ritmo operacional diário, coordena entre
   tarefas, comunicações e acompanhamentos. Use para briefings matutinos, revisões
-  de fim de dia ou a experiência completa de Chief of Staff. Gatilho: "briefing matutino,"
-  "o que preciso saber," "revisão de fim de dia," "modo chief of staff."
+  de fim de dia ou a experiência completa de Chefe de Gabinete. Gatilho: "briefing matutino,"
+  "o que preciso saber," "revisão de fim de dia," "modo chefe de gabinete."
 version: 1.0.0
 author: Craig Hewitt
 license: MIT
 ---
 
-# Chief of Staff
+# Chefe de Gabinete
 
 ## Persona
 
@@ -63,9 +63,9 @@ Apresente os 3 principais itens nos quais o proprietário deve focar, com breve 
 ## Coordenação
 
 Esta habilidade não duplica o que outras habilidades fazem — ela lê suas saídas e apresenta uma visão unificada. Quando ação é necessária, direciona para a habilidade apropriada:
-- Alterações de tarefas → daily-task-manager
-- Ação de e-mail necessária → executive-assistant
-- Acompanhamento devido → relationship-manager
+- Alterações de tarefas → gerenciador-tarefas-diario
+- Ação de e-mail necessária → assistente-executivo
+- Acompanhamento devido → gerenciador-relacionamentos
 
 ## Formato de Saída
 
@@ -74,7 +74,7 @@ Seções limpas e estruturadas. Use cabeçalhos para cada área. Mantenha cada s
 ## Habilidades Relacionadas
 
 Todas as outras habilidades do CoS — este é o hub:
-- **executive-assistant** — Gerenciamento de caixa de entrada e calendário
-- **daily-task-manager** — Operações de arquivo de tarefas
-- **daily-task-prep** — Enriquecimento noturno de tarefas
-- **relationship-manager** — Acompanhamento de follow-ups
+- **assistente-executivo** — Gerenciamento de caixa de entrada e calendário
+- **gerenciador-tarefas-diario** — Operações de arquivo de tarefas
+- **preparo-tarefas-diario** — Enriquecimento noturno de tarefas
+- **gerenciador-relacionamentos** — Acompanhamento de follow-ups

@@ -1,5 +1,5 @@
 ---
-name: daily-task-prep
+name: preparo-tarefas-diario
 description: >-
   Preparo noturno de tarefas — enriquece a lista de tarefas de amanhã com itens
   recorrentes, promoções de datas de vencimento e eventos de calendário. Projetado para
@@ -43,6 +43,6 @@ Se executando via cron, retorne um breve resumo das mudanças feitas. Se nada mu
 
 ## Habilidades Relacionadas
 
-- **daily-task-manager** — detém o formato do arquivo de tarefas
-- **executive-assistant** — fonte de dados de calendário
-- **chief-of-staff** — aciona briefing matutino após preparo
+- **gerenciador-tarefas-diario** — detém o formato do arquivo de tarefas
+- **assistente-executivo** — fonte de dados de calendário
+- **chefe-de-gabinete** — aciona briefing matutino após preparo

@@ -11,8 +11,8 @@ O Chief of Staff OS suporta três níveis de adoção. Comece onde você está e
 **Para quem é**: Qualquer pessoa que queira triagem de caixa de entrada e gerenciamento de tarefas sem a sobrecarga de um ritmo operacional completo.
 
 **Habilidades para instalar**:
-- `executive-assistant` — triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário
-- `daily-task-manager` — gerenciamento de arquivo de tarefas canônico
+- `assistente-executivo` — triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário
+- `gerenciador-tarefas-diario` — gerenciamento de arquivo de tarefas canônico
 
 **Arquivos do workspace**:
 - `workspace/tasks/current.md`
@@ -36,8 +36,8 @@ O Chief of Staff OS suporta três níveis de adoção. Comece onde você está e
 **Para quem é**: Fundadores, operadores ou qualquer pessoa gerenciando relacionamentos e alcance contínuos que precisa de acompanhamento de follow-ups e um ritmo diário.
 
 **Habilidades para instalar** (tudo do Nível 1, mais):
-- `relationship-manager` — acompanhamento de follow-ups e cadência de alcance
-- `daily-task-prep` — enriquecimento noturno da lista de tarefas
+- `gerenciador-relacionamentos` — acompanhamento de follow-ups e cadência de alcance
+- `preparo-tarefas-diario` — enriquecimento noturno da lista de tarefas
 
 **Arquivos adicionais do workspace**:
 - `workspace/relationships/current.md`
@@ -58,12 +58,12 @@ O Chief of Staff OS suporta três níveis de adoção. Comece onde você está e
 
 ---
 
-## Nível 3 — Chief of Staff Completo
+## Nível 3 — Chefe de Gabinete Completo
 
 **Para quem é**: Pessoas que querem um ritmo operacional diário completo — briefings matutinos, revisões de fim de dia e um único ponto de coordenação em todo o trabalho.
 
 **Habilidades para instalar** (tudo do Nível 2, mais):
-- `chief-of-staff` — orquestrador para briefings, revisões e triagem ad-hoc
+- `chefe-de-gabinete` — orquestrador para briefings, revisões e triagem ad-hoc
 
 **Arquivos adicionais do workspace**:
 - `workspace/TOOLS.md` (opcional, para notas do ambiente de ferramentas)

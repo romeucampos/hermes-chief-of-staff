@@ -1,5 +1,5 @@
 ---
-name: executive-assistant
+name: assistente-executivo
 description: >-
   Triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário,
   agendamento de reuniões, tratamento de comunicações rotineiras. Use quando:
@@ -78,7 +78,7 @@ Para e-mails não respondidos que o assistente enviou:
 - **Dia 7**: Acompanhamento final
 - Após 3 toques sem resposta: sinalize para o proprietário, pare de acompanhar.
 
-**Importante**: Elaboração e envio de acompanhamentos acontecem no trabalho cron dedicado de follow-ups (habilidade relationship-manager), não durante varreduras heartbeat. Durante varreduras heartbeat, anote acompanhamentos devidos no resumo mas não elabore ou envie mensagens de follow-up.
+**Importante**: Elaboração e envio de acompanhamentos acontecem no trabalho cron dedicado de follow-ups (habilidade gerenciador-relacionamentos), não durante varreduras heartbeat. Durante varreduras heartbeat, anote acompanhamentos devidos no resumo mas não elabore ou envie mensagens de follow-up.
 
 ## Formato de Saída
 
@@ -86,6 +86,6 @@ Após cada varredura, forneça um breve resumo: itens tratados, itens elaborados
 
 ## Habilidades Relacionadas
 
-- **daily-task-manager** — Atualizações de arquivo de tarefas
-- **relationship-manager** — Acompanhamento de follow-ups
-- **chief-of-staff** — Orquestrador
+- **gerenciador-tarefas-diario** — Atualizações de arquivo de tarefas
+- **gerenciador-relacionamentos** — Acompanhamento de follow-ups
+- **chefe-de-gabinete** — Orquestrador

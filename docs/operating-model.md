@@ -9,46 +9,46 @@ Como o Chief of Staff OS funciona de ponta a ponta.
 O sistema executa em um ciclo diário previsível:
 
 **2:00 da manhã — Preparo de Tarefas** (automatizado)
-A habilidade `daily-task-prep` executa via cron. Ela lê o arquivo de tarefas canônico, adiciona itens recorrentes de dias úteis, promove itens de backlog com data de vencimento e puxa eventos de calendário de amanhã. O proprietário acorda com uma lista de tarefas pronta.
+A habilidade `preparo-tarefas-diario` executa via cron. Ela lê o arquivo de tarefas canônico, adiciona itens recorrentes de dias úteis, promove itens de backlog com data de vencimento e puxa eventos de calendário de amanhã. O proprietário acorda com uma lista de tarefas pronta.
 
 **7:57 da manhã — Briefing Matutino** (automatizado)
-A habilidade `chief-of-staff` produz um briefing diário: tarefas de hoje, calendário, destaques da caixa de entrada, acompanhamentos devidos e qualquer coisa que precise de atenção. Entregue no canal de escalada do proprietário.
+A habilidade `chefe-de-gabinete` produz um briefing diário: tarefas de hoje, calendário, destaques da caixa de entrada, acompanhamentos devidos e qualquer coisa que precise de atenção. Entregue no canal de escalada do proprietário.
 
 **8:00 da manhã - 21:00 — Varreduras Heartbeat** (automatizado, a cada 15 min)
-A habilidade `executive-assistant` executa no modo heartbeat. Cada varredura: verifica tarefas atrasadas, tria novas mensagens da caixa de entrada (agindo no Nível 1, elaborando Nível 2, escalando Nível 3), sinaliza conflitos de calendário nas próximas 2 horas e anota acompanhamentos devidos. A elaboração de follow-ups acontece no cron dedicado de follow-ups, não durante as varreduras heartbeat. Retorna `HEARTBEAT_OK` quando nada precisa de atenção.
+A habilidade `assistente-executivo` executa no modo heartbeat. Cada varredura: verifica tarefas atrasadas, tria novas mensagens da caixa de entrada (agindo no Nível 1, elaborando Nível 2, escalando Nível 3), sinaliza conflitos de calendário nas próximas 2 horas e anota acompanhamentos devidos. A elaboração de follow-ups acontece no cron dedicado de follow-ups, não durante as varreduras heartbeat. Retorna `HEARTBEAT_OK` quando nada precisa de atenção.
 
 **9:47 e 14:47 — Verificações de Acompanhamento** (automatizado)
-A habilidade `relationship-manager` verifica acompanhamentos atrasados e elabora o próximo toque na cadência.
+A habilidade `gerenciador-relacionamentos` verifica acompanhamentos atrasados e elabora o próximo toque na cadência.
 
 **Fim do Dia — Revisão EOD** (manual, acionado pelo proprietário)
-A habilidade `chief-of-staff` revisa o que foi feito, o que ainda está aberto e captura qualquer coisa nova. Atualiza o arquivo de tarefas para amanhã.
+A habilidade `chefe-de-gabinete` revisa o que foi feito, o que ainda está aberto e captura qualquer coisa nova. Atualiza o arquivo de tarefas para amanhã.
 
 ## Como as Habilidades Interagem
 
 ```
-chief-of-staff (orquestrador)
+chefe-de-gabinete (orquestrador)
 ├── lê → workspace/tasks/current.md
 ├── lê → workspace/relationships/current.md
 ├── lê → caixa de entrada (via MCP)
-├── direciona para → executive-assistant (para ações de e-mail)
-├── direciona para → daily-task-manager (para alterações de tarefas)
-└── direciona para → relationship-manager (para acompanhamentos)
+├── direciona para → assistente-executivo (para ações de e-mail)
+├── direciona para → gerenciador-tarefas-diario (para alterações de tarefas)
+└── direciona para → gerenciador-relacionamentos (para acompanhamentos)
 
-executive-assistant
+assistente-executivo
 ├── lê → CHIEF_OF_STAFF_CONTEXT.md (autoridade, contas)
 ├── lê/escreve → workspace/tasks/current.md (cria tarefas de e-mails)
 ├── escreve → workspace/relationships/current.md (cria acompanhamentos)
 └── lê → workspace/HEARTBEAT.md (instruções de varredura)
 
-daily-task-prep
+preparo-tarefas-diario
 ├── lê → CHIEF_OF_STAFF_CONTEXT.md (fuso horário, calendários)
 ├── lê/escreve → workspace/tasks/current.md
 └── lê → calendário (via MCP)
 
-daily-task-manager
+gerenciador-tarefas-diario
 └── lê/escreve → workspace/tasks/current.md
 
-relationship-manager
+gerenciador-relacionamentos
 ├── lê → CHIEF_OF_STAFF_CONTEXT.md (cadência, VIPs)
 ├── lê/escreve → workspace/relationships/current.md
 └── lê → workspace/tasks/current.md (adiciona acompanhamentos como tarefas)
@@ -56,13 +56,13 @@ relationship-manager
 
 ## Fluxo de Dados
 
-**E-mail recebido → Tarefa**: O executive-assistant tria um e-mail que requer ação. Ele cria uma tarefa em workspace/tasks/current.md e opcionalmente uma entrada de acompanhamento em workspace/relationships/current.md.
+**E-mail recebido → Tarefa**: O assistente-executivo tria um e-mail que requer ação. Ele cria uma tarefa em workspace/tasks/current.md e opcionalmente uma entrada de acompanhamento em workspace/relationships/current.md.
 
-**Acompanhamento devido → Rascunho**: O relationship-manager detecta um acompanhamento atrasado. Ele elabora o próximo toque conforme a cadência e o apresenta para revisão (ou envia, se autorizado).
+**Acompanhamento devido → Rascunho**: O gerenciador-relacionamentos detecta um acompanhamento atrasado. Ele elabora o próximo toque conforme a cadência e o apresenta para revisão (ou envia, se autorizado).
 
-**Evento de calendário → Tarefa**: A habilidade daily-task-prep puxa as reuniões de amanhã e as adiciona como itens com tempo bloqueado no arquivo de tarefas.
+**Evento de calendário → Tarefa**: A habilidade preparo-tarefas-diario puxa as reuniões de amanhã e as adiciona como itens com tempo bloqueado no arquivo de tarefas.
 
-**Tarefa concluída → Concluído**: O daily-task-manager move itens concluídos para a seção Concluídos com um carimbo de data/hora. A revisão EOD do chief-of-staff captura qualquer coisa perdida.
+**Tarefa concluída → Concluído**: O gerenciador-tarefas-diario move itens concluídos para a seção Concluídos com um carimbo de data/hora. A revisão EOD do chefe-de-gabinete captura qualquer coisa perdida.
 
 ## O Framework de Autoridade na Prática
 

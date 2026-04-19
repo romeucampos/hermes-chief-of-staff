@@ -103,16 +103,16 @@ Adicione os agendamentos recomendados (ajuste os horários para seu fuso horári
 
 ```bash
 # Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
-hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade executive-assistant no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
+hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
 # Preparo diário de tarefas — 2h da manhã todas as noites
-hermes cron add "3 2 * * *" "Execute a habilidade daily-task-prep. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
+hermes cron add "3 2 * * *" "Execute a habilidade preparo-tarefas-diario. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
 
 # Verificação de acompanhamentos — duas vezes ao dia, dias úteis
-hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
+hermes cron add "47 9,14 * * 1-5" "Execute a habilidade gerenciador-relacionamentos. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
 
 # Briefing matutino — uma vez ao dia, dias úteis
-hermes cron add "57 7 * * 1-5" "Execute a habilidade chief-of-staff no modo briefing matutino. Resuma as tarefas de hoje, destaques da caixa de entrada, calendário e acompanhamentos devidos."
+hermes cron add "57 7 * * 1-5" "Execute a habilidade chefe-de-gabinete no modo briefing matutino. Resuma as tarefas de hoje, destaques da caixa de entrada, calendário e acompanhamentos devidos."
 ```
 
 > **Nota**: A sintaxe de comando cron acima segue o padrão da CLI do Hermes no momento da escrita. Se a sintaxe exata mudou, consulte `hermes cron --help` ou a [documentação do cron do Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
@@ -138,7 +138,7 @@ Execute isto após a configuração para confirmar que tudo funciona:
 
 **Testes funcionais** (execute estes em uma sessão de chat do Hermes):
 - [ ] "Adicione uma tarefa: testar a configuração do CoS" — deve atualizar workspace/tasks/current.md
-- [ ] "Execute executive-assistant no modo heartbeat" — deve retornar HEARTBEAT_OK ou um resumo de triagem
+- [ ] "Execute assistente-executivo no modo heartbeat" — deve retornar HEARTBEAT_OK ou um resumo de triagem
 - [ ] "Briefing matutino" — deve retornar uma visão geral diária estruturada
 - [ ] "Com quem preciso fazer acompanhamento?" — deve verificar workspace/relationships/current.md
 - [ ] "Marcar como concluído: testar a configuração do CoS" — deve mover a tarefa para Concluídos com um carimbo de data/hora
@@ -149,7 +149,7 @@ Você não precisa de tudo. Para a configuração de maior valor mais rápida, v
 
 Para todas as opções, veja [docs/maturity-levels.md](docs/maturity-levels.md):
 
-- **Nível 1 (EA Pessoal)**: Passos 2-4 com apenas `executive-assistant` e `daily-task-manager`
+- **Nível 1 (EA Pessoal)**: Passos 2-4 com apenas `assistente-executivo` e `gerenciador-tarefas-diario`
 - **Nível 2 (Fundador)**: Passos 2-6 completos, todos os trabalhos cron exceto o briefing matutino
 - **Nível 3 (CoS Completo)**: Tudo acima
 

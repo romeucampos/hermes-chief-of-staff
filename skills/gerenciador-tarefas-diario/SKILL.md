@@ -1,5 +1,5 @@
 ---
-name: daily-task-manager
+name: gerenciador-tarefas-diario
 description: >-
   Gerencie o arquivo de tarefas canônico — adicione tarefas, marque itens como concluídos,
   reorganize prioridades, revise o que precisa ser feito. Use quando: "adicione uma tarefa," "o que está
@@ -62,6 +62,6 @@ Após qualquer alteração no arquivo de tarefas, confirme brevemente o que mudo
 
 ## Habilidades Relacionadas
 
-- **daily-task-prep** — Automação noturna que prepara a lista de tarefas do próximo dia.
-- **executive-assistant** — Cria tarefas de e-mails e comunicações.
-- **chief-of-staff** — Orquestrador que coordena entre habilidades.
+- **preparo-tarefas-diario** — Automação noturna que prepara a lista de tarefas do próximo dia.
+- **assistente-executivo** — Cria tarefas de e-mails e comunicações.
+- **chefe-de-gabinete** — Orquestrador que coordena entre habilidades.

@@ -1,5 +1,5 @@
 ---
-name: relationship-manager
+name: gerenciador-relacionamentos
 description: >-
   Acompanhe follow-ups, gerencie a cadência de alcance, monitore a saúde de
   relacionamentos, garanta que nenhuma conversa importante passe despercebida. Use quando:
@@ -43,9 +43,9 @@ Você acompanha relacionamentos para que o proprietário nunca deixe uma thread 
 
 ## Integração com Outras Habilidades
 
-- Quando o executive-assistant envia um e-mail que espera uma resposta, ele deve criar uma entrada de acompanhamento aqui.
-- Quando daily-task-prep executa, ele deve verificar por acompanhamentos devidos hoje e adicioná-los ao arquivo de tarefas.
-- O briefing matutino do chief-of-staff deve apresentar acompanhamentos devidos.
+- Quando o assistente-executivo envia um e-mail que espera uma resposta, ele deve criar uma entrada de acompanhamento aqui.
+- Quando preparo-tarefas-diario executa, ele deve verificar por acompanhamentos devidos hoje e adicioná-los ao arquivo de tarefas.
+- O briefing matutino do chefe-de-gabinete deve apresentar acompanhamentos devidos.
 
 ## Atualizando o Arquivo
 
@@ -60,6 +60,6 @@ Ao reportar, agrupe por urgência: atrasados primeiro, devidos hoje segundo, pr�
 
 ## Habilidades Relacionadas
 
-- **executive-assistant**: Cria acompanhamentos de e-mails.
-- **daily-task-manager**: Acompanhamentos se tornam tarefas.
-- **chief-of-staff**: Inclui acompanhamentos em briefings.
+- **assistente-executivo**: Cria acompanhamentos de e-mails.
+- **gerenciador-tarefas-diario**: Acompanhamentos se tornam tarefas.
+- **chefe-de-gabinete**: Inclui acompanhamentos em briefings.

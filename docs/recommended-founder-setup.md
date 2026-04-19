@@ -7,13 +7,13 @@ O caminho mais rápido para um Chief of Staff funcional. Isso te dá triagem de 
 ## Instale Estas 4 Habilidades
 
 ```bash
-cp -r skills/executive-assistant ~/.hermes/skills/
-cp -r skills/daily-task-manager ~/.hermes/skills/
-cp -r skills/daily-task-prep ~/.hermes/skills/
-cp -r skills/relationship-manager ~/.hermes/skills/
+cp -r skills/assistente-executivo ~/.hermes/skills/
+cp -r skills/gerenciador-tarefas-diario ~/.hermes/skills/
+cp -r skills/preparo-tarefas-diario ~/.hermes/skills/
+cp -r skills/gerenciador-relacionamentos ~/.hermes/skills/
 ```
 
-Pule `chief-of-staff` por enquanto — ele adiciona briefings matutinos e revisões EOD, que você pode adicionar depois se quiser.
+Pule `chefe-de-gabinete` por enquanto — ele adiciona briefings matutinos e revisões EOD, que você pode adicionar depois se quiser.
 
 ## Preencha Estes Campos de Contexto Primeiro
 
@@ -47,13 +47,13 @@ Edite as entradas de exemplo em:
 
 ```bash
 # Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
-hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade executive-assistant no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
+hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
 # Preparo diário de tarefas — 2h da manhã todas as noites
-hermes cron add "3 2 * * *" "Execute a habilidade daily-task-prep. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
+hermes cron add "3 2 * * *" "Execute a habilidade preparo-tarefas-diario. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
 
 # Verificação de acompanhamentos — duas vezes ao dia, dias úteis
-hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
+hermes cron add "47 9,14 * * 1-5" "Execute a habilidade gerenciador-relacionamentos. Verifique acompanhamentos devidos hoje. Elabore mensagens para quaisquer que estejam atrasados."
 ```
 
 ## O Que Você Recebe
@@ -66,14 +66,14 @@ hermes cron add "47 9,14 * * 1-5" "Execute a habilidade relationship-manager. Ve
 
 ## Quando Adicionar o Orquestrador
 
-Adicione a habilidade `chief-of-staff` quando quiser:
+Adicione a habilidade `chefe-de-gabinete` quando quiser:
 - Um briefing matutino que resume tarefas, calendário, caixa de entrada e acompanhamentos em uma visão
 - Uma revisão de fim de dia que captura o que foi feito e o que segue em frente
 - Triagem ad-hoc "no que devo focar agora?"
 
 ```bash
-cp -r skills/chief-of-staff ~/.hermes/skills/
+cp -r skills/chefe-de-gabinete ~/.hermes/skills/
 
 # Cron de briefing matutino — uma vez ao dia, dias úteis
-hermes cron add "57 7 * * 1-5" "Execute a habilidade chief-of-staff no modo briefing matutino."
+hermes cron add "57 7 * * 1-5" "Execute a habilidade chefe-de-gabinete no modo briefing matutino."
 ```
