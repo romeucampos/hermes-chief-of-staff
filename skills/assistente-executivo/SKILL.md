@@ -45,6 +45,14 @@ Quando houver dúvida, o padrão é **elaborar para revisão**. Veja [authority-
 8. Arquive ou marque como lido o que já foi tratado.
 9. Processe de 5 a 10 mensagens por varredura, priorizando: urgente > sensível ao tempo > contatos de alto valor > restante.
 
+## Resumo de Caixa via Composio
+
+Quando o pedido do usuário for especificamente resumir caixa de entrada via Composio, use estas referências:
+
+- [composio-email-summary.md](references/composio-email-summary.md) para o fluxo comum
+- [composio-gmail.md](references/composio-gmail.md) para particularidades de Gmail
+- [composio-outlook.md](references/composio-outlook.md) para particularidades de Outlook/Hotmail
+
 ## Regras de Elaboração de E-mail
 
 - Siga o tom definido no arquivo de contexto.

@@ -14,7 +14,7 @@ Configuração passo a passo do Chief of Staff OS no Hermes Agent.
 ## Passo 1: Clonar o Repositório
 
 ```bash
-git clone https://github.com/TheCraigHewitt/hermes-chief-of-staff.git
+git clone https://github.com/romeucampos/hermes-chief-of-staff.git
 cd hermes-chief-of-staff
 ```
 

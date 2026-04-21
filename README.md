@@ -38,7 +38,7 @@ O repositório adota um modelo **Composio-first**:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/TheCraigHewitt/hermes-chief-of-staff.git
+git clone https://github.com/romeucampos/hermes-chief-of-staff.git
 
 # Copie as habilidades para sua instalação do Hermes
 cp -r hermes-chief-of-staff/skills/* ~/.hermes/skills/
