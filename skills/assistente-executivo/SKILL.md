@@ -47,11 +47,11 @@ Quando houver dúvida, o padrão é **elaborar para revisão**. Veja [authority-
 
 ## Resumo de Caixa via Composio
 
-Quando o pedido do usuário for especificamente resumir caixa de entrada via Composio, use estas referências:
+Quando o pedido do usuário for especificamente resumir caixa de entrada via Composio:
 
-- [composio-email-summary.md](references/composio-email-summary.md) para o fluxo comum
-- [composio-gmail.md](references/composio-gmail.md) para particularidades de Gmail
-- [composio-outlook.md](references/composio-outlook.md) para particularidades de Outlook/Hotmail
+- use a skill `composio-gmail` quando a conta consultada for Gmail
+- use a skill `composio-hotmail` quando a conta consultada for Hotmail/Outlook
+- não crie uma nova skill por provedor se uma dessas já atender ao caso
 
 ## Regras de Elaboração de E-mail
 
