@@ -12,14 +12,14 @@ Inicie o agendador (ex: `hermes cron start`), depois adicione os trabalhos.
 
 ### 1. Varredura de Caixa de Entrada do EA
 
-A cada 15 minutos, horário comercial, dias úteis.
+A cada 4 horas, dias úteis.
 
-- **Cron**: `*/15 8-21 * * 1-5`
+- **Cron**: `17 8,12,16,20 * * 1-5`
 - **Comando**:
 ```
-hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga as instruções no workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
+hermes cron add "17 8,12,16,20 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga as instruções no workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 ```
-- **Propósito**: Monitoramento contínuo de caixa de entrada e calendário durante o horário de trabalho.
+- **Propósito**: Monitoramento periódico de caixa de entrada e calendário ao longo do dia.
 
 ### 2. Preparo Diário de Tarefas
 

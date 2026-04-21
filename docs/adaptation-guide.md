@@ -51,7 +51,7 @@ Se você precisar de cadências diferentes por tipo de contato, registre as regr
 Edite o job do cron. Para varreduras menos frequentes:
 
 ```bash
-hermes cron add "0 9,12,15,18 * * 1-5" "Execute assistente-executivo no modo heartbeat..."
+hermes cron add "17 8,12,16,20 * * 1-5" "Execute assistente-executivo no modo heartbeat..."
 ```
 
 ### Alterar o horário de preparo de tarefas

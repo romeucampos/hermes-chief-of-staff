@@ -14,7 +14,7 @@ A habilidade `preparo-tarefas-diario` executa via cron. Ela lê o arquivo de tar
 **7:57 da manhã — Briefing Matutino** (automatizado)  
 A habilidade `chefe-de-gabinete` produz um briefing diário com tarefas de hoje, calendário, destaques da caixa de entrada, acompanhamentos devidos e itens que exigem atenção.
 
-**8:00 às 21:00 — Varreduras Heartbeat** (automatizado, a cada 15 minutos)  
+**8:17, 12:17, 16:17 e 20:17 — Varreduras Heartbeat** (automatizado, a cada 4 horas em dias úteis)  
 A habilidade `assistente-executivo` roda no modo heartbeat. Cada varredura verifica tarefas atrasadas, triagem de novas mensagens, conflitos de calendário nas próximas horas e acompanhamentos que precisam de atenção. Quando nada é acionável, retorna `HEARTBEAT_OK`.
 
 **9:47 e 14:47 — Verificações de Acompanhamento** (automatizado)  

@@ -139,8 +139,8 @@ hermes cron start
 Adicione os agendamentos recomendados. Ajuste os horários para seu fuso horário:
 
 ```bash
-# Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
-hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
+# Varredura de caixa de entrada do EA — a cada 4 horas, dias úteis
+hermes cron add "17 8,12,16,20 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
 # Preparo diário de tarefas — 2h da manhã todas as noites
 hermes cron add "3 2 * * *" "Execute a habilidade preparo-tarefas-diario. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."

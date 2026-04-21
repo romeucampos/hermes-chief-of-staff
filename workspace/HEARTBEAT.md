@@ -1,6 +1,6 @@
 # Heartbeat
 
-**O que é este arquivo**: Instruções para a varredura recorrente do EA (executa a cada 15 minutos durante o horário comercial). O trabalho cron invoca a habilidade executive-assistant com estas ordens permanentes.
+**O que é este arquivo**: Instruções para a varredura recorrente do EA (executa a cada 4 horas, em dias úteis). O trabalho cron invoca a habilidade executive-assistant com estas ordens permanentes.
 
 ## O Que o Heartbeat Faz e Não Faz
 
@@ -23,12 +23,12 @@
 4. **Nível 1 (Agir)**: Resolva. Arquive, confirme, etc.
 5. **Nível 2 (Elaborar)**: Prepare um rascunho e apresente ao proprietário para aprovação.
 6. **Nível 3 (Escalar)**: Resuma para o proprietário via canal de escalada.
-7. Verifique o calendário para eventos nas próximas 2 horas — sinalize conflitos ou necessidades de preparo.
+7. Verifique o calendário para eventos nas próximas 4 horas — sinalize conflitos ou necessidades de preparo.
 8. Verifique `workspace/relationships/current.md` para acompanhamentos devidos hoje. Anote-os no resumo da varredura, mas não elabore ou envie mensagens de follow-up — isso é tratado pelo trabalho cron dedicado de follow-ups.
 
 ## Escalada
 
-Apresente itens urgentes ao proprietário via canal de escalada configurado (de `CHIEF_OF_STAFF_CONTEXT.md`). Urgente = sensível ao tempo dentro de 2 horas, ou sinalizado pelo proprietário.
+Apresente itens urgentes ao proprietário via canal de escalada configurado (de `CHIEF_OF_STAFF_CONTEXT.md`). Urgente = sensível ao tempo dentro de 4 horas, ou sinalizado pelo proprietário.
 
 ## Horas de Silêncio
 
