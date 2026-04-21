@@ -1,108 +1,140 @@
 # Níveis de Maturidade
 
-O Chief of Staff OS suporta três níveis de adoção. Comece onde você está e adicione camadas conforme precisar.
+O Chief of Staff OS suporta três níveis de adoção. Comece pelo ponto que faz sentido para sua operação e adicione camadas conforme necessário.
 
-> **v1** entrega os Níveis 1-3 abaixo, cobrindo os fundamentos operacionais do CoS. Fases futuras adicionam camadas estratégicas (resumos semanais, preparação de reuniões, desenvolvimento de negócios, registros de decisão).
+> **v1** cobre os níveis abaixo, focando nos fundamentos operacionais: tarefas, comunicações, follow-ups e ritmo diário.
 
 ---
 
 ## Nível 1 — EA Pessoal
 
-**Para quem é**: Qualquer pessoa que queira triagem de caixa de entrada e gerenciamento de tarefas sem a sobrecarga de um ritmo operacional completo.
+**Para quem é**: quem quer triagem de caixa de entrada e gestão de tarefas sem operar o stack completo.
 
 **Habilidades para instalar**:
-- `assistente-executivo` — triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário
-- `gerenciador-tarefas-diario` — gerenciamento de arquivo de tarefas canônico
+
+- `assistente-executivo`
+- `gerenciador-tarefas-diario`
 
 **Arquivos do workspace**:
-- `workspace/tasks/current.md`
-- `CHIEF_OF_STAFF_CONTEXT.md` (preencha: nome, e-mail, calendário, níveis de autoridade)
 
-**Trabalhos cron** (opcional):
-- Varredura de caixa de entrada do EA a cada 15 minutos durante o horário de trabalho
+- `workspace/tasks/current.md`
+- `CHIEF_OF_STAFF_CONTEXT.md`
+
+**Integrações recomendadas**:
+
+- e-mail conectado via Composio
+- calendário conectado via Composio para leitura básica e verificação de conflitos
+
+**Jobs de cron**:
+
+- varredura de caixa de entrada durante o horário de trabalho
 
 **O que você recebe**:
-- Triagem automatizada de caixa de entrada com decisões baseadas em autoridade
-- Uma única lista de tarefas persistente que sobrevive entre as sessões
-- Detecção de conflitos de calendário e assistência de agendamento
-- Elaboração de e-mails que corresponde ao seu tom
 
-**Tempo de configuração**: 15-20 minutos
+- triagem de caixa de entrada com base em autoridade
+- lista de tarefas persistente
+- apoio a agendamento e conflitos de calendário
+- rascunhos alinhados ao seu tom
+
+**Tempo de configuração**: 15 a 20 minutos
 
 ---
 
 ## Nível 2 — Fundador + Relacionamentos
 
-**Para quem é**: Fundadores, operadores ou qualquer pessoa gerenciando relacionamentos e alcance contínuos que precisa de acompanhamento de follow-ups e um ritmo diário.
+**Para quem é**: fundadores e operadores que precisam manter conversas vivas e chegar ao dia com a lista preparada.
 
-**Habilidades para instalar** (tudo do Nível 1, mais):
-- `gerenciador-relacionamentos` — acompanhamento de follow-ups e cadência de alcance
-- `preparo-tarefas-diario` — enriquecimento noturno da lista de tarefas
+**Habilidades para instalar**:
 
-**Arquivos adicionais do workspace**:
+- tudo do Nível 1
+- `gerenciador-relacionamentos`
+- `preparo-tarefas-diario`
+
+**Arquivos adicionais**:
+
 - `workspace/relationships/current.md`
 - `workspace/HEARTBEAT.md`
 
-**Trabalhos cron**:
-- Varredura de caixa de entrada do EA (a cada 15 min, horário comercial)
-- Preparo diário de tarefas (2h da manhã todas as noites)
-- Verificação de acompanhamentos (duas vezes ao dia)
+**Integrações recomendadas**:
 
-**O que você recebe** (além do Nível 1):
-- Cadência automatizada de acompanhamento (2 → 5 → 7 dias)
-- Nenhuma conversa passa despercebida
-- Lista de tarefas automaticamente enriquecida cada manhã com itens recorrentes e eventos de calendário
-- Priorização de contatos VIP
+- e-mail via Composio
+- calendário via Composio
 
-**Tempo de configuração**: 30-45 minutos (incluindo preenchimento do arquivo de relacionamentos)
+**Jobs de cron**:
+
+- varredura de caixa de entrada
+- preparo diário de tarefas
+- verificação de acompanhamentos
+
+**O que você recebe**:
+
+- cadência de follow-up automatizada
+- menor risco de perder conversas
+- lista de tarefas enriquecida automaticamente
+- mais contexto para priorização diária
+
+**Tempo de configuração**: 30 a 45 minutos
 
 ---
 
 ## Nível 3 — Chefe de Gabinete Completo
 
-**Para quem é**: Pessoas que querem um ritmo operacional diário completo — briefings matutinos, revisões de fim de dia e um único ponto de coordenação em todo o trabalho.
+**Para quem é**: quem quer um ritmo operacional diário completo com briefing, revisão e coordenação consolidada.
 
-**Habilidades para instalar** (tudo do Nível 2, mais):
-- `chefe-de-gabinete` — orquestrador para briefings, revisões e triagem ad-hoc
+**Habilidades para instalar**:
 
-**Arquivos adicionais do workspace**:
-- `workspace/TOOLS.md` (opcional, para notas do ambiente de ferramentas)
+- tudo do Nível 2
+- `chefe-de-gabinete`
 
-**Trabalhos cron** (tudo do Nível 2, mais):
-- Briefing matutino (uma vez ao dia, dias úteis)
+**Arquivos adicionais**:
 
-**O que você recebe** (além do Nível 2):
-- Briefing matutino: tarefas, calendário, caixa de entrada, acompanhamentos e itens de atenção em uma visão
-- Revisão de fim de dia: capture o que foi feito, leve adiante o que não foi
-- Triagem ad-hoc: "no que devo focar agora?"
-- Coordenação unificada em todas as habilidades
+- `workspace/TOOLS.md` para registrar integrações, permissões e ambiente
 
-**Tempo de configuração**: 45-60 minutos (incluindo configuração do cron)
+**Integrações recomendadas**:
+
+- e-mail e calendário via Composio
+- demais ferramentas externas conectadas via Composio sempre que aplicável
+
+**Jobs de cron**:
+
+- tudo do Nível 2
+- briefing matutino
+
+**O que você recebe**:
+
+- briefing matutino consolidado
+- revisão de fim de dia
+- triagem ad hoc do que merece atenção agora
+- coordenação unificada entre habilidades
+
+**Tempo de configuração**: 45 a 60 minutos
 
 ---
 
 ## Níveis Futuros
 
-**Fase 2** (planejado):
-- Habilidade de resumo semanal — resumo semanal de atividade e tendências
-- Habilidade de preparação de reuniões — gere documentos de briefing antes de reuniões importantes
-- Pipeline de desenvolvimento de negócios — acompanhamento de prospects e automação de alcance
+**Fase 2**:
 
-**Fase 3** (planejado):
-- Registro de decisões — acompanhe decisões importantes e seu contexto
-- Acompanhamento de delegação — monitore o trabalho atribuído a outros
-- Calendário de conteúdo — gerenciamento de cronograma de publicação
+- resumo semanal
+- preparo de reuniões
+- acompanhamento de pipeline comercial
+
+**Fase 3**:
+
+- registro de decisões
+- acompanhamento de delegações
+- calendário de conteúdo
 
 ---
 
-## Escolhendo Seu Nível
+## Como Escolher
 
 | Pergunta | Nível 1 | Nível 2 | Nível 3 |
 |----------|---------|---------|---------|
 | Você precisa de triagem de caixa de entrada? | Sim | Sim | Sim |
-| Você acompanha follow-ups com pessoas? | Não | Sim | Sim |
-| Você quer preparo automatizado diário de tarefas? | Não | Sim | Sim |
-| Você quer briefings matutinos? | Não | Não | Sim |
-| Você quer revisões de fim de dia? | Não | Não | Sim |
+| Você precisa manter follow-ups ativos? | Não | Sim | Sim |
+| Você quer preparo diário automatizado? | Não | Sim | Sim |
+| Você quer briefing matutino? | Não | Não | Sim |
+| Você quer revisão de fim de dia? | Não | Não | Sim |
 
-Você pode sempre fazer upgrade depois. Cada nível se constrói sobre o anterior — nada precisa ser reconfigurado.
+Você pode evoluir de nível sem reconfigurar tudo. Cada camada se apoia na anterior.

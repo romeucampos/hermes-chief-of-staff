@@ -1,6 +1,6 @@
 # Configuração Recomendada para Fundadores
 
-O caminho mais rápido para um Chief of Staff funcional. Isso te dá triagem de caixa de entrada, gerenciamento de tarefas, acompanhamento de follow-ups e preparo diário de tarefas — sem a camada completa do orquestrador.
+O caminho mais rápido para um Chief of Staff funcional. Esta configuração entrega triagem de caixa de entrada, gestão de tarefas, follow-ups e preparo diário, sem exigir a camada completa do orquestrador logo no início.
 
 ---
 
@@ -13,7 +13,18 @@ cp -r skills/preparo-tarefas-diario ~/.hermes/skills/
 cp -r skills/gerenciador-relacionamentos ~/.hermes/skills/
 ```
 
-Pule `chefe-de-gabinete` por enquanto — ele adiciona briefings matutinos e revisões EOD, que você pode adicionar depois se quiser.
+Deixe `chefe-de-gabinete` para depois, se quiser começar mais leve.
+
+## Conecte as Integrações Essenciais via Composio
+
+Antes de configurar os jobs de cron:
+
+1. instale o Composio CLI
+2. faça `composio login`
+3. conecte Gmail e Google Calendar em uma sessão do Hermes
+4. valide leitura de caixa de entrada e calendário
+
+Sem essas conexões, o ganho operacional fica incompleto.
 
 ## Preencha Estes Campos de Contexto Primeiro
 
@@ -23,15 +34,16 @@ Copie o modelo:
 cp templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
 ```
 
-Os campos que mais importam para começar:
+Os campos mais importantes para começar:
 
 - **Nome** e **fuso horário**
-- **E-mail principal** (a caixa de entrada que o assistente irá triar)
-- **Contas de calendário** (todos os calendários a verificar antes de agendar)
-- **Regras de autoridade** (o que o assistente pode lidar vs. o que precisa da sua aprovação)
-- **Canal de escalada** (onde itens urgentes vão — DM do Telegram, Slack, etc.)
+- **E-mail principal**
+- **Contas de calendário**
+- **Regras de autoridade**
+- **Canal de escalada**
+- **Mapeamento de contas**
 
-Todo o resto pode ser preenchido depois. Veja [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](../templates/CHIEF_OF_STAFF_CONTEXT.demo.md) para um exemplo preenchido.
+Veja [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](../templates/CHIEF_OF_STAFF_CONTEXT.demo.md) para um exemplo completo.
 
 ## Copie os Arquivos do Workspace
 
@@ -40,16 +52,18 @@ cp -r workspace/ ~/your-project/workspace/
 ```
 
 Edite as entradas de exemplo em:
-- `workspace/tasks/current.md` — substitua por suas tarefas reais
-- `workspace/relationships/current.md` — substitua por seus acompanhamentos reais
 
-## Crie Estes 3 Trabalhos Cron
+- `workspace/tasks/current.md`
+- `workspace/relationships/current.md`
+- `workspace/TOOLS.md`
+
+## Crie Estes 3 Jobs de Cron
 
 ```bash
 # Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
 hermes cron add "*/15 8-21 * * 1-5" "Execute a habilidade assistente-executivo no modo heartbeat. Siga o workspace/HEARTBEAT.md. Retorne HEARTBEAT_OK se nada for acionável."
 
-# Preparo diário de tarefas — 2h da manhã todas as noites
+# Preparo diário de tarefas — 2h da manhã
 hermes cron add "3 2 * * *" "Execute a habilidade preparo-tarefas-diario. Enriqueça a lista de tarefas de amanhã com itens recorrentes, prazos e eventos de calendário."
 
 # Verificação de acompanhamentos — duas vezes ao dia, dias úteis
@@ -58,22 +72,23 @@ hermes cron add "47 9,14 * * 1-5" "Execute a habilidade gerenciador-relacionamen
 
 ## O Que Você Recebe
 
-- Caixa de entrada triada a cada 15 minutos com decisões baseadas em autoridade
-- Lista de tarefas automaticamente preparada cada manhã
-- Acompanhamentos rastreados com uma cadência de 2/5/7 dias
-- Nenhuma conversa passa despercebida
-- Silêncio `HEARTBEAT_OK` quando nada precisa de atenção
+- Caixa de entrada triada ao longo do dia
+- Lista de tarefas enriquecida automaticamente
+- Follow-ups acompanhados em cadência
+- Menos risco de perder conversas ou compromissos
+- Silêncio operacional quando nada precisa de atenção
 
 ## Quando Adicionar o Orquestrador
 
-Adicione a habilidade `chefe-de-gabinete` quando quiser:
-- Um briefing matutino que resume tarefas, calendário, caixa de entrada e acompanhamentos em uma visão
-- Uma revisão de fim de dia que captura o que foi feito e o que segue em frente
-- Triagem ad-hoc "no que devo focar agora?"
+Adicione `chefe-de-gabinete` quando você quiser:
+
+- briefing matutino consolidado
+- revisão de fim de dia
+- coordenação ad hoc entre tarefas, inbox e follow-ups
 
 ```bash
 cp -r skills/chefe-de-gabinete ~/.hermes/skills/
 
-# Cron de briefing matutino — uma vez ao dia, dias úteis
+# Briefing matutino — uma vez ao dia, dias úteis
 hermes cron add "57 7 * * 1-5" "Execute a habilidade chefe-de-gabinete no modo briefing matutino."
 ```

@@ -1,213 +1,218 @@
-# Design: Composio-First Integrations for Hermes Chief of Staff
+# Design: Integrações Composio-First para Hermes Chief of Staff
 
 ## Status
 
-Approved for specification. Awaiting user review before implementation.
+Aprovado para especificação. Aguardando revisão do usuário antes da implementação.
 
-## Context
+## Contexto
 
-The project currently assumes MCP-backed integrations in its setup and operating documentation. The clearest examples are:
+Atualmente, o projeto parte do pressuposto de integrações baseadas em MCP na documentação de setup e operação. Os exemplos mais claros são:
 
-- `INSTALL.md`, which instructs users to configure `mcp_servers` for Gmail and Google Calendar in `~/.hermes/config.yaml`
-- `workspace/TOOLS.md`, which asks users to record MCP server names for email, calendar, and other integrations
+- `INSTALL.md`, que instruía usuários a configurar `mcp_servers` para Gmail e Google Calendar em `~/.hermes/config.yaml`
+- `workspace/TOOLS.md`, que pedia aos usuários para registrar nomes de servidores MCP para e-mail, calendário e outras integrações
 
-This creates two problems:
+Isso criava dois problemas:
 
-1. The default setup path is coupled to MCP even though the intended operating model is Hermes as the primary agent plus Composio as the connection layer.
-2. The repository has no explicit policy for future integrations, so new docs or skills can drift back toward MCP-specific guidance.
+1. O caminho padrão de setup ficava acoplado a MCP, embora o modelo operacional pretendido seja Hermes como agente principal e Composio como camada de conexão.
+2. O repositório não tinha uma política explícita para futuras integrações, então novas docs ou skills poderiam voltar a derivar para orientações específicas de MCP.
 
-The requested direction is:
+A direção solicitada é:
 
-- Hermes remains the main agent and orchestration surface.
-- Composio CLI becomes the default connection mechanism for email, calendar, and any future external integration.
-- Any new integration should use Composio first.
+- Hermes continua como agente principal e superfície de orquestração.
+- Composio CLI passa a ser o mecanismo padrão de conexão para e-mail, calendário e qualquer integração externa futura.
+- Toda nova integração deve usar Composio primeiro.
 
-## Goals
+## Objetivos
 
-- Replace MCP as the default integration path with Composio CLI.
-- Keep Hermes as the execution and orchestration layer.
-- Update setup docs, templates, skills, and operational language to reflect the new model.
-- Define a repo-level policy that new integrations should use Composio first.
-- Provide a migration path for existing MCP-based users.
+- Substituir MCP como caminho padrão de integração por Composio CLI.
+- Manter Hermes como camada de execução e orquestração.
+- Atualizar docs de setup, templates, skills e linguagem operacional para refletir o novo modelo.
+- Definir uma política em nível de repositório para que novas integrações usem Composio primeiro.
+- Oferecer um caminho de migração para usuários existentes baseados em MCP.
 
-## Non-Goals
+## Não Objetivos
 
-- Rewriting Hermes itself.
-- Implementing a general-purpose integration framework beyond the needs of this repository.
-- Supporting every possible Composio app on day one.
-- Preserving MCP as a first-class setup path in the main documentation.
+- Reescrever o Hermes em si.
+- Implementar um framework de integração de propósito geral além do que este repositório precisa.
+- Suportar todos os apps possíveis do Composio no primeiro dia.
+- Preservar MCP como caminho de setup de primeira classe na documentação principal.
 
-## Decision Summary
+## Resumo da Decisão
 
-Adopt a `Composio-first` integration model:
+Adotar um modelo de integração `Composio-first`:
 
-- Hermes remains responsible for skills, prompts, and cron-driven workflows.
-- Composio CLI becomes the standard method for authenticating and exposing integrations.
-- Repository language shifts from `MCP server` to `integration`, `connection`, or `connected app`.
-- Legacy MCP guidance is removed from the primary path and retained only in a migration document if needed.
+- Hermes continua responsável por skills, prompts e fluxos dirigidos por cron.
+- Composio CLI passa a ser o método padrão para autenticar e expor integrações.
+- A linguagem do repositório muda de `MCP server` para termos como `integração`, `conexão`, `aplicativo conectado`, `provedor` e `mapeamento de contas`.
+- A orientação legada de MCP sai do caminho principal e fica retida apenas em um documento de migração, quando necessário.
 
-## Current State
+## Estado Atual
 
-### Explicit MCP coupling
+### Acoplamento explícito a MCP
 
-- `INSTALL.md` includes a dedicated `Configurar as Integracoes MCP` step.
-- `INSTALL.md` troubleshooting instructs users to reload MCP servers and inspect Hermes logs for MCP issues.
-- `workspace/TOOLS.md` uses `Nome do servidor MCP` as a key data point for email, calendar, and other tools.
+- `INSTALL.md` incluía uma etapa dedicada chamada `Configurar as Integrações MCP`.
+- O troubleshooting de `INSTALL.md` instruía usuários a recarregar servidores MCP e inspecionar logs do Hermes para problemas de MCP.
+- `workspace/TOOLS.md` usava `Nome do servidor MCP` como dado-chave para e-mail, calendário e outras ferramentas.
 
-### Implicit coupling
+### Acoplamento implícito
 
-The current repository structure suggests most of the dependency is operational and editorial rather than code-level. That is good news: the migration is primarily a contract and documentation update, not a deep software rewrite.
+A estrutura do repositório sugeria que a maior parte da dependência era operacional e editorial, e não em nível de código. Isso era uma boa notícia: a migração seria principalmente uma atualização de contrato e documentação, não uma reescrita profunda de software.
 
-The main risk is inconsistency. If docs move to Composio but skills and templates still describe integrations in MCP terms, users will end up with conflicting instructions.
+O principal risco era inconsistência. Se as docs migrassem para Composio, mas skills e templates ainda descrevessem integrações em termos de MCP, os usuários acabariam com instruções conflitantes.
 
-## Target Operating Model
+## Modelo Operacional Alvo
 
-### Core roles
+### Papéis centrais
 
-- Hermes handles orchestration, reasoning, scheduling, and skill execution.
-- Composio CLI handles external service connectivity and authorization.
-- Project files continue to define owner context, task state, and operating rules.
+- Hermes cuida de orquestração, raciocínio, agendamento e execução de skills.
+- Composio CLI cuida da conectividade e autorização com serviços externos.
+- Os arquivos do projeto continuam definindo contexto do proprietário, estado de tarefas e regras operacionais.
 
-### Integration contract
+### Contrato de integração
 
-All external services should be described using a vendor-neutral contract:
+Todos os serviços externos devem ser descritos usando um contrato neutro em relação ao fornecedor:
 
-- `provider`: the external system, such as Gmail, Google Calendar, Slack, Notion, or Sheets
-- `connection`: the authenticated link managed through Composio CLI
-- `account mapping`: which user identity or mailbox/calendar/workspace is tied to the connection
-- `capabilities`: what the integration is used for in this project
+- **provedor**: o sistema externo, como Gmail, Google Calendar, Slack, Notion ou Sheets
+- **conexão**: o vínculo autenticado gerenciado via Composio CLI
+- **mapeamento de contas**: qual identidade, mailbox, calendário ou workspace está ligado à conexão
+- **capacidades**: para que a integração é usada neste projeto
 
-Skills and docs should refer to the presence or absence of a connected integration, not the existence of an MCP server.
+Skills e docs devem se referir à presença ou ausência de uma integração conectada, e não à existência de um servidor MCP.
 
-### Default policy
+### Política padrão
 
-For any new external integration:
+Para qualquer nova integração externa:
 
-1. Try Composio first.
-2. Only use another mechanism if Composio is not viable.
-3. If an exception is made, document the reason explicitly.
+1. Tentar Composio primeiro.
+2. Usar outro mecanismo apenas se Composio não for viável.
+3. Se houver uma exceção, documentar o motivo explicitamente.
 
-## Proposed Repository Changes
+## Mudanças Propostas no Repositório
 
-### 1. Installation and onboarding
+### 1. Instalação e onboarding
 
-Update `INSTALL.md` so the main setup path becomes:
+Atualizar `INSTALL.md` para que o caminho principal de setup passe a ser:
 
-1. Install Hermes
-2. Install and authenticate Composio CLI
-3. Connect email, calendar, and other services through Composio
-4. Validate access from Hermes workflows
+1. Instalar Hermes
+2. Instalar e autenticar o Composio CLI
+3. Conectar e-mail, calendário e outros serviços via Composio
+4. Validar o acesso a partir dos fluxos do Hermes
 
-Required changes:
+Mudanças necessárias:
 
-- Replace `Configurar as Integracoes MCP` with `Configurar Integracoes via Composio CLI`
-- Remove examples based on `mcp_servers` in `~/.hermes/config.yaml`
-- Remove instructions to run `/reload-mcp`
-- Rewrite troubleshooting around connection status, auth errors, and provider access in Composio terms
+- substituir `Configurar as Integrações MCP` por `Configurar Integrações via Composio CLI`
+- remover exemplos baseados em `mcp_servers` em `~/.hermes/config.yaml`
+- remover instruções para executar `/reload-mcp`
+- reescrever o troubleshooting em termos de status de conexão, erros de autenticação e acesso ao provedor via Composio
 
-### 2. Workspace tool reference
+### 2. Referência de ferramentas do workspace
 
-Update `workspace/TOOLS.md` to record integration state in Composio terms.
+Atualizar `workspace/TOOLS.md` para registrar o estado das integrações em termos de Composio.
 
-Examples:
+Exemplos:
 
-- Replace `Nome do servidor MCP` with `Integracao via Composio`
-- Keep provider and account-mapping notes
-- Add room for connection-specific notes, such as read-only calendars or multiple inbox rules
+- substituir `Nome do servidor MCP` por `Integração via Composio`
+- manter notas sobre provedor e mapeamento de contas
+- adicionar espaço para observações específicas da conexão, como calendários somente leitura ou regras para múltiplas inboxes
 
-### 3. Context templates
+### 3. Templates de contexto
 
-Update the templates in `templates/` so `Ferramentas Disponiveis` and related sections describe integrations as connected apps through Composio.
+Atualizar os templates em `templates/` para que `Ferramentas Disponíveis` e seções relacionadas descrevam integrações como aplicativos conectados via Composio.
 
-Expected changes:
+Mudanças esperadas:
 
-- Email accounts become mapped to Composio-backed connections
-- Calendar accounts become mapped to Composio-backed connections
-- Future integrations use the same vocabulary
+- contas de e-mail passam a ser mapeadas para conexões baseadas em Composio
+- contas de calendário passam a ser mapeadas para conexões baseadas em Composio
+- integrações futuras usam o mesmo vocabulário
 
-### 4. Skills and references
+### 4. Skills e referências
 
-Review all `skills/*/SKILL.md` and supporting `references/` files for:
+Revisar todos os arquivos `skills/*/SKILL.md` e `references/` de suporte em busca de:
 
-- MCP-specific terminology
-- assumptions about server names
-- setup or troubleshooting text that points users back to MCP
+- terminologia específica de MCP
+- suposições sobre nomes de servidor
+- texto de setup ou troubleshooting que redirecione usuários de volta para MCP
 
-Replace with:
+Substituir por:
 
-- instructions to use connected integrations through Composio
-- references to account mapping in `CHIEF_OF_STAFF_CONTEXT.md`
-- provider-neutral operational guidance wherever possible
+- instruções para usar integrações conectadas via Composio
+- referências a mapeamento de contas em `CHIEF_OF_STAFF_CONTEXT.md`
+- orientação operacional neutra em relação ao provedor sempre que possível
 
-### 5. Project-level integration policy
+### 5. Política de integração em nível de projeto
 
-Add a short policy statement to the user-facing docs, likely in `README.md` and `docs/adaptation-guide.md`:
+Adicionar uma declaração curta de política nas docs voltadas ao usuário, provavelmente em `README.md` e `docs/adaptation-guide.md`:
 
-- Hermes is the agent layer
-- Composio is the default connection layer
-- New integrations should use Composio first
+- Hermes é a camada de agente
+- Composio é a camada de conexão padrão
+- novas integrações devem usar Composio primeiro
 
-This reduces future drift.
+Isso reduz o risco de desvio futuro.
 
-### 6. Migration guide
+### 6. Guia de migração
 
-Add a dedicated migration doc for existing users, for example:
+Adicionar uma doc dedicada de migração para usuários existentes, por exemplo:
 
 - `docs/composio-migration.md`
 
-It should cover:
+Ela deve cobrir:
 
-- who needs to migrate
-- what changes in practice
-- what can be removed from Hermes config
-- how to reconnect email and calendar via Composio CLI
-- how to validate that heartbeat, inbox checks, and calendar checks still work
+- quem precisa migrar
+- o que muda na prática
+- o que pode ser removido da configuração do Hermes
+- como reconectar e-mail e calendário via Composio CLI
+- como validar que heartbeat, checagens de inbox e checagens de calendário continuam funcionando
 
-## Implementation Plan
+## Plano de Implementação
 
-### Phase 1: Audit and terminology alignment
+Diretriz geral do plano:
 
-- Search the repo for `MCP`, `mcp`, `reload-mcp`, `server`, `gmail`, `calendar`, and related terms
-- Build a list of files that need changes
-- Standardize on approved terminology:
-  - `integration`
-  - `connection`
-  - `connected app`
-  - `provider`
-  - `account mapping`
+- Todo o trabalho de documentação, revisão e migração deve ser feito em pt-BR, com acentuação correta e redação final revisada antes da conclusão.
 
-### Phase 2: Update primary docs
+### Fase 1: Auditoria e alinhamento de terminologia
 
-- Rewrite `INSTALL.md`
-- Update `README.md`
-- Update `workspace/TOOLS.md`
-- Update `templates/CHIEF_OF_STAFF_CONTEXT.example.md`
-- Update `templates/CHIEF_OF_STAFF_CONTEXT.demo.md`
+- Buscar no repositório por `MCP`, `mcp`, `reload-mcp`, `server`, `gmail`, `calendar` e termos relacionados
+- Montar uma lista dos arquivos que precisam ser alterados
+- Identificar trechos fora de pt-BR ou com acentuação incorreta para correção durante a migração
+- Padronizar a terminologia aprovada:
+  - `integração`
+  - `conexão`
+  - `aplicativo conectado`
+  - `provedor`
+  - `mapeamento de contas`
 
-### Phase 3: Update skills and references
+### Fase 2: Atualizar a documentação principal
 
-- Review all skill docs
-- Replace MCP-specific instructions
-- Ensure all workflow descriptions remain coherent after the terminology shift
+- Reescrever `INSTALL.md`
+- Atualizar `README.md`
+- Atualizar `workspace/TOOLS.md`
+- Atualizar `templates/CHIEF_OF_STAFF_CONTEXT.example.md`
+- Atualizar `templates/CHIEF_OF_STAFF_CONTEXT.demo.md`
 
-### Phase 4: Add migration material
+### Fase 3: Atualizar skills e referências
 
-- Create `docs/composio-migration.md`
-- Move any remaining legacy MCP guidance there if it is still worth preserving
+- Revisar toda a documentação de skills
+- Substituir instruções específicas de MCP
+- Garantir que todas as descrições de fluxo continuem coerentes após a mudança de terminologia
 
-### Phase 5: Validation
+### Fase 4: Adicionar material de migração
 
-Check the documented flows end to end:
+- Criar `docs/composio-migration.md`
+- Mover para esse documento qualquer orientação legada de MCP que ainda valha a pena preservar
 
-- inbox access
-- calendar access
-- heartbeat workflow
-- morning briefing workflow
-- onboarding flow for a new user
+### Fase 5: Validação
 
-## File-Level Execution Plan
+Verificar os fluxos documentados de ponta a ponta:
 
-### High priority
+- acesso à inbox
+- acesso ao calendário
+- fluxo de heartbeat
+- fluxo de briefing matutino
+- fluxo de onboarding para um novo usuário
+
+## Plano de Execução por Arquivo
+
+### Alta prioridade
 
 - `INSTALL.md`
 - `README.md`
@@ -215,7 +220,7 @@ Check the documented flows end to end:
 - `templates/CHIEF_OF_STAFF_CONTEXT.example.md`
 - `templates/CHIEF_OF_STAFF_CONTEXT.demo.md`
 
-### Medium priority
+### Média prioridade
 
 - `docs/adaptation-guide.md`
 - `docs/recommended-founder-setup.md`
@@ -223,64 +228,65 @@ Check the documented flows end to end:
 - `skills/assistente-executivo/SKILL.md`
 - `skills/assistente-executivo/references/calendar-rules.md`
 
-### Sweep priority
+### Prioridade de varredura
 
-- Remaining `skills/*/SKILL.md`
-- Remaining `skills/*/references/*`
-- Any future docs that still mention MCP after the first pass
+- Demais arquivos `skills/*/SKILL.md`
+- Demais arquivos `skills/*/references/*`
+- Qualquer documentação futura que ainda mencione MCP após a primeira passada
 
-## Risks
+## Riscos
 
-### Terminology mismatch
+### Inconsistência de terminologia
 
-If some files say `MCP` and others say `Composio`, users will not know which system is authoritative.
+Se alguns arquivos disserem `MCP` e outros disserem `Composio`, os usuários não saberão qual sistema é o autoritativo.
 
-Mitigation:
+Mitigação:
 
-- Update the highest-traffic docs first
-- Run a full repo search after edits
+- atualizar primeiro as docs de maior tráfego
+- rodar uma busca completa no repositório depois das edições
 
-### Hidden workflow assumptions
+### Suposições ocultas de fluxo
 
-Some skills may implicitly assume capabilities or account-selection behavior that does not map exactly from MCP to Composio.
+Algumas skills podem assumir implicitamente capacidades ou comportamentos de seleção de conta que não se mapeiam exatamente de MCP para Composio.
 
-Mitigation:
+Mitigação:
 
-- Preserve owner-controlled account mapping in `CHIEF_OF_STAFF_CONTEXT.md`
-- Keep provider rules in reference docs, separate from transport details
+- preservar o mapeamento de contas controlado pelo proprietário em `CHIEF_OF_STAFF_CONTEXT.md`
+- manter regras do provedor nas docs de referência, separadas dos detalhes de transporte
 
-### Over-coupling to a new vendor
+### Acoplamento excessivo a um novo fornecedor
 
-Replacing one vendor-specific term with another everywhere can create future lock-in.
+Substituir um termo específico de fornecedor por outro em todo lugar pode criar lock-in no futuro.
 
-Mitigation:
+Mitigação:
 
-- Use vendor-neutral terminology in skill logic and templates
-- Mention Composio explicitly in setup and migration docs, where it matters
+- usar terminologia neutra em relação ao fornecedor na lógica das skills e nos templates
+- mencionar Composio explicitamente nas docs de setup e migração, onde isso realmente importa
 
-## Testing and Acceptance Criteria
+## Testes e Critérios de Aceitação
 
-The migration is complete when:
+A migração estará completa quando:
 
-- The primary installation path no longer depends on MCP.
-- The primary installation path clearly uses Composio CLI.
-- Workspace and context templates describe integrations in Composio-compatible terms.
-- Skills do not require users to think in terms of MCP servers.
-- A migration guide exists for legacy MCP users.
-- A repo search for `MCP` only finds legacy or intentionally scoped references.
+- o caminho principal de instalação não depender mais de MCP
+- o caminho principal de instalação usar Composio CLI de forma clara
+- templates de workspace e contexto descreverem integrações em termos compatíveis com Composio
+- skills não exigirem que usuários pensem em termos de servidores MCP
+- existir um guia de migração para usuários legados de MCP
+- uma busca no repositório por `MCP` encontrar apenas referências legadas ou intencionalmente delimitadas
+- os materiais atualizados estiverem em pt-BR, com acentuação correta e revisão textual consistente
 
-## Open Questions
+## Questões em Aberto
 
-These questions do not block the documentation migration, but they may affect implementation details:
+Estas perguntas não bloqueiam a migração da documentação, mas podem afetar detalhes da implementação:
 
-- What is the exact Composio CLI setup sequence the repo should recommend?
-- Are there any Hermes-side commands or wrappers needed for invoking Composio-backed tools?
-- Are some integrations better described as optional rather than baseline?
+- Qual é a sequência exata de setup do Composio CLI que o repositório deve recomendar?
+- Existem comandos ou wrappers do lado do Hermes necessários para invocar ferramentas conectadas via Composio?
+- Algumas integrações deveriam ser descritas como opcionais em vez de básicas?
 
-The implementation should answer these with concrete commands and examples before finalizing the install guide.
+A implementação deve responder isso com comandos e exemplos concretos antes de finalizar o guia de instalação.
 
-## Recommendation
+## Recomendação
 
-Implement this as a documentation-and-contract migration first, then sweep the remaining skill text for consistency.
+Implementar isso primeiro como uma migração de documentação e contrato, e depois fazer uma varredura no restante do texto das skills para consistência.
 
-This is the right order because the repository currently appears to be coupled to MCP mostly by instructions and operating language, not by deep embedded code. The fastest safe path is to make the default path unambiguous, then clean the long tail.
+Essa é a ordem correta porque, no estado atual, o repositório parecia estar acoplado a MCP principalmente por instruções e linguagem operacional, não por código profundamente embutido. O caminho mais rápido e seguro é tornar o caminho padrão inequívoco e, depois, limpar a cauda longa.

@@ -1,12 +1,12 @@
-> **Este é um arquivo de demonstração** mostrando como um `CHIEF_OF_STAFF_CONTEXT.md` preenchido se parece.
-> Copie `CHIEF_OF_STAFF_CONTEXT.example.md` em vez disso e preencha com seus próprios detalhes.
+> **Este é um arquivo de demonstração** mostrando como um `CHIEF_OF_STAFF_CONTEXT.md` preenchido pode ficar.
+> Copie `CHIEF_OF_STAFF_CONTEXT.example.md` e adapte com seus próprios dados.
 
 # Contexto do Chief of Staff
 
 Este arquivo dá a todas as habilidades do Chief of Staff o contexto de que precisam para operar.
 Cada habilidade foi escrita para ler este arquivo no início das execuções relevantes.
 
-**Configuração:** Copie este arquivo para a raiz do seu projeto como `CHIEF_OF_STAFF_CONTEXT.md` e preencha seus detalhes.
+**Configuração:** copie este arquivo para a raiz do seu projeto como `CHIEF_OF_STAFF_CONTEXT.md` e preencha seus detalhes.
 
 ---
 
@@ -14,9 +14,9 @@ Cada habilidade foi escrita para ler este arquivo no início das execuções rel
 
 - **Nome:** Alex Rivera
 - **Nome preferido:** Alex
-- **Fuso horário:** US/Pacific (PT)
+- **Fuso horário:** US/Pacific
 - **Cargo / título:** Fundador e CEO
-- **Empresa / negócio:** Wavelength Media (produção e hospedagem de podcast)
+- **Empresa / negócio:** Wavelength Media
 
 ## Comunicação
 
@@ -26,67 +26,81 @@ Cada habilidade foi escrita para ler este arquivo no início das execuções rel
 - **Contas de calendário:** alex@wavelength.media (trabalho), alex.rivera@gmail.com (pessoal)
 - **Tom de e-mail:** direto
 - **Estilo de assinatura:** apenas primeiro nome
-- **Canal de escalada:** DM do Telegram
+- **Canal de escalada:** DM no Telegram
 
 ## Autoridade
 
 O que o assistente pode fazer sem perguntar?
 
 ### Agir autonomamente
-Coisas que o assistente lida sem verificar:
+
+Coisas que o assistente resolve sem verificar:
+
 - Arquivar newsletters e e-mails de marketing
-- Recusar spam óbvio e propostas de vendas não solicitadas
+- Recusar spam óbvio e prospecções genéricas
 - Confirmar recebimento de faturas rotineiras de fornecedores
-- Aceitar reuniões recorrentes já no calendário
+- Aceitar reuniões recorrentes já esperadas
 
 ### Elaborar para revisão
-Coisas que o assistente prepara mas espera sua aprovação:
+
+Coisas que o assistente prepara, mas espera sua aprovação:
+
 - Respostas a clientes e prospects
-- Agendamento de ligações com novos contatos
+- Agendamento com novos contatos
 - E-mails de acompanhamento após reuniões
-- Alcance a contas enterprise potenciais
+- Mensagens para contas enterprise em negociação
 
 ### Sempre escalar
-Coisas que o assistente nunca lida sozinho:
-- Compromissos financeiros acima de $500
-- Questões legais (contratos, NDAs, mudanças de termos)
-- Qualquer coisa de Jordan Park ou Sam Okafor
-- Consultas de imprensa e pedidos de entrevista de podcast
+
+Coisas que o assistente nunca deve resolver sozinho:
+
+- Compromissos financeiros acima de US$ 500
+- Questões legais, contratos e mudanças de termos
+- Qualquer assunto envolvendo Jordan Park ou Sam Okafor
+- Consultas de imprensa e pedidos de entrevista
 - Propostas de parceria com valor incerto
 
 ## Horas de Trabalho
 
 - **Início:** 9:00
 - **Término:** 18:00
-- **Dias:** Segunda-Sexta
-- **Horas de silêncio:** 22:00 - 8:00 (assistente fica em silêncio a menos que urgente)
+- **Dias:** segunda a sexta
+- **Horas de silêncio:** 22:00 às 8:00
 - **Intervalo entre reuniões:** 15 minutos
 - **Duração padrão de reunião:** 30 minutos
-- **Conferência padrão:** Google Meet
+- **Plataforma padrão de conferência:** Google Meet
 
 ## Ferramentas Disponíveis
 
-Quais integrações estão conectadas? Marque todas que se aplicam.
+Quais integrações estão conectadas? Marque todas as que se aplicam.
 
-- [x] Gmail (MCP ou API)
-- [x] Google Calendar (MCP ou API)
-- [x] Google Sheets (MCP ou API)
-- [ ] Slack
-- [x] Telegram
-- [ ] Linear / rastreador de projetos
+- [x] Gmail (via Composio)
+- [x] Google Calendar (via Composio)
+- [x] Google Sheets (via Composio)
+- [ ] Slack (via Composio, se aplicável)
+- [x] Telegram (via fluxo adotado no projeto)
+- [ ] Linear / rastreador de projetos (via Composio, se aplicável)
 - [ ] CRM (especifique: ___)
-- [ ] Outro: ___
+- [ ] Outro aplicativo conectado: ___
+
+## Mapeamento de Contas
+
+- **Conta principal de e-mail usada pelo assistente:** alex@wavelength.media
+- **Contas que podem enviar respostas:** alex@wavelength.media, hermes@wavelength.media
+- **Calendários que devem ser verificados antes de agendar:** trabalho e pessoal
+- **Restrições importantes:** o calendário pessoal é somente leitura para reagendamento
 
 ## Preferências de Acompanhamento
 
 - **Cadência padrão de acompanhamento:** 2 dias, 5 dias, 7 dias — depois escalar
-- **Contatos VIP:** Jordan Park (investidor líder), Sam Okafor (maior cliente)
+- **Contatos VIP:** Jordan Park, Sam Okafor
 - **Estilo de acompanhamento:** direto
 
 ## Contexto de Negócios
 
 Notas breves que ajudam o assistente a tomar melhores decisões:
-- Produção de podcasts B2B — produzimos e hospedamos podcasts corporativos para empresas
-- Atualmente expandindo para vendas enterprise; foco do Q2 é conquistar 3 novas contas enterprise
-- E-mails de investidores são alta prioridade (Série A fechada no ano passado, mantendo relacionamentos)
-- Retenção de clientes é crítica — sinalize imediatamente quaisquer sinais de insatisfação
+
+- Produção e hospedagem de podcasts B2B para empresas
+- Foco atual em expansão enterprise
+- E-mails de investidores seguem alta prioridade
+- Sinais de risco de churn devem ser escalados imediatamente

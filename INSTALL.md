@@ -7,8 +7,9 @@ Configuração passo a passo do Chief of Staff OS no Hermes Agent.
 ## Pré-requisitos
 
 - [Hermes Agent](https://hermes-agent.nousresearch.com/) instalado e configurado
-- Pelo menos uma conta de e-mail acessível via MCP (Gmail recomendado)
-- Acesso ao calendário via MCP (Google Calendar recomendado)
+- Pelo menos uma conta de e-mail que será conectada via Composio (Gmail recomendado)
+- Acesso ao calendário que será conectado via Composio (Google Calendar recomendado)
+- Um terminal com `bash` disponível para a instalação do Composio CLI
 
 ## Passo 1: Clonar o Repositório
 
@@ -25,7 +26,7 @@ Copie as habilidades para o diretório de habilidades do Hermes:
 cp -r skills/* ~/.hermes/skills/
 ```
 
-Verifique se foram detectadas iniciando uma sessão do Hermes e verificando a lista de habilidades. O comando exato pode variar por versão — tente listar suas habilidades disponíveis para confirmar que as cinco habilidades do CoS aparecem.
+Verifique se foram detectadas iniciando uma sessão do Hermes e conferindo a lista de habilidades. O comando exato pode variar por versão, então use o comando equivalente da sua instalação para confirmar que as cinco habilidades do CoS aparecem.
 
 ## Passo 3: Configurar o Arquivo de Contexto
 
@@ -35,31 +36,32 @@ Copie o modelo para a raiz do seu projeto:
 cp templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
 ```
 
-Abra-o e preencha cada seção:
+Abra o arquivo e preencha cada seção:
 
-- **Sobre Você**: Nome, fuso horário, cargo
-- **Comunicação**: Contas de e-mail, contas de calendário, preferência de tom
-- **Autoridade**: O que o assistente pode lidar vs. o que precisa da sua aprovação
-- **Horas de Trabalho**: Quando as varreduras devem executar, horas de silêncio
-- **Ferramentas Disponíveis**: Quais integrações MCP estão conectadas
-- **Preferências de Acompanhamento**: Cadência padrão, contatos VIP
-- **Contexto de Negócios**: Notas breves para ajudar o assistente a tomar melhores decisões
+- **Sobre Você**: nome, fuso horário, cargo
+- **Comunicação**: contas de e-mail, contas de calendário, preferência de tom
+- **Autoridade**: o que o assistente pode resolver sozinho e o que exige sua aprovação
+- **Horas de Trabalho**: quando as varreduras devem executar e quais são as horas de silêncio
+- **Ferramentas Disponíveis**: quais integrações estão conectadas via Composio
+- **Preferências de Acompanhamento**: cadência padrão, contatos VIP
+- **Contexto de Negócios**: notas curtas para ajudar o assistente a tomar melhores decisões
 
 ## Passo 4: Configurar os Arquivos do Workspace
 
-Copie o diretório workspace para seu projeto:
+Copie o diretório `workspace` para seu projeto:
 
 ```bash
 cp -r workspace/ ~/your-project/workspace/
 ```
 
 Isso cria:
-- `workspace/tasks/current.md` — Seu arquivo de tarefas canônico (edite as entradas de exemplo)
-- `workspace/relationships/current.md` — Seu arquivo de acompanhamento de follow-ups (edite os exemplos)
-- `workspace/HEARTBEAT.md` — Instruções para varreduras automatizadas
-- `workspace/TOOLS.md` — Notas do ambiente de ferramentas locais (preencha conforme necessário)
 
-## Passo 5: Configurar a Personalidade (Opcional)
+- `workspace/tasks/current.md` — seu arquivo canônico de tarefas
+- `workspace/relationships/current.md` — seu arquivo de acompanhamento de follow-ups
+- `workspace/HEARTBEAT.md` — instruções para varreduras automatizadas
+- `workspace/TOOLS.md` — notas sobre integrações, contas e ambiente local
+
+## Passo 5: Configurar Personalidade e Perfil (Opcional)
 
 Copie o modelo SOUL para a personalidade do CoS:
 
@@ -75,31 +77,66 @@ cp templates/USER.example.md ~/.hermes/memories/USER.md
 
 Edite ambos para corresponder às suas preferências.
 
-## Passo 6: Configurar as Integrações MCP
+## Passo 6: Instalar e Autenticar o Composio CLI
 
-Em `~/.hermes/config.yaml`, configure os servidores MCP para seu e-mail e calendário. Exemplo para Gmail:
+Instale o Composio CLI:
 
-```yaml
-mcp_servers:
-  gmail:
-    command: "npx"
-    args: ["-y", "@anthropic/mcp-server-gmail"]
-  google_calendar:
-    command: "npx"
-    args: ["-y", "@anthropic/mcp-server-google-calendar"]
+```bash
+curl -fsSL https://composio.dev/install | bash
 ```
 
-Recarregue os servidores MCP após as alterações. Em uma sessão de chat do Hermes, use o comando de recarregar (ex: `/reload-mcp`) para pegar a nova configuração.
+Autentique sua sessão:
 
-## Passo 7: Configurar os Agendamentos Cron
+```bash
+composio login
+```
 
-Inicie o agendador cron do Hermes (o comando exato pode variar — consulte a documentação do Hermes para sua versão):
+Se estiver em um ambiente remoto ou sem navegador local, use:
+
+```bash
+composio login --no-browser
+```
+
+Confirme que a autenticação ficou ativa:
+
+```bash
+composio whoami
+```
+
+## Passo 7: Conectar E-mail e Calendário via Composio
+
+Com o Composio CLI autenticado, abra uma sessão do Hermes e conecte os aplicativos necessários pela própria interface do agente.
+
+Prompts recomendados:
+
+- `Autentique com Gmail`
+- `Autentique com Google Calendar`
+
+Se você usar outras integrações no projeto, conecte-as pelo mesmo fluxo, sempre priorizando Composio como camada padrão.
+
+Depois da autenticação:
+
+- registre no `CHIEF_OF_STAFF_CONTEXT.md` quais contas devem ser usadas
+- registre em `workspace/TOOLS.md` o provedor, o mapeamento de contas e quaisquer restrições da conexão
+
+## Passo 8: Validar o Acesso às Integrações
+
+Ainda em uma sessão do Hermes, valide os acessos principais:
+
+- `Verifique minha caixa de entrada`
+- `O que tenho no calendário hoje?`
+
+Os resultados devem mostrar mensagens e eventos reais, ou pelo menos confirmar que a conexão está ativa e acessível.
+
+## Passo 9: Configurar os Agendamentos Cron
+
+Inicie o agendador cron do Hermes:
 
 ```bash
 hermes cron start
 ```
 
-Adicione os agendamentos recomendados (ajuste os horários para seu fuso horário). Exemplo de fluxo de trabalho:
+Adicione os agendamentos recomendados. Ajuste os horários para seu fuso horário:
 
 ```bash
 # Varredura de caixa de entrada do EA — a cada 15 min, horário comercial, dias úteis
@@ -115,52 +152,64 @@ hermes cron add "47 9,14 * * 1-5" "Execute a habilidade gerenciador-relacionamen
 hermes cron add "57 7 * * 1-5" "Execute a habilidade chefe-de-gabinete no modo briefing matutino. Resuma as tarefas de hoje, destaques da caixa de entrada, calendário e acompanhamentos devidos."
 ```
 
-> **Nota**: A sintaxe de comando cron acima segue o padrão da CLI do Hermes no momento da escrita. Se a sintaxe exata mudou, consulte `hermes cron --help` ou a [documentação do cron do Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
+> **Nota**: A sintaxe acima segue o padrão do Hermes no momento desta documentação. Se sua versão usar outra interface, consulte `hermes cron --help` ou a [documentação do cron do Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/).
 
-Veja [cron/README.md](cron/README.md) para detalhes e opções de personalização.
+Veja também [cron/README.md](cron/README.md) para detalhes adicionais.
 
 ## Lista de Verificação de Validação
 
-Execute isto após a configuração para confirmar que tudo funciona:
+Execute esta lista após a configuração:
 
-**Instalação**:
-- [ ] As habilidades estão instaladas em `~/.hermes/skills/` (um diretório por habilidade, cada um contendo SKILL.md)
-- [ ] `CHIEF_OF_STAFF_CONTEXT.md` está preenchido e presente na raiz do seu projeto
-- [ ] `workspace/tasks/current.md` existe com as seções necessárias (Hoje, Próximos, Regras, Concluídos)
-- [ ] `workspace/relationships/current.md` existe com as seções (Acompanhamentos Ativos, Nutrição, Arquivados)
+**Instalação**
+
+- [ ] As habilidades estão instaladas em `~/.hermes/skills/`
+- [ ] `CHIEF_OF_STAFF_CONTEXT.md` está preenchido e presente na raiz do projeto
+- [ ] `workspace/tasks/current.md` existe com as seções necessárias
+- [ ] `workspace/relationships/current.md` existe com as seções necessárias
 - [ ] `workspace/HEARTBEAT.md` está presente
+- [ ] `workspace/TOOLS.md` foi preenchido com o estado das integrações
 
-**Integrações**:
-- [ ] Os servidores MCP estão configurados em `~/.hermes/config.yaml`
-- [ ] Teste o acesso ao e-mail: pergunte "verifique minha caixa de entrada" — deve listar mensagens recentes ou confirmar acesso
-- [ ] Teste o acesso ao calendário: pergunte "o que tem no meu calendário hoje" — deve listar eventos ou confirmar acesso
--- [ ] Os trabalhos cron estão configurados (verifique com `hermes cron list` ou equivalente)
+**Integrações**
 
-**Testes funcionais** (execute estes em uma sessão de chat do Hermes):
-- [ ] "Adicione uma tarefa: testar a configuração do CoS" — deve atualizar workspace/tasks/current.md
-- [ ] "Execute assistente-executivo no modo heartbeat" — deve retornar HEARTBEAT_OK ou um resumo de triagem
-- [ ] "Briefing matutino" — deve retornar uma visão geral diária estruturada
-- [ ] "Com quem preciso fazer acompanhamento?" — deve verificar workspace/relationships/current.md
-- [ ] "Marcar como concluído: testar a configuração do CoS" — deve mover a tarefa para Concluídos com um carimbo de data/hora
+- [ ] `composio whoami` confirma uma sessão autenticada
+- [ ] Gmail está conectado via Composio
+- [ ] Google Calendar está conectado via Composio
+- [ ] O Hermes consegue ler a caixa de entrada
+- [ ] O Hermes consegue ler o calendário
+
+**Cron**
+
+- [ ] Os trabalhos cron estão configurados
+- [ ] Os horários refletem seu fuso horário real
+
+**Testes funcionais**
+
+- [ ] `Adicione uma tarefa: testar a configuração do CoS`
+- [ ] `Execute assistente-executivo no modo heartbeat`
+- [ ] `Briefing matutino`
+- [ ] `Com quem preciso fazer acompanhamento?`
+- [ ] `Marcar como concluído: testar a configuração do CoS`
 
 ## Escolhendo o Que Instalar
 
-Você não precisa de tudo. Para a configuração de maior valor mais rápida, veja [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md).
+Você não precisa usar tudo de uma vez. Para o caminho de maior valor com menor esforço, veja [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md).
 
-Para todas as opções, veja [docs/maturity-levels.md](docs/maturity-levels.md):
+Para todas as opções de adoção, veja [docs/maturity-levels.md](docs/maturity-levels.md):
 
-- **Nível 1 (EA Pessoal)**: Passos 2-4 com apenas `assistente-executivo` e `gerenciador-tarefas-diario`
-- **Nível 2 (Fundador)**: Passos 2-6 completos, todos os trabalhos cron exceto o briefing matutino
-- **Nível 3 (CoS Completo)**: Tudo acima
+- **Nível 1 (EA Pessoal)**: passos 2 a 8 com apenas `assistente-executivo` e `gerenciador-tarefas-diario`
+- **Nível 2 (Fundador)**: passos 2 a 9 com `gerenciador-relacionamentos` e `preparo-tarefas-diario`
+- **Nível 3 (CoS Completo)**: tudo acima, incluindo `chefe-de-gabinete`
 
-Um arquivo de contexto de demonstração preenchido está disponível em [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) para ver como uma configuração completa se parece.
+Um arquivo de contexto preenchido para demonstração está disponível em [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md).
 
 ## Solução de Problemas
 
-**Habilidades não aparecendo**: Certifique-se de que os arquivos SKILL.md estejam em `~/.hermes/skills/<nome-da-habilidade>/SKILL.md`. Cada habilidade precisa de seu próprio diretório.
+**As habilidades não aparecem**: confira se cada habilidade está em `~/.hermes/skills/<nome-da-habilidade>/SKILL.md`.
 
-**MCP não conectando**: Recarregue os servidores MCP em uma sessão de chat do Hermes (ex: `/reload-mcp`). Verifique `~/.hermes/logs/` para erros.
+**O Composio CLI não autentica**: rode `composio whoami`. Se não houver sessão ativa, execute `composio login` novamente.
 
-**Cron não executando**: Certifique-se de que o agendador cron esteja iniciado (ex: `hermes cron start`). Verifique o status com seu comando de listagem de cron.
+**O Hermes não consegue acessar Gmail ou Google Calendar**: refaça a autenticação na sessão do Hermes com `Autentique com Gmail` ou `Autentique com Google Calendar`, depois teste novamente.
 
-**Arquivo de contexto não encontrado**: As habilidades procuram por `CHIEF_OF_STAFF_CONTEXT.md` na raiz do seu projeto (o diretório onde você inicia o Hermes). Certifique-se de que esteja lá.
+**O cron não executa**: confirme se o agendador foi iniciado com `hermes cron start` e confira os jobs com o comando equivalente da sua instalação.
+
+**O arquivo de contexto não é encontrado**: as habilidades procuram `CHIEF_OF_STAFF_CONTEXT.md` na raiz do projeto em que o Hermes foi iniciado.

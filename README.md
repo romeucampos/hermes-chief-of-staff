@@ -1,29 +1,38 @@
 # OS Chefe de Gabinete
 
-Habilidades de IA que gerenciam seu dia — caixa de entrada, tarefas, acompanhamentos e o ritmo operacional que mantém tudo junto.
+Habilidades de IA que ajudam a gerir o dia a dia: caixa de entrada, tarefas, acompanhamentos e o ritmo operacional que mantém tudo em movimento.
 
 Criado para [Hermes Agent](https://hermes-agent.nousresearch.com/). Inspirado por [clawchief](https://github.com/snarktank/clawchief).
 
 ---
 
-## O Que É Isso
+## O Que É
 
-Um conjunto de habilidades do Hermes que transformam seu agente de IA em um Chief of Staff. Ele gerencia sua caixa de entrada, acompanha suas tarefas, faz follow-up em conversas e fornece um briefing diário — para que nada passe despercebido.
+Este repositório transforma o Hermes em um Chief of Staff operacional. Ele ajuda a:
 
-Três pilares:
-- **Tarefas** — Um arquivo de tarefas canônico que permanece atualizado entre as sessões
-- **Comunicações** — Triagem de caixa de entrada com decisões baseadas em autoridade
-- **Acompanhamentos** — Cadência de follow-up baseada no tempo para que nenhuma conversa morra silenciosamente
+- triar a caixa de entrada
+- acompanhar tarefas em um arquivo persistente
+- manter follow-ups ativos
+- consolidar o ritmo diário em briefings e revisões
 
 ## Habilidades
 
-| Habilidade | O Que Faz |
+| Habilidade | O que faz |
 |------------|-----------|
-| `assistente-executivo` | Triagem de caixa de entrada, elaboração de e-mails, gerenciamento de calendário, agendamento |
-| `gerenciador-tarefas-diario` | Arquivo de tarefas canônico — adicionar, concluir, priorizar, revisar |
-| `preparo-tarefas-diario` | Automação noturna — enriquece as tarefas de amanhã com itens recorrentes, prazos e calendário |
-| `gerenciador-relacionamentos` | Acompanhamento de follow-ups, cadência de contato, saúde de relacionamentos |
-| `chefe-de-gabinete` | Orquestrador — briefings matutinos, revisões de fim de dia, triagem ad-hoc |
+| `assistente-executivo` | Triagem de caixa de entrada, elaboração de e-mails, gestão de calendário e agendamento |
+| `gerenciador-tarefas-diario` | Arquivo canônico de tarefas: adicionar, concluir, priorizar e revisar |
+| `preparo-tarefas-diario` | Automação noturna para enriquecer a lista de amanhã com recorrências, prazos e calendário |
+| `gerenciador-relacionamentos` | Follow-ups, cadência de contato e saúde de relacionamentos |
+| `chefe-de-gabinete` | Orquestrador para briefing matutino, revisão de fim de dia e triagem ad hoc |
+
+## Política de Integrações
+
+O repositório adota um modelo **Composio-first**:
+
+- Hermes é a camada de agente e orquestração
+- Composio é a camada padrão de conexão com e-mail, calendário e demais serviços externos
+- novas integrações devem usar Composio primeiro
+- exceções devem ser raras e documentadas explicitamente
 
 ## Início Rápido
 
@@ -39,66 +48,73 @@ cp -r hermes-chief-of-staff/workspace/ ~/your-project/workspace/
 
 # Copie e preencha o arquivo de contexto
 cp hermes-chief-of-staff/templates/CHIEF_OF_STAFF_CONTEXT.example.md ~/your-project/CHIEF_OF_STAFF_CONTEXT.md
-
-# (Opcional) Configure a personalidade do CoS
-cp hermes-chief-of-staff/templates/SOUL.example.md ~/.hermes/SOUL.md
 ```
 
-Depois preencha o `CHIEF_OF_STAFF_CONTEXT.md` com seus detalhes. Veja [INSTALL.md](INSTALL.md) para o guia completo de configuração.
+Depois:
+
+1. instale e autentique o Composio CLI
+2. conecte Gmail e Google Calendar via Composio
+3. valide o acesso em uma sessão do Hermes
+4. configure seus jobs de cron
+
+Veja [INSTALL.md](INSTALL.md) para o fluxo completo.
 
 ## Como Funciona
 
 O sistema opera em um ritmo diário:
 
-1. **2h da manhã** — `preparo-tarefas-diario` prepara a lista de tarefas de amanhã
-2. **8h da manhã** — `chefe-de-gabinete` entrega um briefing matutino
-3. **O dia todo** — `assistente-executivo` varre a caixa de entrada a cada 15 minutos
-4. **Duas vezes ao dia** — `gerenciador-relacionamentos` verifica follow-ups pendentes
-5. **Fim do dia** — `chefe-de-gabinete` revisa o que foi feito e captura o que vem a seguir
+1. `preparo-tarefas-diario` prepara a lista de amanhã
+2. `chefe-de-gabinete` entrega o briefing matutino
+3. `assistente-executivo` faz varreduras periódicas da caixa de entrada
+4. `gerenciador-relacionamentos` verifica follow-ups pendentes
+5. `chefe-de-gabinete` pode consolidar a revisão de fim de dia
 
-Quando nada precisa de atenção, o sistema fica em silêncio (`HEARTBEAT_OK`). Cada mensagem significa que algo precisa da sua atenção.
+Quando nada exige atenção, o sistema permanece em silêncio com `HEARTBEAT_OK`.
 
 Veja [docs/operating-model.md](docs/operating-model.md) para a visão completa.
 
 ## Escolha Seu Nível
 
-Você não precisa usar tudo. Escolha o nível que se encaixa:
-
-| Nível | Habilidades | O Que Você Recebe |
+| Nível | Habilidades | O que você recebe |
 |-------|-------------|-------------------|
-| **EA Pessoal** | assistente-executivo, gerenciador-tarefas-diario | Triagem de caixa de entrada + gerenciamento de tarefas |
-| **Fundador** | + gerenciador-relacionamentos, preparo-tarefas-diario | + acompanhamento de follow-ups + preparo diário |
-| **CoS Completo** | + chefe-de-gabinete | + briefings matutinos + revisões de fim de dia |
+| **EA Pessoal** | `assistente-executivo`, `gerenciador-tarefas-diario` | Triagem de caixa de entrada + gestão de tarefas |
+| **Fundador** | + `gerenciador-relacionamentos`, `preparo-tarefas-diario` | + follow-ups + preparo diário |
+| **CoS Completo** | + `chefe-de-gabinete` | + briefing matutino + revisão de fim de dia |
 
 Veja [docs/maturity-levels.md](docs/maturity-levels.md) para detalhes.
 
-## Escopo da v1
-
-A v1 foca nos fundamentos operacionais do CoS: tarefas, comunicações e acompanhamentos. É mais forte como assistente executivo e sistema de operações de fundador. Planejamento estratégico, registros de decisão, acompanhamento de delegação e preparação de reuniões são camadas futuras (veja [docs/maturity-levels.md](docs/maturity-levels.md)).
-
 ## Configuração
 
-Todas as configurações específicas do proprietário residem em um único arquivo: `CHIEF_OF_STAFF_CONTEXT.md`. Cada habilidade foi escrita para ler este arquivo no início das execuções relevantes — é a configuração canônica do proprietário. Sem configuração dispersa, sem variáveis de ambiente para gerenciar.
+As preferências do proprietário ficam concentradas em `CHIEF_OF_STAFF_CONTEXT.md`. Esse arquivo define:
 
-O arquivo de contexto cobre: seu nome, contas de e-mail, contas de calendário, níveis de autoridade (o que o assistente pode fazer sem perguntar), horas de trabalho, preferências de follow-up e ferramentas disponíveis.
+- nome, cargo e fuso horário
+- contas de e-mail e calendários
+- níveis de autoridade
+- horas de trabalho
+- preferências de acompanhamento
+- integrações e mapeamento de contas
 
-- [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) — Modelo para preencher
-- [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) — Exemplo preenchido com dados fictícios
+Arquivos úteis:
+
+- [templates/CHIEF_OF_STAFF_CONTEXT.example.md](templates/CHIEF_OF_STAFF_CONTEXT.example.md) — modelo para preencher
+- [templates/CHIEF_OF_STAFF_CONTEXT.demo.md](templates/CHIEF_OF_STAFF_CONTEXT.demo.md) — exemplo preenchido
+- [workspace/TOOLS.md](workspace/TOOLS.md) — referência operacional para contas, permissões e ambiente
 
 ## Documentação
 
-- [INSTALL.md](INSTALL.md) — Guia de configuração passo a passo
-- [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md) — Caminho mais rápido para uma configuração funcional
-- [PHILOSOPHY.md](PHILOSOPHY.md) — Princípios operacionais
-- [docs/operating-model.md](docs/operating-model.md) — Como o sistema funciona de ponta a ponta
-- [docs/example-outputs.md](docs/example-outputs.md) — Como deve ser uma boa saída
-- [docs/adaptation-guide.md](docs/adaptation-guide.md) — Como personalizar para seu fluxo de trabalho
-- [docs/maturity-levels.md](docs/maturity-levels.md) — Progressão de EA Pessoal a CoS Completo
-- [cron/README.md](cron/README.md) — Cronogramas recomendados
+- [INSTALL.md](INSTALL.md) — guia passo a passo
+- [docs/recommended-founder-setup.md](docs/recommended-founder-setup.md) — caminho mais rápido para uma configuração funcional
+- [docs/operating-model.md](docs/operating-model.md) — modelo operacional de ponta a ponta
+- [docs/adaptation-guide.md](docs/adaptation-guide.md) — como personalizar o fluxo
+- [docs/maturity-levels.md](docs/maturity-levels.md) — progressão de adoção
+- [docs/composio-migration.md](docs/composio-migration.md) — migração de setups legados para o modelo Composio-first
+- [cron/README.md](cron/README.md) — cronogramas recomendados
+- [PHILOSOPHY.md](PHILOSOPHY.md) — princípios operacionais
+- [docs/example-outputs.md](docs/example-outputs.md) — exemplos de saídas esperadas
 
 ## Sobre
 
-Criado por [Craig Hewitt](https://twitter.com/croighewitt). Portado do modelo operacional [clawchief](https://github.com/snarktank/clawchief), reconstruído para [Hermes Agent](https://hermes-agent.nousresearch.com/).
+Criado por [Craig Hewitt](https://twitter.com/croighewitt). Portado do modelo operacional [clawchief](https://github.com/snarktank/clawchief) para [Hermes Agent](https://hermes-agent.nousresearch.com/).
 
 ## Licença
 
