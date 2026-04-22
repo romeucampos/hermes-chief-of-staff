@@ -1,5 +1,5 @@
 ---
-name: gmail-composio-summary
+name: composio-gmail
 description: Resumir Gmail via Composio CLI sem depender de OAuth local do Google Workspace ou do himalaya. Útil quando a conta Gmail já está conectada no Composio e o usuário quer um resumo rápido por janela de tempo.
 version: 1.0.0
 author: Hermes
@@ -22,40 +22,83 @@ Use esta skill quando o usuário pedir um resumo do Gmail e:
 
 Priorize Composio CLI para Gmail quando o objetivo for apenas leitura e resumo da caixa.
 
+## Fluxo determinístico preferido
+
+Quando `bash`, `python` e `composio` estiverem disponíveis, prefira usar:
+
+```bash
+bash skills/composio-gmail/scripts/composio_gmail_summary.sh "conta@exemplo.com"
+```
+
+O script calcula a janela padrão, executa o Composio e retorna um JSON resumido. Use esse JSON como fonte primária da resposta. Não refaça a consulta manualmente se o script já retornar os dados necessários.
+
+## Filtros suportados
+
+O script aceita estes filtros por variável de ambiente:
+
+- `LOOKBACK_DAYS`
+  - padrão: `7`
+  - define quantos dias para trás entram na janela local
+- `MAX_RESULTS`
+  - padrão: `100`
+  - define o limite de mensagens pedidas ao `GMAIL_FETCH_EMAILS`
+- `TZ`
+  - padrão: `America/Sao_Paulo`
+  - define a timezone usada para montar a janela e formatar os destaques
+
+Exemplos:
+
+```bash
+LOOKBACK_DAYS=2 bash skills/composio-gmail/scripts/composio_gmail_summary.sh "me"
+```
+
+```bash
+LOOKBACK_DAYS=14 MAX_RESULTS=200 TZ=America/Sao_Paulo \
+bash skills/composio-gmail/scripts/composio_gmail_summary.sh "romeupcampos@gmail.com"
+```
+
+## Query efetiva usada pelo script
+
+O script consulta o Gmail com a forma:
+
+```text
+in:inbox after:YYYY/MM/DD before:YYYY/MM/DD
+```
+
+Notas práticas:
+
+- `after:` e `before:` são montados a partir da janela local calculada pela timezone escolhida
+- `before:` é exclusivo
+- o filtro principal é sempre `in:inbox`
+- a filtragem final também considera o `messageTimestamp` localmente antes de montar o resumo
+
 ## Fluxo recomendado
 
 1. Verificar disponibilidade prática:
-   - `himalaya --version`
-   - `composio dev connected-accounts list --toolkits gmail --limit 10`
-   - se Gmail estiver `ACTIVE`, seguir com Composio
-2. Inspecionar schema da ferramenta:
-   - `composio execute GMAIL_FETCH_EMAILS --get-schema`
-3. Montar a janela padrão:
-   - início = ontem às 00:00 no horário local convertido para UTC
-   - fim = amanhã às 00:00 no horário local convertido para UTC, ou fim do dia atual
-4. Para janela local, montar um query simples e depois refinar pela data local, se necessário
-5. Executar a busca
-6. Ler o `outputFilePath` retornado
-7. Resumir:
-   - total de e-mails
-   - não lidos
-   - anexos
-   - top remetentes
-   - destaques com data explícita
-   - possível phishing
-   - paginação, se houver
+   - `composio --help`
+   - confirmar que `python` está disponível
+2. Rodar o script diretamente, preferindo ajustar apenas `LOOKBACK_DAYS`, `MAX_RESULTS` e `TZ` quando necessário
+3. Ler o JSON retornado pelo script
+4. Montar a resposta final a partir dos campos:
+   - `account`
+   - `date_range`
+   - `query_window_label`
+   - `total`
+   - `unread`
+   - `with_attachments`
+   - `top_categories`
+   - `highlights`
+   - `possible_phishing`
+   - `has_next_page`
+   - `next_page_token`
+   - `note`, se existir
+5. Se `total` vier `0`, informar explicitamente que a janela consultada não encontrou emails e sugerir ampliar `LOOKBACK_DAYS`
 
 ## Exemplo
 
 ```bash
-composio execute GMAIL_FETCH_EMAILS -d '{
-  "user_id":"me",
-  "query":"in:inbox after:2026/04/01 before:2026/04/04",
-  "max_results":100,
-  "verbose":false,
-  "include_payload":false,
-  "include_spam_trash":false
-}'
+LOOKBACK_DAYS=7 MAX_RESULTS=100 \
+bash skills/composio-gmail/scripts/composio_gmail_summary.sh "me"
 ```
 
 ## Campos úteis
@@ -71,28 +114,33 @@ composio execute GMAIL_FETCH_EMAILS -d '{
 
 ## Formato de saída recomendado
 
-Sempre retornar em tópicos curtos:
+Sempre responder em texto curto, não em JSON cru, seguindo esta ordem:
 
-1. Conta consultada
-2. Intervalo consultado
-3. Quantidade total de e-mails encontrados
-4. Quantidade de não lidos
-5. Quantidade com anexo, se fizer sentido
-6. Principais remetentes ou categorias, com a quantidade de e-mails em cada item
-7. Categorias principais
-8. Destaques com datas explícitas
-9. Itens de atenção
-10. Indicação de próxima página, se houver
-11. Resumo final
+1. Título com a janela consultada
+2. Conta consultada
+3. Total de emails, não lidos e com anexo
+4. Categorias principais
+5. Destaques com datas explícitas
+6. Itens de atenção
+7. Paginação, se houver
+8. Resumo final em 1 ou 2 frases
 
-Evite tabela bruta como formato principal.
+Regras de apresentação:
+
+- não mostrar a lista `raw` de mensagens
+- não colar JSON bruto como resposta principal
+- usar datas explícitas nos destaques
+- se `possible_phishing` vier vazio, não inventar alerta
+- se `note` vier preenchido, mostrar essa observação em destaque
+- se `top_categories` vier vazio, dizer isso explicitamente
+- evitar tabela como formato principal
 
 ## Exemplo de saída
 
 Use este formato como referência. Os valores são ilustrativos, mas a estrutura da resposta deve seguir este padrão.
 
 ```text
-Resumo do Gmail (20/04 até 21/04):
+Resumo do Gmail (20/04 até 22/04):
 
 - Conta confirmada: romeu.campos@bitpreco.com
 - Emails encontrados: 34
@@ -126,7 +174,22 @@ Observações
 Resumo final
 Sua caixa do Gmail está majoritariamente operacional e financeira, com vários relatórios automáticos, liquidações, transferências e faturamento. O único item que merece atenção extra é o alerta de segurança do Google.
 
-Se quiser, eu posso fazer agora um resumo só dos emails importantes e não lidos ou um recorte por remetente.
+Se quiser, eu posso refazer a consulta com uma janela maior ou focar só nos não lidos.
+```
+
+## Quando mostrar filtro na resposta
+
+Inclua o filtro usado quando isso ajudar a interpretar o resultado:
+
+- sempre mencionar o intervalo consultado
+- mencionar `LOOKBACK_DAYS` quando o usuário pedir janela curta ou longa
+- mencionar `MAX_RESULTS` apenas se houver risco de truncamento ou paginação
+- mencionar a timezone quando a interpretação das datas for relevante
+
+Exemplo curto:
+
+```text
+Filtro usado: inbox, janela local de 7 dias, timezone America/Sao_Paulo, até 100 mensagens.
 ```
 
 ## Heurísticas úteis
@@ -142,14 +205,16 @@ Se quiser, eu posso fazer agora um resumo só dos emails importantes e não lido
 ## Limitações e aprendizados práticos
 
 - `google-workspace` pode estar indisponível por falta de setup local; para leitura rápida, Composio pode ser a rota mais curta
-- `himalaya` pode não existir no ambiente
+- `himalaya` pode não existir no ambiente e não é pré-requisito desta skill
 - `GMAIL_FETCH_EMAILS` pode retornar `nextPageToken`; avise que há mais resultados
-- o filtro por datas do Gmail pode não bastar sozinho para janelas locais exatas; ajuste pela timezone local quando necessário
-- `verbose=false` e `include_payload=false` são bons defaults para resumo rápido e leve
+- o script já aplica ajuste local por timezone na montagem e na filtragem dos timestamps
+- `verbose=false` e `include_payload=false` são os defaults atuais do script para resumo rápido e leve
+- resultado vazio normalmente significa janela estreita demais ou ausência real de emails na inbox nesse período
 
 ## Checklist final
 
 - [ ] Intervalo informado explicitamente
+- [ ] Filtro usado explicado quando necessário
 - [ ] Datas explícitas nos destaques
 - [ ] Total e não lidos informados
 - [ ] Categorias e resumo prático incluídos
